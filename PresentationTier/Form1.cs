@@ -26,17 +26,7 @@ namespace CLIENT
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            var responce = await BenefitAPI.GetAll();
-            string text = null;
-            List<Benefit> benefit = JsonConvert.DeserializeObject<List<Benefit>>(responce);
-            foreach( Benefit b in benefit )
-            {
-                text += $"[ - BN_ID: {b.BnId}" +
-                    $"  - BenefitName: {b.BenefitName}" +
-                    $"  - Amount: {b.Amount}" +
-                    $"\n\n]";
-            }
-            richTextBox1.Text = text;
+            
         }
     }
 }
