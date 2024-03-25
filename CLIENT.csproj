@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTier\BenefitDAL.cs" />
     <Compile Include="DataTier\Models\BenefitDetail.cs" />
     <Compile Include="DataTier\Models\Position.cs" />
     <Compile Include="DataTier\Models\ContractType.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="DataTier\Models\TimeKeepingMethod.cs" />
     <Compile Include="DataTier\Models\WorkSchedule.cs" />
     <Compile Include="DataTier\Models\WorkScheduleDetail.cs" />
+    <Compile Include="LogicTier\BenefitBUS.cs" />
     <Compile Include="PresentationTier\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,8 +104,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="LogicTier\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
