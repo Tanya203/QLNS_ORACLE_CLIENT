@@ -1,19 +1,19 @@
-﻿using CLIENT.Models;
+﻿using CLIENT.DataTier.Models;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CLIENT
+namespace CLIENT.API
 {
-    public class BenefitAPI
+    public class BenefitDetailApi
     {
         private static readonly string _baseUrl = "https://localhost:7102/";
-        public async Task<string> GetAllBenefit()
+        public async Task<string> GetAllBenefitDetail()
         {
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetAllBenefit"))
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetAllBenefitDetail"))
                 {
                     using (HttpContent content = res.Content)
                     {
@@ -27,11 +27,11 @@ namespace CLIENT
             }
             return null;
         }
-        public async Task<string> GetCountBenefit()
+        public async Task<string> GetStaffBenefitDetail()
         {
             using (HttpClient client = new HttpClient())
             {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}CountBenefit"))
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetStaffBenefitDetail"))
                 {
                     using (HttpContent content = res.Content)
                     {
@@ -45,11 +45,11 @@ namespace CLIENT
             }
             return null;
         }
-        public async Task<string> SearchCountBenefit(string search)
+        public async Task<string> SearchStaffBenefitDetail(string search)
         {
             using (HttpClient client = new HttpClient())
             {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}SearchCountBenefit?search={search}"))
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}SearchStaffBenefitDetail?search={search}"))
                 {
                     using (HttpContent content = res.Content)
                     {
@@ -63,15 +63,15 @@ namespace CLIENT
             }
             return null;
         }
-        public async Task<string> CreateBenefit(Benefit benefit)
+        public async Task<string> CreateBenefitDetail(BenefitDetail benefitDetail)
         {
             using (HttpClient client = new HttpClient())
             {
-                string json = JsonConvert.SerializeObject(benefit);
+                string json = JsonConvert.SerializeObject(benefitDetail);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AddBenefit", content))
+                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AddBenefitDetail", content))
                 {
                     using (HttpContent responseContent = res.Content)
                     {
@@ -85,15 +85,15 @@ namespace CLIENT
             }
             return null;
         }
-        public async Task<string> UpdateBenefit(Benefit benefit)
+        public async Task<string> UpdateBenefitDetail(BenefitDetail benefitDetail)
         {
             using (HttpClient client = new HttpClient())
             {
-                string json = JsonConvert.SerializeObject(benefit);
+                string json = JsonConvert.SerializeObject(benefitDetail);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                using (HttpResponseMessage res = await client.PutAsync($"{_baseUrl}UpdateBenefit", content))
+                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}UpdateBenefitDetail", content))
                 {
                     using (HttpContent responseContent = res.Content)
                     {
@@ -107,11 +107,11 @@ namespace CLIENT
             }
             return null;
         }
-        public async Task<string> DeleteBenefit(string bnID)
+        public async Task<string> DeleteBenefitDetail(string bnID, string staffID)
         {
             using (HttpClient client = new HttpClient())
             {
-                string requestUrl = $"{_baseUrl}DeleteBenefit?bnID={bnID}";
+                string requestUrl = $"{_baseUrl}DeleteBenefitDetail?bnID={bnID}&staffID={staffID}";
 
                 using (HttpResponseMessage res = await client.DeleteAsync(requestUrl))
                 {
@@ -127,5 +127,5 @@ namespace CLIENT
             }
             return null;
         }
-    }    
+    }
 }

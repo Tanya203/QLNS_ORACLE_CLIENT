@@ -1,19 +1,23 @@
-﻿using CLIENT.Models;
+﻿using CLIENT.DataTier.Models;
+using CLIENT.Models;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CLIENT
+namespace CLIENT.API
 {
-    public class BenefitAPI
+    public class ShiftTypeAPI
     {
         private static readonly string _baseUrl = "https://localhost:7102/";
-        public async Task<string> GetAllBenefit()
+        public async Task<string> GetAllShiftType()
         {
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetAllBenefit"))
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetAllShiftType"))
                 {
                     using (HttpContent content = res.Content)
                     {
@@ -27,11 +31,11 @@ namespace CLIENT
             }
             return null;
         }
-        public async Task<string> GetCountBenefit()
+        public async Task<string> SearchShiftType(string search)
         {
             using (HttpClient client = new HttpClient())
             {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}CountBenefit"))
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}SearchShiftType?search={search}"))
                 {
                     using (HttpContent content = res.Content)
                     {
@@ -45,33 +49,15 @@ namespace CLIENT
             }
             return null;
         }
-        public async Task<string> SearchCountBenefit(string search)
+        public async Task<string> CreateShiftType(ShiftType shiftType)
         {
             using (HttpClient client = new HttpClient())
             {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}SearchCountBenefit?search={search}"))
-                {
-                    using (HttpContent content = res.Content)
-                    {
-                        string data = await content.ReadAsStringAsync();
-                        if (data != null)
-                        {
-                            return data;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-        public async Task<string> CreateBenefit(Benefit benefit)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                string json = JsonConvert.SerializeObject(benefit);
+                string json = JsonConvert.SerializeObject(shiftType);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AddBenefit", content))
+                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AddShiftType", content))
                 {
                     using (HttpContent responseContent = res.Content)
                     {
@@ -85,15 +71,15 @@ namespace CLIENT
             }
             return null;
         }
-        public async Task<string> UpdateBenefit(Benefit benefit)
+        public async Task<string> UpdateShiftType(ShiftType shiftType)
         {
             using (HttpClient client = new HttpClient())
             {
-                string json = JsonConvert.SerializeObject(benefit);
+                string json = JsonConvert.SerializeObject(shiftType);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                using (HttpResponseMessage res = await client.PutAsync($"{_baseUrl}UpdateBenefit", content))
+                using (HttpResponseMessage res = await client.PutAsync($"{_baseUrl}UpdateShiftType", content))
                 {
                     using (HttpContent responseContent = res.Content)
                     {
@@ -107,11 +93,11 @@ namespace CLIENT
             }
             return null;
         }
-        public async Task<string> DeleteBenefit(string bnID)
+        public async Task<string> DeleteBenefit(string stID)
         {
             using (HttpClient client = new HttpClient())
             {
-                string requestUrl = $"{_baseUrl}DeleteBenefit?bnID={bnID}";
+                string requestUrl = $"{_baseUrl}DeleteShiftType?stID={stID}";
 
                 using (HttpResponseMessage res = await client.DeleteAsync(requestUrl))
                 {
@@ -127,5 +113,5 @@ namespace CLIENT
             }
             return null;
         }
-    }    
+    }
 }
