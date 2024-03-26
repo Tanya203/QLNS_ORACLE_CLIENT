@@ -2,14 +2,14 @@
 using CLIENT.Function;
 using CLIENT.LogicTier;
 using CLIENT.Models;
-using CLINET.LogicTier;
+using CLIENT.LogicTier;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace CLINET.PresentationTier
+namespace CLIENT.PresentationTier
 {
     public partial class frmShiftType : Form
     {

@@ -6,43 +6,41 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CLIENT.DataTier
 {
-    public class PositionDAL
+    public class ShiftDAL
     {
-        private readonly PositionAPI _api;
-
-        public PositionDAL()
+        private readonly ShiftAPI _api;
+        public ShiftDAL()
         {
-            _api = new PositionAPI();
+            _api = new ShiftAPI();
         }
-        public async Task<List<Position>> GetAllPosition()
+        public async Task<List<Shift>> GetAllShift()
         {
-            string responce = await _api.GetAllPosition();
-            List<Position> listPosition = JsonConvert.DeserializeObject<List<Position>>(responce);
-            return listPosition.ToList();
+            string responce = await _api.GetAllShift();
+            List<Shift> listShift = JsonConvert.DeserializeObject<List<Shift>>(responce);
+            return listShift.ToList();
         }
-        public async Task<List<PositionDetailViewModel>> GetPositionDetail()
+        public async Task<List<ShiftDetailViewModel>> GetShiftDetail()
         {
-            string responce = await _api.GetPositionDetail();
-            List<PositionDetailViewModel> listPosition = JsonConvert.DeserializeObject<List<PositionDetailViewModel>>(responce);
-            return listPosition.ToList();
+            string responce = await _api.GetShiftDetail();
+            List<ShiftDetailViewModel> listShift = JsonConvert.DeserializeObject<List<ShiftDetailViewModel>>(responce);
+            return listShift.ToList();
         }
-        public async Task<List<PositionDetailViewModel>> SearchPositionDetail(string search)
+        public async Task<List<ShiftDetailViewModel>> SearchShiftDetail(string search)
         {
-            string responce = await _api.SearchPositionDetail(search);
-            List<PositionDetailViewModel> listPosition = JsonConvert.DeserializeObject<List<PositionDetailViewModel>>(responce);
-            return listPosition.ToList();
+            string responce = await _api.SearchShiftDetail(search);
+            List<ShiftDetailViewModel> listShift = JsonConvert.DeserializeObject<List<ShiftDetailViewModel>>(responce);
+            return listShift.ToList();
         }
-        public async Task<bool> CreatePosition(Position position)
+        public async Task<bool> CreateShift(Shift shift)
         {
             try
             {
-                string responce = await _api.CreatePosition(position);
+                string responce = await _api.CreateShift(shift);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -60,11 +58,11 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-        public async Task<bool> UpdatePosition(Position position)
+        public async Task<bool> UpdateShift(Shift shift)
         {
             try
             {
-                string responce = await _api.UpdatePosition(position);
+                string responce = await _api.UpdateShift(shift);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -82,11 +80,11 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-        public async Task<bool> DeletePosition(string psID)
+        public async Task<bool> DeleteShift(string shiftID)
         {
             try
             {
-                string responce = await _api.DeletePosition(psID);
+                string responce = await _api.DeleteShift(shiftID);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

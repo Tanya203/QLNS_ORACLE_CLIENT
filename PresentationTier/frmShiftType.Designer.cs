@@ -1,4 +1,4 @@
-﻿namespace CLINET.PresentationTier
+﻿namespace CLIENT.PresentationTier
 {
     partial class frmShiftType
     {
