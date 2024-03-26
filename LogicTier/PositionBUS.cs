@@ -13,9 +13,9 @@ namespace CLIENT.LogicTier
         {
             _positionDAL = new PositionDAL();
         }
-        public async Task<List<Position>> GetAllDPosition()
+        public async Task<List<Position>> GetAllPosition()
         {
-            return await _positionDAL.GetAllDPosition();
+            return await _positionDAL.GetAllPosition();
         }
         public async Task<List<PositionDetailViewModel>> GetPositionDetail()
         {

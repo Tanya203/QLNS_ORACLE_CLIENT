@@ -39,6 +39,11 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.lblAllowanceID = new System.Windows.Forms.Label();
             this.dgvBenefitDetail = new System.Windows.Forms.DataGridView();
+            this.colMaPC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPhongBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblAllowanceDetail = new System.Windows.Forms.Label();
             this.pbStaffPicture = new System.Windows.Forms.PictureBox();
             this.nudFontSize = new System.Windows.Forms.NumericUpDown();
@@ -48,8 +53,6 @@
             this.cmbPosition = new System.Windows.Forms.ComboBox();
             this.lblPosition = new System.Windows.Forms.Label();
             this.cmbDepartment = new System.Windows.Forms.ComboBox();
-            this.txtFullName = new System.Windows.Forms.TextBox();
-            this.lblFullName = new System.Windows.Forms.Label();
             this.cmbStaffID = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblStaffID = new System.Windows.Forms.Label();
@@ -72,11 +75,6 @@
             this.lblTotalAmount = new System.Windows.Forms.Label();
             this.txtAllowamceName = new System.Windows.Forms.TextBox();
             this.lblAllowanceName = new System.Windows.Forms.Label();
-            this.colMaPC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPhongBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBenefitDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbStaffPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFontSize)).BeginInit();
@@ -137,7 +135,7 @@
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(541, 137);
+            this.btnSave.Location = new System.Drawing.Point(716, 96);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 49);
             this.btnSave.TabIndex = 87;
@@ -188,6 +186,41 @@
             this.dgvBenefitDetail.Size = new System.Drawing.Size(1924, 599);
             this.dgvBenefitDetail.TabIndex = 88;
             // 
+            // colMaPC
+            // 
+            this.colMaPC.HeaderText = "Mã phụ cấp";
+            this.colMaPC.MinimumWidth = 6;
+            this.colMaPC.Name = "colMaPC";
+            this.colMaPC.ReadOnly = true;
+            // 
+            // colMaNV
+            // 
+            this.colMaNV.HeaderText = "Mã nhân viên";
+            this.colMaNV.MinimumWidth = 6;
+            this.colMaNV.Name = "colMaNV";
+            this.colMaNV.ReadOnly = true;
+            // 
+            // colHoTen
+            // 
+            this.colHoTen.HeaderText = "Họ tên";
+            this.colHoTen.MinimumWidth = 6;
+            this.colHoTen.Name = "colHoTen";
+            this.colHoTen.ReadOnly = true;
+            // 
+            // colPhongBan
+            // 
+            this.colPhongBan.HeaderText = "Phòng ban";
+            this.colPhongBan.MinimumWidth = 6;
+            this.colPhongBan.Name = "colPhongBan";
+            this.colPhongBan.ReadOnly = true;
+            // 
+            // colChucVu
+            // 
+            this.colChucVu.HeaderText = "Chức vụ";
+            this.colChucVu.MinimumWidth = 6;
+            this.colChucVu.Name = "colChucVu";
+            this.colChucVu.ReadOnly = true;
+            // 
             // lblAllowanceDetail
             // 
             this.lblAllowanceDetail.AutoSize = true;
@@ -232,6 +265,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(299, 30);
             this.txtSearch.TabIndex = 90;
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // lblSearch
             // 
@@ -283,30 +317,12 @@
             this.cmbDepartment.Size = new System.Drawing.Size(263, 33);
             this.cmbDepartment.TabIndex = 11;
             // 
-            // txtFullName
-            // 
-            this.txtFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFullName.Location = new System.Drawing.Point(648, 76);
-            this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(268, 30);
-            this.txtFullName.TabIndex = 14;
-            // 
-            // lblFullName
-            // 
-            this.lblFullName.AutoSize = true;
-            this.lblFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFullName.Location = new System.Drawing.Point(459, 79);
-            this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(182, 25);
-            this.lblFullName.TabIndex = 63;
-            this.lblFullName.Text = "Họ tên nhân viên:";
-            // 
             // cmbStaffID
             // 
             this.cmbStaffID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStaffID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStaffID.FormattingEnabled = true;
-            this.cmbStaffID.Location = new System.Drawing.Point(185, 70);
+            this.cmbStaffID.Location = new System.Drawing.Point(185, 105);
             this.cmbStaffID.Name = "cmbStaffID";
             this.cmbStaffID.Size = new System.Drawing.Size(263, 33);
             this.cmbStaffID.TabIndex = 13;
@@ -319,7 +335,7 @@
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(387, 137);
+            this.btnAdd.Location = new System.Drawing.Point(562, 96);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(109, 49);
             this.btnAdd.TabIndex = 18;
@@ -331,7 +347,7 @@
             // 
             this.lblStaffID.AutoSize = true;
             this.lblStaffID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaffID.Location = new System.Drawing.Point(23, 73);
+            this.lblStaffID.Location = new System.Drawing.Point(23, 108);
             this.lblStaffID.Name = "lblStaffID";
             this.lblStaffID.Size = new System.Drawing.Size(149, 25);
             this.lblStaffID.TabIndex = 53;
@@ -501,8 +517,6 @@
             this.pnlFunction.Controls.Add(this.cmbPosition);
             this.pnlFunction.Controls.Add(this.lblPosition);
             this.pnlFunction.Controls.Add(this.cmbDepartment);
-            this.pnlFunction.Controls.Add(this.txtFullName);
-            this.pnlFunction.Controls.Add(this.lblFullName);
             this.pnlFunction.Controls.Add(this.cmbStaffID);
             this.pnlFunction.Controls.Add(this.btnAdd);
             this.pnlFunction.Controls.Add(this.lblStaffID);
@@ -566,41 +580,6 @@
             this.lblAllowanceName.TabIndex = 75;
             this.lblAllowanceName.Text = "Tên phụ cấp:";
             // 
-            // colMaPC
-            // 
-            this.colMaPC.HeaderText = "Mã phụ cấp";
-            this.colMaPC.MinimumWidth = 6;
-            this.colMaPC.Name = "colMaPC";
-            this.colMaPC.ReadOnly = true;
-            // 
-            // colMaNV
-            // 
-            this.colMaNV.HeaderText = "Mã nhân viên";
-            this.colMaNV.MinimumWidth = 6;
-            this.colMaNV.Name = "colMaNV";
-            this.colMaNV.ReadOnly = true;
-            // 
-            // colHoTen
-            // 
-            this.colHoTen.HeaderText = "Họ tên";
-            this.colHoTen.MinimumWidth = 6;
-            this.colHoTen.Name = "colHoTen";
-            this.colHoTen.ReadOnly = true;
-            // 
-            // colPhongBan
-            // 
-            this.colPhongBan.HeaderText = "Phòng ban";
-            this.colPhongBan.MinimumWidth = 6;
-            this.colPhongBan.Name = "colPhongBan";
-            this.colPhongBan.ReadOnly = true;
-            // 
-            // colChucVu
-            // 
-            this.colChucVu.HeaderText = "Chức vụ";
-            this.colChucVu.MinimumWidth = 6;
-            this.colChucVu.Name = "colChucVu";
-            this.colChucVu.ReadOnly = true;
-            // 
             // frmBenefitDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -656,8 +635,6 @@
         private System.Windows.Forms.ComboBox cmbPosition;
         private System.Windows.Forms.Label lblPosition;
         private System.Windows.Forms.ComboBox cmbDepartment;
-        private System.Windows.Forms.TextBox txtFullName;
-        private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.ComboBox cmbStaffID;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label lblStaffID;

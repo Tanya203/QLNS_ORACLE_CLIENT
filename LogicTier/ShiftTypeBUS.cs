@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CLINET.LogicTier
+namespace CLIENT.LogicTier
 {
     public class ShiftTypeBUS
     {

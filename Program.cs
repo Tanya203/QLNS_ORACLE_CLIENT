@@ -1,5 +1,4 @@
 ﻿using CLIENT.PresentationTier;
-using CLINET.PresentationTier;
 using System;
 using System.Windows.Forms;
 
@@ -15,7 +14,7 @@ namespace CLIENT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmShiftType());
+            Application.Run(new frmBenefitDetail());
         }
     }
 }
