@@ -1,67 +1,48 @@
-﻿using CLIENT.Function;
-using CLIENT.Models;
+﻿using CLIENT.API;
+using CLIENT.DataTier.Models;
+using CLIENT.Function;
 using CLIENT.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CLIENT.DataTier
-{
-    internal class BenefitDAL
+{    
+    public class StaffDAL
     {
-        private readonly BenefitAPI _api;
-        public BenefitDAL() 
+        private readonly StaffAPI _api;
+
+        public StaffDAL()
         {
-            _api = new BenefitAPI();
+            _api = new StaffAPI();
         }
-        public async Task<List<Benefit>> GetAllBenefits()
+        public async Task<List<Staff>> GetAllStaff()
         {
-            string responce = await _api.GetAllBenefit();
-            List<Benefit> listBenefit = JsonConvert.DeserializeObject<List<Benefit>>(responce);
-            return listBenefit.ToList();
+            string responce = await _api.GetAllStaff();
+            List<Staff> listStaff = JsonConvert.DeserializeObject<List<Staff>>(responce);
+            return listStaff.ToList();
         }
-        public async Task<List<CountBenefitViewModel>> GetCountBenefit()
+        public async Task<List<StaffInfoViewModel>> GetAllStaffInfo()
         {
-            string responce = await _api.GetCountBenefit();
-            List<CountBenefitViewModel> listBenefit = JsonConvert.DeserializeObject<List<CountBenefitViewModel>>(responce);
-            return listBenefit.ToList();
+            string responce = await _api.GetAllStaffInfo();
+            List<StaffInfoViewModel> listStaff = JsonConvert.DeserializeObject<List<StaffInfoViewModel>>(responce);
+            return listStaff.ToList();
         }
-        public async Task<List<CountBenefitViewModel>> SearchCountBenefit(string search)
+        public async Task<List<StaffInfoViewModel>> SearchStaffInfo(string search)
         {
-            string responce = await _api.SearchCountBenefit(search);
-            List<CountBenefitViewModel> listBenefit = JsonConvert.DeserializeObject<List<CountBenefitViewModel>>(responce);
-            return listBenefit.ToList();
+            string responce = await _api.SearchStaffInfo(search);
+            List<StaffInfoViewModel> listStaff = JsonConvert.DeserializeObject<List<StaffInfoViewModel>>(responce);
+            return listStaff.ToList();
         }
-        public async Task<bool> CreateBenefit(Benefit benefit)
+        public async Task<bool> CreateStaff(Staff staff)
         {
             try
             {
-                string responce = await _api.CreateBenefit(benefit);
-                if(responce == "Success") 
-                {
-                    MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                CustomMessage.ExecptionCustom(ex);
-                return false;
-            }
-        }
-        public async Task<bool> UpdateBenefit(Benefit benefit)
-        {
-            try
-            {
-                string responce = await _api.UpdateBenefit(benefit);
+                string responce = await _api.CreateStaff(staff);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -79,11 +60,33 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-        public async Task<bool> DeleteBenefit(string bnID)
+        public async Task<bool> UpdateStaff(Staff staff)
         {
             try
             {
-                string responce = await _api.DeleteBenefit(bnID);
+                string responce = await _api.UpdateStaff(staff);
+                if (responce == "Success")
+                {
+                    MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessage.ExecptionCustom(ex);
+                return false;
+            }
+        }
+        public async Task<bool> DeleteStaff(string staffID)
+        {
+            try
+            {
+                string responce = await _api.DeleteStaff(staffID);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

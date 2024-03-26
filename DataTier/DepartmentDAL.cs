@@ -1,5 +1,6 @@
-﻿using CLIENT.Function;
-using CLIENT.Models;
+﻿using CLIENT.API;
+using CLIENT.DataTier.Models;
+using CLIENT.Function;
 using CLIENT.ViewModels;
 using Newtonsoft.Json;
 using System;
@@ -10,58 +11,37 @@ using System.Windows.Forms;
 
 namespace CLIENT.DataTier
 {
-    internal class BenefitDAL
+    public class DepartmentDAL
     {
-        private readonly BenefitAPI _api;
-        public BenefitDAL() 
+        private readonly DepartmentAPI _api;
+
+        public DepartmentDAL()
         {
-            _api = new BenefitAPI();
+            _api = new DepartmentAPI();
         }
-        public async Task<List<Benefit>> GetAllBenefits()
+        public async Task<List<Department>> GetAllDepartment()
         {
-            string responce = await _api.GetAllBenefit();
-            List<Benefit> listBenefit = JsonConvert.DeserializeObject<List<Benefit>>(responce);
-            return listBenefit.ToList();
+            string responce = await _api.GetAllDepartment();
+            List<Department> listDepartment = JsonConvert.DeserializeObject<List<Department>>(responce);
+            return listDepartment.ToList();
         }
-        public async Task<List<CountBenefitViewModel>> GetCountBenefit()
+        public async Task<List<DepartmentDetailViewModel>> GetDepartmentDetail()
         {
-            string responce = await _api.GetCountBenefit();
-            List<CountBenefitViewModel> listBenefit = JsonConvert.DeserializeObject<List<CountBenefitViewModel>>(responce);
-            return listBenefit.ToList();
+            string responce = await _api.GetDepartmentDetail();
+            List<DepartmentDetailViewModel> listDepartment = JsonConvert.DeserializeObject<List<DepartmentDetailViewModel>>(responce);
+            return listDepartment.ToList();
         }
-        public async Task<List<CountBenefitViewModel>> SearchCountBenefit(string search)
+        public async Task<List<DepartmentDetailViewModel>> SearchDepartmentDetail(string search)
         {
-            string responce = await _api.SearchCountBenefit(search);
-            List<CountBenefitViewModel> listBenefit = JsonConvert.DeserializeObject<List<CountBenefitViewModel>>(responce);
-            return listBenefit.ToList();
+            string responce = await _api.SearchDepartmentDetail(search);
+            List<DepartmentDetailViewModel> listDepartment = JsonConvert.DeserializeObject<List<DepartmentDetailViewModel>>(responce);
+            return listDepartment.ToList();
         }
-        public async Task<bool> CreateBenefit(Benefit benefit)
+        public async Task<bool> CreateDepartment(Department department)
         {
             try
             {
-                string responce = await _api.CreateBenefit(benefit);
-                if(responce == "Success") 
-                {
-                    MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                CustomMessage.ExecptionCustom(ex);
-                return false;
-            }
-        }
-        public async Task<bool> UpdateBenefit(Benefit benefit)
-        {
-            try
-            {
-                string responce = await _api.UpdateBenefit(benefit);
+                string responce = await _api.CreateDepartment(department);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -79,11 +59,33 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-        public async Task<bool> DeleteBenefit(string bnID)
+        public async Task<bool> UpdateDepartment(Department department)
         {
             try
             {
-                string responce = await _api.DeleteBenefit(bnID);
+                string responce = await _api.UpdateDepartment(department);
+                if (responce == "Success")
+                {
+                    MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessage.ExecptionCustom(ex);
+                return false;
+            }
+        }
+        public async Task<bool> DeleteDepartment(string dpID)
+        {
+            try
+            {
+                string responce = await _api.DeleteDepartment(dpID);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

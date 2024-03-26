@@ -1,6 +1,6 @@
 ﻿namespace CLIENT.DataTier.Models
 {
-    internal class Position
+    public class Position
     {
         public string PsId { get; set; }
 
