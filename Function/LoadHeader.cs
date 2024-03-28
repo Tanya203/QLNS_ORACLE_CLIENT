@@ -1,4 +1,5 @@
 ﻿using CLIENT.DataTier.Models;
+using CLIENT.ViewModels;
 using System.Windows.Forms;
 
 namespace CLIENT.Function
@@ -6,20 +7,20 @@ namespace CLIENT.Function
     public class LoadHeader
     {
         public LoadHeader() { }
-        public static void LoadHeaderMainMenu(Label staffID, Label fullName, Label department, Label position, Label dayOffAmount, Staff staff)
+        public static void LoadHeaderMainMenu(Label staffID, Label fullName, Label department, Label position, Label dayOffAmount, StaffInfoViewModel staff)
         {
             /*staffID.Text = staff.StaffId;
-            fullName.Text = StringAdjust.AddSpacesBetweenUppercaseLetters($"{staff.LastName}{staff.MiddleName}{staff.FirstName}");
-            department.Text = staff.Position.Department.DepartmentName;
-            position.Text = staff.Position.PositionName;
-            dayOffAmount.Text = staff.DayOffAmount.ToString();*/
+            fullName.Text = staff.FullName;
+            department.Text = staff.DepartmentName;
+            position.Text = staff.PositionName;
+            dayOffAmount.Text = */
         }
-        public static void LoadHeaderInfo(Label staffID, Label fullName, Label department, Label position, Staff staff)
+        public static void LoadHeaderInfo(Label staffID, Label fullName, Label department, Label position, StaffInfoViewModel staff)
         {
-            /*staffID.Text = staff.StaffID;
-            fullName.Text = StringAdjust.AddSpacesBetweenUppercaseLetters($"{staff.LastName}{staff.MiddleName}{staff.FirstName}");
-            department.Text = staff.Position.Department.DepartmentName;
-            position.Text = staff.Position.PositionName;*/
+            staffID.Invoke((MethodInvoker)(() => staffID.Text = staff.StaffId));
+            fullName.Invoke((MethodInvoker)(() => fullName.Text = staff.FullName));
+            department.Invoke((MethodInvoker)(() => department.Text = staff.DepartmentName));
+            position.Invoke((MethodInvoker)(() => position.Text = staff.PositionName));
         }
     }
 }

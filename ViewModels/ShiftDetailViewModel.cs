@@ -10,8 +10,8 @@ namespace CLIENT.ViewModels
 
         public string ShiftName { get; set; }
 
-        public TimeSpan? BeginTime { get; set; }
+        public TimeSpan BeginTime { get; set; }
 
-        public TimeSpan? EndTime { get; set; }
+        public TimeSpan EndTime { get; set; }
     }
 }

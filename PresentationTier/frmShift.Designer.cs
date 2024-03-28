@@ -1,4 +1,4 @@
-﻿namespace CLINET.PresentationTier
+﻿namespace CLIENT.PresentationTier
 {
     partial class frmShift
     {
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.nudFontSize = new System.Windows.Forms.NumericUpDown();
             this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -41,6 +41,8 @@
             this.lblFontSỉze = new System.Windows.Forms.Label();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnShiftType = new System.Windows.Forms.Button();
+            this.cmbShiftType = new System.Windows.Forms.ComboBox();
+            this.lblShiftType = new System.Windows.Forms.Label();
             this.dtpEndTime = new System.Windows.Forms.DateTimePicker();
             this.dtpStartTime = new System.Windows.Forms.DateTimePicker();
             this.txtShiftID = new System.Windows.Forms.TextBox();
@@ -68,8 +70,6 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colThoiGianBatDau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colThoiGianKetThuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmbShiftType = new System.Windows.Forms.ComboBox();
-            this.lblShiftType = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudFontSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             this.pnlMenu.SuspendLayout();
@@ -94,6 +94,7 @@
             0,
             0,
             0});
+            this.nudFontSize.ValueChanged += new System.EventHandler(this.nudFontSize_ValueChanged);
             // 
             // errProvider
             // 
@@ -129,6 +130,7 @@
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Image = global::CLIENT.Properties.Resources.refresh;
             this.btnRefresh.Location = new System.Drawing.Point(1780, 0);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(144, 110);
@@ -136,6 +138,8 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.TextChanged += new System.EventHandler(this.EnableButtons);
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // lblFullNameLoginValue
             // 
@@ -158,9 +162,10 @@
             this.btnBack.FlatAppearance.BorderSize = 0;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Image = global::CLIENT.Properties.Resources._return;
             this.btnBack.Location = new System.Drawing.Point(0, 0);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(92, 110);
+            this.btnBack.Size = new System.Drawing.Size(142, 110);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Trở về";
             this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -215,6 +220,26 @@
             this.btnShiftType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnShiftType.UseVisualStyleBackColor = false;
             // 
+            // cmbShiftType
+            // 
+            this.cmbShiftType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbShiftType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbShiftType.FormattingEnabled = true;
+            this.cmbShiftType.Location = new System.Drawing.Point(111, 114);
+            this.cmbShiftType.Name = "cmbShiftType";
+            this.cmbShiftType.Size = new System.Drawing.Size(259, 33);
+            this.cmbShiftType.TabIndex = 77;
+            // 
+            // lblShiftType
+            // 
+            this.lblShiftType.AutoSize = true;
+            this.lblShiftType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShiftType.Location = new System.Drawing.Point(24, 117);
+            this.lblShiftType.Name = "lblShiftType";
+            this.lblShiftType.Size = new System.Drawing.Size(89, 25);
+            this.lblShiftType.TabIndex = 78;
+            this.lblShiftType.Text = "Loại ca:";
+            // 
             // dtpEndTime
             // 
             this.dtpEndTime.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -241,11 +266,13 @@
             // 
             // txtShiftID
             // 
+            this.txtShiftID.Enabled = false;
             this.txtShiftID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtShiftID.Location = new System.Drawing.Point(111, 15);
             this.txtShiftID.Name = "txtShiftID";
             this.txtShiftID.Size = new System.Drawing.Size(259, 30);
             this.txtShiftID.TabIndex = 3;
+            this.txtShiftID.TextChanged += new System.EventHandler(this.EnableButtons);
             // 
             // btnCancel
             // 
@@ -255,6 +282,7 @@
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::CLIENT.Properties.Resources.cancel;
             this.btnCancel.Location = new System.Drawing.Point(778, 114);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(99, 49);
@@ -262,6 +290,7 @@
             this.btnCancel.Text = "Huỷ";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnEdit
             // 
@@ -271,6 +300,7 @@
             this.btnEdit.FlatAppearance.BorderSize = 0;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Image = global::CLIENT.Properties.Resources.fix;
             this.btnEdit.Location = new System.Drawing.Point(534, 114);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(100, 49);
@@ -288,6 +318,7 @@
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Image = global::CLIENT.Properties.Resources.delete;
             this.btnDelete.Location = new System.Drawing.Point(654, 114);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(102, 49);
@@ -305,6 +336,7 @@
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Image = global::CLIENT.Properties.Resources.add;
             this.btnAdd.Location = new System.Drawing.Point(390, 114);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(122, 49);
@@ -342,6 +374,7 @@
             this.txtShiftName.Name = "txtShiftName";
             this.txtShiftName.Size = new System.Drawing.Size(259, 30);
             this.txtShiftName.TabIndex = 4;
+            this.txtShiftName.TextChanged += new System.EventHandler(this.EnableButtons);
             // 
             // lblShiftName
             // 
@@ -469,14 +502,14 @@
             this.dgvShift.AllowUserToDeleteRows = false;
             this.dgvShift.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvShift.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvShift.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvShift.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvShift.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvShift.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colMaCa,
@@ -490,11 +523,12 @@
             this.dgvShift.ReadOnly = true;
             this.dgvShift.RowHeadersVisible = false;
             this.dgvShift.RowHeadersWidth = 51;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvShift.RowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvShift.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvShift.RowTemplate.Height = 24;
             this.dgvShift.Size = new System.Drawing.Size(1924, 622);
             this.dgvShift.TabIndex = 72;
+            this.dgvShift.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvShift_CellClick);
             // 
             // colMaCa
             // 
@@ -531,26 +565,6 @@
             this.colThoiGianKetThuc.Name = "colThoiGianKetThuc";
             this.colThoiGianKetThuc.ReadOnly = true;
             // 
-            // cmbShiftType
-            // 
-            this.cmbShiftType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbShiftType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbShiftType.FormattingEnabled = true;
-            this.cmbShiftType.Location = new System.Drawing.Point(111, 114);
-            this.cmbShiftType.Name = "cmbShiftType";
-            this.cmbShiftType.Size = new System.Drawing.Size(259, 33);
-            this.cmbShiftType.TabIndex = 77;
-            // 
-            // lblShiftType
-            // 
-            this.lblShiftType.AutoSize = true;
-            this.lblShiftType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShiftType.Location = new System.Drawing.Point(24, 117);
-            this.lblShiftType.Name = "lblShiftType";
-            this.lblShiftType.Size = new System.Drawing.Size(89, 25);
-            this.lblShiftType.TabIndex = 78;
-            this.lblShiftType.Text = "Loại ca:";
-            // 
             // frmShift
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -570,6 +584,7 @@
             this.Text = "frmShift";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShift_Load);
+            this.TextChanged += new System.EventHandler(this.EnableButtons);
             ((System.ComponentModel.ISupportInitialize)(this.nudFontSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).EndInit();
             this.pnlMenu.ResumeLayout(false);

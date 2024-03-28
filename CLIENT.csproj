@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{93CD3988-0F77-4B4A-94A4-ABF607E41251}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CLINET</RootNamespace>
-    <AssemblyName>CLINET</AssemblyName>
+    <RootNamespace>CLIENT</RootNamespace>
+    <AssemblyName>CLIENT</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\BenefitDetailApi.cs" />
+    <Compile Include="API\ContractTypeAPI.cs" />
     <Compile Include="API\DepartmentAPI.cs" />
     <Compile Include="API\PositionAPI.cs" />
     <Compile Include="API\ShiftAPI.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="API\TimeKeepingMethodApi.cs" />
     <Compile Include="DataTier\BenefitDAL.cs" />
     <Compile Include="DataTier\BenefitDetailDAL.cs" />
+    <Compile Include="DataTier\ContractTypeDAL.cs" />
     <Compile Include="DataTier\DepartmentDAL.cs" />
     <Compile Include="DataTier\Models\BenefitDetail.cs" />
     <Compile Include="DataTier\Models\Position.cs" />
@@ -111,6 +113,7 @@
     <Compile Include="DataTier\Models\WorkSchedule.cs" />
     <Compile Include="DataTier\Models\WorkScheduleDetail.cs" />
     <Compile Include="DataTier\PositionDAL.cs" />
+    <Compile Include="LogicTier\ContractTypeBUS.cs" />
     <Compile Include="LogicTier\ShiftBUS.cs" />
     <Compile Include="DataTier\ShiftDAL.cs" />
     <Compile Include="DataTier\ShiftTypeDAL.cs" />
@@ -141,6 +144,12 @@
     </Compile>
     <Compile Include="PresentationTier\frmBenefit.Designer.cs">
       <DependentUpon>frmBenefit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\frmContractType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\frmContractType.Designer.cs">
+      <DependentUpon>frmContractType.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationTier\frmDepartment.cs">
       <SubType>Form</SubType>
@@ -175,6 +184,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="API\BenefitAPI.cs" />
+    <Compile Include="ViewModels\ContractTypeDetailViewModel.cs" />
     <Compile Include="ViewModels\CountBenefitViewModel.cs" />
     <Compile Include="ViewModels\DayOffUsedViewModel.cs" />
     <Compile Include="ViewModels\DepartmentDetailViewModel.cs" />
@@ -189,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationTier\frmBenefitDetail.resx">
       <DependentUpon>frmBenefitDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\frmContractType.resx">
+      <DependentUpon>frmContractType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationTier\frmDepartment.resx">
       <DependentUpon>frmDepartment.cs</DependentUpon>
@@ -213,6 +226,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -228,6 +242,155 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Icons\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\add_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\allowance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\bonus big 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\bonus big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\bonus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\calculate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\chose picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\contract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\decentralization.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\department.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\fine big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\fine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\fix.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\history.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\info_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\lock_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\log_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\log_out1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\pass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\pass_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\passchange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\position.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\question_mark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\return.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\return_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\salary big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\salary.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\shitf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\staff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\timekeeping big 2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\timekeeping big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\timekeeping.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\timetable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\unlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\verify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\word.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

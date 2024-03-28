@@ -103,6 +103,7 @@
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::CLIENT.Properties.Resources.cancel;
             this.btnCancel.Location = new System.Drawing.Point(638, 105);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(99, 49);
@@ -110,6 +111,7 @@
             this.btnCancel.Text = "Huỷ";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnEdit
             // 
@@ -119,6 +121,7 @@
             this.btnEdit.FlatAppearance.BorderSize = 0;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Image = global::CLIENT.Properties.Resources.fix;
             this.btnEdit.Location = new System.Drawing.Point(348, 105);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(100, 49);
@@ -136,6 +139,7 @@
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Image = global::CLIENT.Properties.Resources.delete;
             this.btnDelete.Location = new System.Drawing.Point(489, 105);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(102, 49);
@@ -183,6 +187,7 @@
             this.dgvPosition.RowTemplate.Height = 24;
             this.dgvPosition.Size = new System.Drawing.Size(1924, 630);
             this.dgvPosition.TabIndex = 71;
+            this.dgvPosition.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPosition_CellClick);
             // 
             // colMaCV
             // 
@@ -220,6 +225,7 @@
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Image = global::CLIENT.Properties.Resources.add;
             this.btnAdd.Location = new System.Drawing.Point(190, 105);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(122, 49);
@@ -231,6 +237,7 @@
             // 
             // txtTotalStaff
             // 
+            this.txtTotalStaff.Enabled = false;
             this.txtTotalStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalStaff.Location = new System.Drawing.Point(622, 57);
             this.txtTotalStaff.Name = "txtTotalStaff";
@@ -255,6 +262,7 @@
             this.txtPositionName.Name = "txtPositionName";
             this.txtPositionName.Size = new System.Drawing.Size(234, 30);
             this.txtPositionName.TabIndex = 5;
+            this.txtPositionName.TextChanged += new System.EventHandler(this.EnableButtons);
             // 
             // lblDepartmentName
             // 
@@ -268,11 +276,13 @@
             // 
             // txtPositionID
             // 
+            this.txtPositionID.Enabled = false;
             this.txtPositionID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPositionID.Location = new System.Drawing.Point(154, 12);
             this.txtPositionID.Name = "txtPositionID";
             this.txtPositionID.Size = new System.Drawing.Size(240, 30);
             this.txtPositionID.TabIndex = 3;
+            this.txtPositionID.TextChanged += new System.EventHandler(this.EnableButtons);
             // 
             // lblPositionID
             // 
@@ -326,6 +336,7 @@
             0,
             0,
             0});
+            this.nudFontSize.ValueChanged += new System.EventHandler(this.nudFontSize_ValueChanged);
             // 
             // lblPosition
             // 
@@ -377,6 +388,7 @@
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Image = global::CLIENT.Properties.Resources.refresh;
             this.btnRefresh.Location = new System.Drawing.Point(1780, 0);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(144, 113);
@@ -477,9 +489,10 @@
             this.btnBack.FlatAppearance.BorderSize = 0;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Image = global::CLIENT.Properties.Resources._return;
             this.btnBack.Location = new System.Drawing.Point(0, 0);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(92, 113);
+            this.btnBack.Size = new System.Drawing.Size(142, 113);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Trở về";
             this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -524,6 +537,7 @@
             this.Text = "frmPositon";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPositon_Load);
+            this.TextChanged += new System.EventHandler(this.EnableButtons);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFontSize)).EndInit();

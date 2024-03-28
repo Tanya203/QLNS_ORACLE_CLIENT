@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CLIENT.Function
@@ -16,8 +12,7 @@ namespace CLIENT.Function
             try
             {
                 this.open = open;
-                close.Close();
-                Application.ExitThread();
+                Application.Exit();
                 Thread newThread = new Thread(OpenForm);
                 newThread.SetApartmentState(ApartmentState.STA);
                 newThread.Start();

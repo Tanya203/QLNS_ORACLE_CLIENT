@@ -93,6 +93,7 @@
             0,
             0,
             0});
+            this.nudFontSize.ValueChanged += new System.EventHandler(this.nudFontSize_ValueChanged);
             // 
             // errProvider
             // 
@@ -108,6 +109,7 @@
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Image = global::CLIENT.Properties.Resources.refresh;
             this.btnRefresh.Location = new System.Drawing.Point(1780, 0);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(144, 113);
@@ -115,6 +117,7 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // lblFontSỉze
             // 
@@ -237,9 +240,10 @@
             this.btnBack.FlatAppearance.BorderSize = 0;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Image = global::CLIENT.Properties.Resources._return;
             this.btnBack.Location = new System.Drawing.Point(0, 0);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(92, 113);
+            this.btnBack.Size = new System.Drawing.Size(142, 113);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Trở về";
             this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -282,6 +286,7 @@
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::CLIENT.Properties.Resources.cancel;
             this.btnCancel.Location = new System.Drawing.Point(650, 139);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(99, 49);
@@ -289,6 +294,7 @@
             this.btnCancel.Text = "Huỷ";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnEdit
             // 
@@ -298,6 +304,7 @@
             this.btnEdit.FlatAppearance.BorderSize = 0;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Image = global::CLIENT.Properties.Resources.fix;
             this.btnEdit.Location = new System.Drawing.Point(355, 139);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(100, 49);
@@ -315,6 +322,7 @@
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Image = global::CLIENT.Properties.Resources.delete;
             this.btnDelete.Location = new System.Drawing.Point(496, 139);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(102, 49);
@@ -363,9 +371,12 @@
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(252, 30);
             this.txtAmount.TabIndex = 5;
+            this.txtAmount.TextChanged += new System.EventHandler(this.CheckEmptyText);
+            this.txtAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAmount_KeyPress);
             // 
             // txtStaffAmount
             // 
+            this.txtStaffAmount.Enabled = false;
             this.txtStaffAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStaffAmount.Location = new System.Drawing.Point(645, 88);
             this.txtStaffAmount.Name = "txtStaffAmount";
@@ -380,6 +391,7 @@
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Image = global::CLIENT.Properties.Resources.add;
             this.btnAdd.Location = new System.Drawing.Point(190, 139);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(122, 49);
@@ -407,6 +419,7 @@
             this.txtBenefitName.Name = "txtBenefitName";
             this.txtBenefitName.Size = new System.Drawing.Size(263, 30);
             this.txtBenefitName.TabIndex = 4;
+            this.txtBenefitName.TextChanged += new System.EventHandler(this.CheckEmptyText);
             // 
             // lblAllowanceName
             // 
@@ -420,11 +433,13 @@
             // 
             // txtBN_ID
             // 
+            this.txtBN_ID.Enabled = false;
             this.txtBN_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBN_ID.Location = new System.Drawing.Point(164, 38);
             this.txtBN_ID.Name = "txtBN_ID";
             this.txtBN_ID.Size = new System.Drawing.Size(252, 30);
             this.txtBN_ID.TabIndex = 3;
+            this.txtBN_ID.TextChanged += new System.EventHandler(this.CheckEmptyText);
             // 
             // lblAllowanceID
             // 
@@ -475,6 +490,7 @@
             this.dgvBenefit.RowTemplate.Height = 24;
             this.dgvBenefit.Size = new System.Drawing.Size(1924, 589);
             this.dgvBenefit.TabIndex = 77;
+            this.dgvBenefit.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBenefit_CellClick);
             // 
             // colMaPC
             // 
@@ -531,6 +547,7 @@
             this.Text = "frmBenefit";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmBenefit_Load);
+            this.TextChanged += new System.EventHandler(this.CheckEmptyText);
             ((System.ComponentModel.ISupportInitialize)(this.nudFontSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).EndInit();
             this.pnlHeader.ResumeLayout(false);

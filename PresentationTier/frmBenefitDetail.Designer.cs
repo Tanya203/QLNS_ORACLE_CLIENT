@@ -85,6 +85,7 @@
             // 
             // txtStaffAmount
             // 
+            this.txtStaffAmount.Enabled = false;
             this.txtStaffAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStaffAmount.Location = new System.Drawing.Point(229, 130);
             this.txtStaffAmount.Name = "txtStaffAmount";
@@ -103,6 +104,7 @@
             // 
             // txtAllowanceID
             // 
+            this.txtAllowanceID.Enabled = false;
             this.txtAllowanceID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAllowanceID.Location = new System.Drawing.Point(229, 22);
             this.txtAllowanceID.Name = "txtAllowanceID";
@@ -111,6 +113,7 @@
             // 
             // txtAmount
             // 
+            this.txtAmount.Enabled = false;
             this.txtAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmount.Location = new System.Drawing.Point(229, 94);
             this.txtAmount.Name = "txtAmount";
@@ -135,6 +138,7 @@
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = global::CLIENT.Properties.Resources.save;
             this.btnSave.Location = new System.Drawing.Point(716, 96);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 49);
@@ -142,6 +146,7 @@
             this.btnSave.Text = "Lưu";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblAllowanceID
             // 
@@ -185,6 +190,7 @@
             this.dgvBenefitDetail.RowTemplate.Height = 24;
             this.dgvBenefitDetail.Size = new System.Drawing.Size(1924, 599);
             this.dgvBenefitDetail.TabIndex = 88;
+            this.dgvBenefitDetail.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBenefitDetail_CellClick);
             // 
             // colMaPC
             // 
@@ -296,6 +302,7 @@
             this.cmbPosition.Name = "cmbPosition";
             this.cmbPosition.Size = new System.Drawing.Size(268, 33);
             this.cmbPosition.TabIndex = 12;
+            this.cmbPosition.TextChanged += new System.EventHandler(this.cmbPosition_TextChanged);
             // 
             // lblPosition
             // 
@@ -316,6 +323,7 @@
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(263, 33);
             this.cmbDepartment.TabIndex = 11;
+            this.cmbDepartment.TextChanged += new System.EventHandler(this.cmbDepartment_TextChanged);
             // 
             // cmbStaffID
             // 
@@ -326,6 +334,7 @@
             this.cmbStaffID.Name = "cmbStaffID";
             this.cmbStaffID.Size = new System.Drawing.Size(263, 33);
             this.cmbStaffID.TabIndex = 13;
+            this.cmbStaffID.TextChanged += new System.EventHandler(this.cmbStaffID_TextChanged);
             // 
             // btnAdd
             // 
@@ -335,6 +344,7 @@
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Image = global::CLIENT.Properties.Resources.add;
             this.btnAdd.Location = new System.Drawing.Point(562, 96);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(109, 49);
@@ -342,6 +352,7 @@
             this.btnAdd.Text = "Thêm";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // lblStaffID
             // 
@@ -391,6 +402,7 @@
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Image = global::CLIENT.Properties.Resources.refresh;
             this.btnRefresh.Location = new System.Drawing.Point(1780, 0);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(144, 110);
@@ -398,6 +410,7 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // lblPositionLoginValue
             // 
@@ -491,13 +504,15 @@
             this.btnBack.FlatAppearance.BorderSize = 0;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Image = global::CLIENT.Properties.Resources._return;
             this.btnBack.Location = new System.Drawing.Point(0, 0);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(92, 110);
+            this.btnBack.Size = new System.Drawing.Size(142, 110);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Trở về";
             this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // lblFontSỉze
             // 
@@ -546,6 +561,7 @@
             // 
             // txtTotalAmount
             // 
+            this.txtTotalAmount.Enabled = false;
             this.txtTotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalAmount.Location = new System.Drawing.Point(229, 166);
             this.txtTotalAmount.Name = "txtTotalAmount";
@@ -564,6 +580,7 @@
             // 
             // txtAllowamceName
             // 
+            this.txtAllowamceName.Enabled = false;
             this.txtAllowamceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAllowamceName.Location = new System.Drawing.Point(229, 58);
             this.txtAllowamceName.Name = "txtAllowamceName";

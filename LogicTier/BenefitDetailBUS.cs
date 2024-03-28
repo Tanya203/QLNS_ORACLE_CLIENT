@@ -29,17 +29,13 @@ namespace CLIENT.LogicTier
         {
             return await _benefitDetailDAL.SearchStaffBenefitsDetail(search);
         }
-        public async Task<bool> CreateBenefitDetail(BenefitDetail benefitDetail)
+        public async Task<bool> CreateBenefitDetail(List<BenefitDetail> createList)
         {
-            return await _benefitDetailDAL.CreateBenefitDetail(benefitDetail);
+            return await _benefitDetailDAL.CreateBenefitDetail(createList);
         }
-        public async Task<bool> UpdateBenefitDetail(BenefitDetail benefitDetail)
+        public async Task<bool> DeleteBenefitDetail(List<BenefitDetail> deleteList)
         {
-            return await _benefitDetailDAL.CreateBenefitDetail(benefitDetail);
-        }
-        public async Task<bool> DeleteBenefitDetail(string bnID, string staffID)
-        {
-            return await _benefitDetailDAL.DeleteBenefitDetail(bnID, staffID);
+            return await _benefitDetailDAL.DeleteBenefitDetail(deleteList);
         }
     }
 }

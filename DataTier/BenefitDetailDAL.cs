@@ -36,21 +36,14 @@ namespace CLIENT.DataTier
             List<StaffBenefitDetailViewModel> listBenefitDeatail = JsonConvert.DeserializeObject<List<StaffBenefitDetailViewModel>>(responce);
             return listBenefitDeatail.ToList();
         }
-        public async Task<bool> CreateBenefitDetail(BenefitDetail benefitDetail)
+        public async Task<bool> CreateBenefitDetail(List<BenefitDetail> createList)
         {
             try
             {
-                string responce = await _api.CreateBenefitDetail(benefitDetail);
-                if (responce == "Success")
-                {
-                    MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                foreach (BenefitDetail staff in createList)
+                    await _api.CreateBenefitDetail(staff);
+               return true;
+               
             }
             catch (Exception ex)
             {
@@ -58,43 +51,14 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-        public async Task<bool> UpdateBenefitDetail(BenefitDetail benefitDetail)
+        public async Task<bool> DeleteBenefitDetail(List<BenefitDetail> deleteList)
         {
             try
             {
-                string responce = await _api.UpdateBenefitDetail(benefitDetail);
-                if (responce == "Success")
-                {
-                    MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                CustomMessage.ExecptionCustom(ex);
-                return false;
-            }
-        }
-        public async Task<bool> DeleteBenefitDetail(string bnID, string staffID)
-        {
-            try
-            {
-                string responce = await _api.DeleteBenefitDetail(bnID, staffID);
-                if (responce == "Success")
-                {
-                    MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
+                foreach(BenefitDetail staff in deleteList)
+                    await _api.DeleteBenefitDetail(staff.BnId, staff.StaffId);              
+               
+                return true;
             }
             catch (Exception ex)
             {
