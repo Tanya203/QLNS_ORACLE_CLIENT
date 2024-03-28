@@ -5,57 +5,83 @@ using CLIENT.LogicTier;
 using CLIENT.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CLINET.PresentationTier
+namespace CLIENT.PresentationTier
 {
     public partial class frmShift : Form
     {
         private readonly ShiftBUS _shiftBUS;
         private readonly ShiftTypeBUS _shiftTypeBUS;
+        private readonly StaffBUS _staffBUS;
+        private readonly FormHandle _handle;
+        private List<StaffInfoViewModel> _listStaffInfo;
+        private List<ShiftDetailViewModel> _listShift;
+        private readonly string _staffID;
         public frmShift()
         {
             InitializeComponent();
             _shiftBUS = new ShiftBUS();
             _shiftTypeBUS = new ShiftTypeBUS();
+            _staffBUS = new StaffBUS();
+            _handle = new FormHandle();
+            _listShift = new List<ShiftDetailViewModel>();
+            _listStaffInfo = new List<StaffInfoViewModel>();
+            _staffID = "S_0000000002";
         }
 
-        private void frmShift_Load(object sender, EventArgs e)
-        {
-            LoadShiftType();
-            LoadShiftDetail();
-        }
-        private async void LoadShiftType()
-        {
-            cmbShiftType.DisplayMember = "ShiftTypeName";
-            cmbShiftType.ValueMember = "StId";
-            List<ShiftType> list = await _shiftTypeBUS.GetAllShiftType();
-            list.OrderBy(s => s.StId);
-            cmbShiftType.DataSource = list;
-            AutoAdjustComboBox.Adjust(cmbShiftType);
-        }
-        private async void LoadShiftDetail()
+        private async void frmShift_Load(object sender, EventArgs e)
         {
             Enabled = false;
-            dgvShift.Rows.Clear();
-            List<ShiftDetailViewModel> list = await _shiftBUS.GetShiftDetail();
-            int rowAdd;
-            foreach (ShiftDetailViewModel s in list.OrderBy(s => s.ShiftId))
+            _listShift = await _shiftBUS.GetShiftDetail();
+            _listStaffInfo = await _staffBUS.GetAllStaffInfo();
+            nudFontSize.Invoke((MethodInvoker)(() =>
             {
-                rowAdd = dgvShift.Rows.Add();
-                dgvShift.Rows[rowAdd].Cells[0].Value = s.ShiftId;
-                dgvShift.Rows[rowAdd].Cells[1].Value = s.ShiftName;
-                dgvShift.Rows[rowAdd].Cells[2].Value = s.ShiftTypeName;
-                dgvShift.Rows[rowAdd].Cells[3].Value = s.BeginTime;
-                dgvShift.Rows[rowAdd].Cells[4].Value = s.EndTime;
-            }
+                nudFontSize.Value = (decimal)dgvShift.RowsDefaultCellStyle.Font.Size;
+            }));
+            LoadHeaderInfo();
+            LoadShiftType();
+            LoadShiftDetail();
             Enabled = true;
+        }
+        private void LoadHeaderInfo()
+        {
+            StaffInfoViewModel staff = _listStaffInfo.FirstOrDefault(s => s.StaffId == _staffID);
+            LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
+        }
+        private void LoadShiftType()
+        {
+            cmbShiftType.Invoke((MethodInvoker)(async () =>
+            {
+                cmbShiftType.DisplayMember = "ShiftTypeName";
+                cmbShiftType.ValueMember = "StId";
+                List<ShiftType> list = await _shiftTypeBUS.GetAllShiftType();
+                list.OrderBy(s => s.StId);
+                cmbShiftType.DataSource = list;
+                AutoAdjustComboBox.Adjust(cmbShiftType);
+            }));                
+        }
+        private void LoadShiftDetail()
+        {
+            dgvShift.Invoke((MethodInvoker)(() =>
+            {
+                Enabled = false;
+                dgvShift.Rows.Clear();
+                int rowAdd;
+                foreach (ShiftDetailViewModel s in _listShift.OrderBy(s => s.ShiftId))
+                {
+                    rowAdd = dgvShift.Rows.Add();
+                    dgvShift.Rows[rowAdd].Cells[0].Value = s.ShiftId;
+                    dgvShift.Rows[rowAdd].Cells[1].Value = s.ShiftName;
+                    dgvShift.Rows[rowAdd].Cells[2].Value = s.ShiftTypeName;
+                    dgvShift.Rows[rowAdd].Cells[3].Value = s.BeginTime;
+                    dgvShift.Rows[rowAdd].Cells[4].Value = s.EndTime;
+                }
+                Enabled = true;
+            }));                
         }
         private async void SearchShiftDetail(string search)
         {
@@ -74,7 +100,58 @@ namespace CLINET.PresentationTier
             }
             Enabled = true;
         }
-
+        private void ClearAllText()
+        {
+            errProvider.Clear();
+            List<object> listInput = new List<object> { txtShiftID, txtShiftName, dtpStartTime, dtpEndTime };
+            for (int i = 0; i < listInput.Count; i++)
+            {
+                if (listInput[i] is TextBox)
+                {
+                    typeof(TextBox).GetProperty("Text").SetValue(listInput[i], string.Empty);
+                    continue;
+                }
+                else if (listInput[i] is DateTimePicker)
+                {
+                    typeof(DateTimePicker).GetProperty("Text").SetValue(listInput[i], "00:00");
+                    continue;
+                }
+            }
+        }
+        private void Reload()
+        {
+            frmShift open = new frmShift();
+            _handle.RedirectForm(open, this);
+        }
+        private bool CheckEmptyText(bool check)
+        {
+            List<TextBox> listTextBox = new List<TextBox> { txtShiftName };
+            for (int i = 0; i < listTextBox.Count; i++)
+            {
+                if (string.IsNullOrEmpty(listTextBox[i].Text))
+                {
+                    if (check)
+                    {
+                        btnAdd.Enabled = false;
+                        return false;
+                    }
+                    else
+                    {
+                        btnEdit.Enabled = false;
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        private bool CheckErrorInput()
+        {
+            errProvider.Clear();
+            errProvider.SetError(txtShiftName,_listShift.FirstOrDefault(s => s.ShiftName == txtShiftName.Text && s.ShiftId != txtShiftID.Text) != null ? "Tên ca đã tồn tại" : string.Empty);
+            if (errProvider.GetError(txtShiftName) != string.Empty)
+                return false;
+            return true;
+        }
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
@@ -85,6 +162,11 @@ namespace CLINET.PresentationTier
         {
             try
             {
+                if (!CheckErrorInput())
+                {
+                    MessageBox.Show("Lỗi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 Shift shift = new Shift()
                 {
                     ShiftId = "",
@@ -94,6 +176,7 @@ namespace CLINET.PresentationTier
                     EndTime = TimeSpan.Parse(dtpEndTime.Text)
                 };
                 await _shiftBUS.CreateShift(shift);
+                Reload();
             }
             catch (Exception ex)
             {
@@ -105,6 +188,11 @@ namespace CLINET.PresentationTier
         {
             try
             {
+                if (!CheckErrorInput())
+                {
+                    MessageBox.Show("Lỗi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 Shift shift = new Shift()
                 {
                     ShiftId = txtShiftID.Text,
@@ -114,6 +202,7 @@ namespace CLINET.PresentationTier
                     EndTime = TimeSpan.Parse(dtpEndTime.Text)
                 };
                 await _shiftBUS.UpdateShift(shift);
+                Reload();
             }
             catch (Exception ex)
             {
@@ -125,12 +214,75 @@ namespace CLINET.PresentationTier
         {
             try
             {
-                await _shiftBUS.DeleteShift(txtShiftID.Text);
+                CustomMessage.YesNoCustom("Xác nhận", "Huỷ");
+                DialogResult result = MessageBox.Show($"Xác nhận xoá ca {txtShiftName.Text}?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    await _shiftBUS.DeleteShift(txtShiftID.Text);
+                    Reload();
+                }
             }
             catch (Exception ex)
             {
                 CustomMessage.ExecptionCustom(ex);
             }
+        }
+
+        private void nudFontSize_ValueChanged(object sender, EventArgs e)
+        {
+            int fontSize = (int)nudFontSize.Value;
+            dgvShift.RowsDefaultCellStyle.Font = new Font(dgvShift.Font.FontFamily, fontSize);
+        }
+
+        private void EnableButtons(object sender, EventArgs e)
+        {
+            bool check;
+            if (string.IsNullOrEmpty(txtShiftID.Text))
+            {
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+                check = true;
+                if (CheckEmptyText(check))
+                {
+                    btnAdd.Enabled = true;
+                    return;
+                }
+            }
+            else
+            {
+                btnAdd.Enabled = false;
+                btnDelete.Enabled = true;
+                check = false;
+                if (CheckEmptyText(check))
+                {
+                    btnEdit.Enabled = true;
+                    return;
+                }
+            }
+        }
+
+        private void dgvShift_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            errProvider.Clear();
+            int rowIndex = e.RowIndex;
+            if (rowIndex < 0)
+                return;
+            ShiftDetailViewModel shift = _listShift.FirstOrDefault(s => s.ShiftId == dgvShift.Rows[rowIndex].Cells[0].Value.ToString());
+            txtShiftID.Text = shift.ShiftId;
+            txtShiftName.Text = shift.ShiftName;
+            cmbShiftType.Text = shift.ShiftTypeName;
+            dtpStartTime.Text = shift.BeginTime.ToString();
+            dtpEndTime.Text = shift.EndTime.ToString();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            ClearAllText();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            Reload();
         }
     }
 }

@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace CLIENT.API
 {
-    public class StaffAPI
+    public class ContractTypeAPI
     {
         private static readonly string _baseUrl = "https://localhost:7102/";
-
-        public async Task<string> GetAllStaff()
+        public async Task<string> GetAllContractType()
         {
             using (HttpClient client = new HttpClient())
             {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetAllStaff"))
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetAllContractType"))
                 {
                     using (HttpContent content = res.Content)
                     {
@@ -28,11 +27,11 @@ namespace CLIENT.API
             }
             return null;
         }
-        public async Task<string> GetAllStaffInfo()
+        public async Task<string> GetContractTypeDetail()
         {
             using (HttpClient client = new HttpClient())
             {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetAllStaffInfo"))
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetContractTypeDetail"))
                 {
                     using (HttpContent content = res.Content)
                     {
@@ -46,11 +45,11 @@ namespace CLIENT.API
             }
             return null;
         }
-        public async Task<string> SearchStaffInfo(string search)
+        public async Task<string> SearchContractTypeDetail(string search)
         {
             using (HttpClient client = new HttpClient())
             {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}SearchStaffInfo?search={search}"))
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}SearchContractTypeDetail?search={search}"))
                 {
                     using (HttpContent content = res.Content)
                     {
@@ -64,15 +63,15 @@ namespace CLIENT.API
             }
             return null;
         }
-        public async Task<string> CreateStaff(Staff staff)
+        public async Task<string> CreateContractType(ContractType contractType)
         {
             using (HttpClient client = new HttpClient())
             {
-                string json = JsonConvert.SerializeObject(staff);
+                string json = JsonConvert.SerializeObject(contractType);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AddStaff", content))
+                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AddContractType", content))
                 {
                     using (HttpContent responseContent = res.Content)
                     {
@@ -86,15 +85,15 @@ namespace CLIENT.API
             }
             return null;
         }
-        public async Task<string> UpdateStaff(Staff staff)
+        public async Task<string> UpdateContractType(ContractType contractType)
         {
             using (HttpClient client = new HttpClient())
             {
-                string json = JsonConvert.SerializeObject(staff);
+                string json = JsonConvert.SerializeObject(contractType);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                using (HttpResponseMessage res = await client.PutAsync($"{_baseUrl}UpdateStaff", content))
+                using (HttpResponseMessage res = await client.PutAsync($"{_baseUrl}UpdateContractType", content))
                 {
                     using (HttpContent responseContent = res.Content)
                     {
@@ -108,11 +107,11 @@ namespace CLIENT.API
             }
             return null;
         }
-        public async Task<string> DeleteStaff(string staffID)
+        public async Task<string> DeleteContractType(string ctID)
         {
             using (HttpClient client = new HttpClient())
             {
-                string requestUrl = $"{_baseUrl}DeleteStaff?staffID={staffID}";
+                string requestUrl = $"{_baseUrl}DeleteContractType?ctID={ctID}";
 
                 using (HttpResponseMessage res = await client.DeleteAsync(requestUrl))
                 {
@@ -128,5 +127,5 @@ namespace CLIENT.API
             }
             return null;
         }
-    }
+    }       
 }

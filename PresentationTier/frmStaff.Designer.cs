@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStaff));
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAddAccount = new System.Windows.Forms.Button();
             this.btnLock = new System.Windows.Forms.Button();
             this.btnUnlock = new System.Windows.Forms.Button();
             this.txtDateLock = new System.Windows.Forms.TextBox();
@@ -152,7 +152,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMenu.AutoSize = true;
             this.pnlMenu.BackColor = System.Drawing.SystemColors.Info;
-            this.pnlMenu.Controls.Add(this.button1);
+            this.pnlMenu.Controls.Add(this.btnAddAccount);
             this.pnlMenu.Controls.Add(this.btnLock);
             this.pnlMenu.Controls.Add(this.btnUnlock);
             this.pnlMenu.Controls.Add(this.txtDateLock);
@@ -217,32 +217,34 @@
             this.pnlMenu.Controls.Add(this.lblDepartment);
             this.pnlMenu.Controls.Add(this.lblPosition);
             this.pnlMenu.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.pnlMenu.Location = new System.Drawing.Point(70, 151);
+            this.pnlMenu.Location = new System.Drawing.Point(169, 150);
             this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(1842, 350);
+            this.pnlMenu.Size = new System.Drawing.Size(1581, 350);
             this.pnlMenu.TabIndex = 70;
             // 
-            // button1
+            // btnAddAccount
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(129, 151);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(39, 40);
-            this.button1.TabIndex = 65;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnAddAccount.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnAddAccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddAccount.FlatAppearance.BorderSize = 0;
+            this.btnAddAccount.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAddAccount.Image = global::CLIENT.Properties.Resources.add_small;
+            this.btnAddAccount.Location = new System.Drawing.Point(134, 150);
+            this.btnAddAccount.Name = "btnAddAccount";
+            this.btnAddAccount.Size = new System.Drawing.Size(39, 39);
+            this.btnAddAccount.TabIndex = 65;
+            this.btnAddAccount.UseVisualStyleBackColor = false;
             // 
             // btnLock
             // 
             this.btnLock.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnLock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLock.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.btnLock.FlatAppearance.BorderSize = 0;
             this.btnLock.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLock.Location = new System.Drawing.Point(1369, 129);
+            this.btnLock.Image = global::CLIENT.Properties.Resources._lock;
+            this.btnLock.Location = new System.Drawing.Point(1172, 118);
             this.btnLock.Name = "btnLock";
-            this.btnLock.Size = new System.Drawing.Size(58, 57);
+            this.btnLock.Size = new System.Drawing.Size(49, 45);
             this.btnLock.TabIndex = 64;
             this.btnLock.UseVisualStyleBackColor = false;
             // 
@@ -252,19 +254,22 @@
             this.btnUnlock.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUnlock.FlatAppearance.BorderSize = 0;
             this.btnUnlock.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUnlock.Location = new System.Drawing.Point(1461, 129);
+            this.btnUnlock.Image = global::CLIENT.Properties.Resources.unlock;
+            this.btnUnlock.Location = new System.Drawing.Point(1240, 117);
             this.btnUnlock.Name = "btnUnlock";
-            this.btnUnlock.Size = new System.Drawing.Size(58, 57);
+            this.btnUnlock.Size = new System.Drawing.Size(49, 46);
             this.btnUnlock.TabIndex = 60;
             this.btnUnlock.UseVisualStyleBackColor = false;
             // 
             // txtDateLock
             // 
+            this.txtDateLock.Enabled = false;
             this.txtDateLock.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDateLock.Location = new System.Drawing.Point(1345, 87);
             this.txtDateLock.Name = "txtDateLock";
             this.txtDateLock.Size = new System.Drawing.Size(205, 27);
             this.txtDateLock.TabIndex = 61;
+            this.txtDateLock.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // lblLockDate
             // 
@@ -284,13 +289,15 @@
             this.btnChoosePicture.FlatAppearance.BorderSize = 0;
             this.btnChoosePicture.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnChoosePicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChoosePicture.Location = new System.Drawing.Point(1602, 269);
+            this.btnChoosePicture.Image = global::CLIENT.Properties.Resources.chose_picture;
+            this.btnChoosePicture.Location = new System.Drawing.Point(1172, 216);
             this.btnChoosePicture.Name = "btnChoosePicture";
             this.btnChoosePicture.Size = new System.Drawing.Size(153, 50);
             this.btnChoosePicture.TabIndex = 34;
             this.btnChoosePicture.Text = "Chọn hình";
             this.btnChoosePicture.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnChoosePicture.UseVisualStyleBackColor = false;
+            this.btnChoosePicture.Click += new System.EventHandler(this.btnChoosePicture_Click);
             // 
             // dtpBrithday
             // 
@@ -312,6 +319,7 @@
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::CLIENT.Properties.Resources.cancel;
             this.btnCancel.Location = new System.Drawing.Point(928, 285);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(99, 49);
@@ -319,6 +327,7 @@
             this.btnCancel.Text = "Huỷ";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnEdit
             // 
@@ -328,6 +337,7 @@
             this.btnEdit.FlatAppearance.BorderSize = 0;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Image = global::CLIENT.Properties.Resources.fix;
             this.btnEdit.Location = new System.Drawing.Point(648, 285);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(100, 49);
@@ -335,6 +345,7 @@
             this.btnEdit.Text = "Sửa";
             this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -344,6 +355,7 @@
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Image = global::CLIENT.Properties.Resources.delete;
             this.btnDelete.Location = new System.Drawing.Point(782, 285);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(102, 49);
@@ -351,6 +363,7 @@
             this.btnDelete.Text = "Xoá";
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnAdd
             // 
@@ -360,6 +373,7 @@
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Image = global::CLIENT.Properties.Resources.add;
             this.btnAdd.Location = new System.Drawing.Point(478, 285);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(122, 49);
@@ -367,6 +381,7 @@
             this.btnAdd.Text = "Thêm";
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // rbOthers
             // 
@@ -433,6 +448,7 @@
             // 
             // txtAllowance
             // 
+            this.txtAllowance.Enabled = false;
             this.txtAllowance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAllowance.Location = new System.Drawing.Point(1345, 49);
             this.txtAllowance.Name = "txtAllowance";
@@ -447,6 +463,8 @@
             this.txtBasicSalary.Name = "txtBasicSalary";
             this.txtBasicSalary.Size = new System.Drawing.Size(205, 27);
             this.txtBasicSalary.TabIndex = 31;
+            this.txtBasicSalary.TextChanged += new System.EventHandler(this.EnableButton);
+            this.txtBasicSalary.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBasicSalary_KeyPress);
             // 
             // txtDayOffMount
             // 
@@ -456,6 +474,8 @@
             this.txtDayOffMount.Name = "txtDayOffMount";
             this.txtDayOffMount.Size = new System.Drawing.Size(183, 27);
             this.txtDayOffMount.TabIndex = 30;
+            this.txtDayOffMount.TextChanged += new System.EventHandler(this.EnableButton);
+            this.txtDayOffMount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // txtStatus
             // 
@@ -465,6 +485,7 @@
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Size = new System.Drawing.Size(181, 27);
             this.txtStatus.TabIndex = 29;
+            this.txtStatus.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // txtEducationLevel
             // 
@@ -474,6 +495,7 @@
             this.txtEducationLevel.Name = "txtEducationLevel";
             this.txtEducationLevel.Size = new System.Drawing.Size(181, 27);
             this.txtEducationLevel.TabIndex = 26;
+            this.txtEducationLevel.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // txtEmail
             // 
@@ -483,6 +505,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(179, 27);
             this.txtEmail.TabIndex = 25;
+            this.txtEmail.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // txtPhone
             // 
@@ -492,6 +515,8 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(179, 27);
             this.txtPhone.TabIndex = 24;
+            this.txtPhone.TextChanged += new System.EventHandler(this.EnableButton);
+            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // txtProvince_City
             // 
@@ -501,6 +526,7 @@
             this.txtProvince_City.Name = "txtProvince_City";
             this.txtProvince_City.Size = new System.Drawing.Size(181, 27);
             this.txtProvince_City.TabIndex = 20;
+            this.txtProvince_City.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // txtDistrict
             // 
@@ -510,6 +536,7 @@
             this.txtDistrict.Name = "txtDistrict";
             this.txtDistrict.Size = new System.Drawing.Size(181, 27);
             this.txtDistrict.TabIndex = 19;
+            this.txtDistrict.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // txtWard
             // 
@@ -519,6 +546,7 @@
             this.txtWard.Name = "txtWard";
             this.txtWard.Size = new System.Drawing.Size(181, 27);
             this.txtWard.TabIndex = 18;
+            this.txtWard.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // txtStreet
             // 
@@ -528,6 +556,7 @@
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.Size = new System.Drawing.Size(183, 27);
             this.txtStreet.TabIndex = 17;
+            this.txtStreet.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // txtHouseNumer
             // 
@@ -537,6 +566,7 @@
             this.txtHouseNumer.Name = "txtHouseNumer";
             this.txtHouseNumer.Size = new System.Drawing.Size(183, 27);
             this.txtHouseNumer.TabIndex = 16;
+            this.txtHouseNumer.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // txtFirstName
             // 
@@ -546,6 +576,7 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(183, 27);
             this.txtFirstName.TabIndex = 14;
+            this.txtFirstName.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // txtMiddleName
             // 
@@ -555,6 +586,7 @@
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.Size = new System.Drawing.Size(183, 27);
             this.txtMiddleName.TabIndex = 13;
+            this.txtMiddleName.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // txtLastName
             // 
@@ -564,6 +596,7 @@
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(183, 27);
             this.txtLastName.TabIndex = 12;
+            this.txtLastName.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // txtIDCard
             // 
@@ -573,15 +606,19 @@
             this.txtIDCard.Name = "txtIDCard";
             this.txtIDCard.Size = new System.Drawing.Size(183, 27);
             this.txtIDCard.TabIndex = 11;
+            this.txtIDCard.TextChanged += new System.EventHandler(this.EnableButton);
+            this.txtIDCard.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // txtAccount
             // 
+            this.txtAccount.Enabled = false;
             this.txtAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccount.Location = new System.Drawing.Point(179, 155);
             this.txtAccount.MaxLength = 20;
             this.txtAccount.Name = "txtAccount";
             this.txtAccount.Size = new System.Drawing.Size(181, 27);
             this.txtAccount.TabIndex = 7;
+            this.txtAccount.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // cmbContractType
             // 
@@ -615,20 +652,23 @@
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(181, 28);
             this.cmbDepartment.TabIndex = 4;
+            this.cmbDepartment.TextChanged += new System.EventHandler(this.cmbDepartment_TextChanged);
             // 
             // txtStaffID
             // 
+            this.txtStaffID.Enabled = false;
             this.txtStaffID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStaffID.Location = new System.Drawing.Point(179, 11);
             this.txtStaffID.Name = "txtStaffID";
             this.txtStaffID.Size = new System.Drawing.Size(181, 27);
             this.txtStaffID.TabIndex = 3;
+            this.txtStaffID.TextChanged += new System.EventHandler(this.EnableButton);
             // 
             // lblPicture
             // 
             this.lblPicture.AutoSize = true;
             this.lblPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPicture.Location = new System.Drawing.Point(1647, 13);
+            this.lblPicture.Location = new System.Drawing.Point(1167, 161);
             this.lblPicture.Name = "lblPicture";
             this.lblPicture.Size = new System.Drawing.Size(63, 25);
             this.lblPicture.TabIndex = 27;
@@ -656,7 +696,8 @@
             // 
             // pbStaffPicture
             // 
-            this.pbStaffPicture.Location = new System.Drawing.Point(1575, 42);
+            this.pbStaffPicture.Image = global::CLIENT.Properties.Resources.image;
+            this.pbStaffPicture.Location = new System.Drawing.Point(1345, 121);
             this.pbStaffPicture.Name = "pbStaffPicture";
             this.pbStaffPicture.Size = new System.Drawing.Size(215, 215);
             this.pbStaffPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -955,6 +996,7 @@
             0,
             0,
             0});
+            this.nudFontSize.ValueChanged += new System.EventHandler(this.nudFontSize_ValueChanged);
             // 
             // lblFullNameLoginValue
             // 
@@ -986,6 +1028,7 @@
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Image = global::CLIENT.Properties.Resources.refresh;
             this.btnRefresh.Location = new System.Drawing.Point(1780, 0);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(144, 113);
@@ -993,6 +1036,8 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.TextChanged += new System.EventHandler(this.EnableButton);
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // lblPositionLoginValue
             // 
@@ -1084,9 +1129,10 @@
             this.btnBack.FlatAppearance.BorderSize = 0;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Image = global::CLIENT.Properties.Resources._return;
             this.btnBack.Location = new System.Drawing.Point(0, 0);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(92, 113);
+            this.btnBack.Size = new System.Drawing.Size(142, 113);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Trở về";
             this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -1153,6 +1199,7 @@
             this.dgvStaff.RowTemplate.Height = 24;
             this.dgvStaff.Size = new System.Drawing.Size(1924, 451);
             this.dgvStaff.TabIndex = 74;
+            this.dgvStaff.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellClick);
             // 
             // colMaNV
             // 
@@ -1353,6 +1400,7 @@
             this.Text = "frmStaff";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmStaff_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbStaffPicture)).EndInit();
@@ -1449,7 +1497,7 @@
         private System.Windows.Forms.Label lblStaffIDLogin;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.DataGridView dgvStaff;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAddAccount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMaNV;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPhongBan;
         private System.Windows.Forms.DataGridViewTextBoxColumn colChucVu;

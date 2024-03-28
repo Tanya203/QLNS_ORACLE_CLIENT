@@ -2,10 +2,11 @@
 {
     public class ContractType
     {
-        public string BnId { get; set; }
+        public string CtId { get; set; }
 
-        public string BenefitName { get; set; }
+        public string ContractTypeName { get; set; }
 
-        public decimal? Amount { get; set; }
+        public string TkmId { get; set; }
+
     }
 }

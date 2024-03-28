@@ -1,4 +1,6 @@
-﻿namespace CLIENT.DataTier.Models
+﻿using CLIENT.Models;
+
+namespace CLIENT.DataTier.Models
 {
     public class BenefitDetail
     {
@@ -7,5 +9,6 @@
         public string StaffId { get; set; }
 
         public string Note { get; set; }
+
     }
 }

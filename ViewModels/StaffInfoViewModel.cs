@@ -36,10 +36,14 @@ namespace CLIENT.ViewModels
 
         public string Status { get; set; }
 
-        public decimal? DayOff { get; set; }
+        public decimal DayOff { get; set; }
 
-        public decimal? BasicSalary { get; set; }
+        public decimal BasicSalary { get; set; }
 
-        public decimal? Benefit { get; set; }
+        public decimal Benefit { get; set; }
+
+        public byte[] Picture { get; set; } = null;
+
+        public DateTime? LockDate { get; set; }
     }
 }

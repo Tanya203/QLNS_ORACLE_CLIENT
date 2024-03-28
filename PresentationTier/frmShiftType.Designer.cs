@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.nudFontSize = new System.Windows.Forms.NumericUpDown();
             this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -88,6 +88,7 @@
             0,
             0,
             0});
+            this.nudFontSize.ValueChanged += new System.EventHandler(this.nudFontSize_ValueChanged);
             // 
             // errProvider
             // 
@@ -140,14 +141,14 @@
             this.dgvShiftType.AllowUserToDeleteRows = false;
             this.dgvShiftType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvShiftType.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvShiftType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvShiftType.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvShiftType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvShiftType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colMaLC,
@@ -157,20 +158,21 @@
             this.dgvShiftType.Location = new System.Drawing.Point(0, 336);
             this.dgvShiftType.Name = "dgvShiftType";
             this.dgvShiftType.ReadOnly = true;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvShiftType.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvShiftType.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvShiftType.RowHeadersVisible = false;
             this.dgvShiftType.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvShiftType.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvShiftType.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvShiftType.RowTemplate.Height = 24;
             this.dgvShiftType.Size = new System.Drawing.Size(1924, 657);
             this.dgvShiftType.TabIndex = 70;
+            this.dgvShiftType.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvShiftType_CellClick);
             // 
             // txtSalaryCoefficient
             // 
@@ -180,6 +182,8 @@
             this.txtSalaryCoefficient.Name = "txtSalaryCoefficient";
             this.txtSalaryCoefficient.Size = new System.Drawing.Size(255, 30);
             this.txtSalaryCoefficient.TabIndex = 5;
+            this.txtSalaryCoefficient.TextChanged += new System.EventHandler(this.EnableButtons);
+            this.txtSalaryCoefficient.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSalaryCoefficient_KeyPress);
             // 
             // lblSalaryCoefficient
             // 
@@ -221,11 +225,13 @@
             // 
             // txtShiftTypeID
             // 
+            this.txtShiftTypeID.Enabled = false;
             this.txtShiftTypeID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtShiftTypeID.Location = new System.Drawing.Point(152, 20);
             this.txtShiftTypeID.Name = "txtShiftTypeID";
             this.txtShiftTypeID.Size = new System.Drawing.Size(225, 30);
             this.txtShiftTypeID.TabIndex = 3;
+            this.txtShiftTypeID.TextChanged += new System.EventHandler(this.EnableButtons);
             // 
             // btnCancel
             // 
@@ -235,6 +241,7 @@
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::CLIENT.Properties.Resources.cancel;
             this.btnCancel.Location = new System.Drawing.Point(715, 76);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(99, 49);
@@ -242,6 +249,7 @@
             this.btnCancel.Text = "Huỷ";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnEdit
             // 
@@ -251,6 +259,7 @@
             this.btnEdit.FlatAppearance.BorderSize = 0;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Image = global::CLIENT.Properties.Resources.fix;
             this.btnEdit.Location = new System.Drawing.Point(426, 76);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(100, 49);
@@ -268,6 +277,7 @@
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Image = global::CLIENT.Properties.Resources.delete;
             this.btnDelete.Location = new System.Drawing.Point(564, 76);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(102, 49);
@@ -285,6 +295,7 @@
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Image = global::CLIENT.Properties.Resources.add;
             this.btnAdd.Location = new System.Drawing.Point(272, 76);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(122, 49);
@@ -302,6 +313,7 @@
             this.txtShiftTypeName.Name = "txtShiftTypeName";
             this.txtShiftTypeName.Size = new System.Drawing.Size(211, 30);
             this.txtShiftTypeName.TabIndex = 4;
+            this.txtShiftTypeName.TextChanged += new System.EventHandler(this.EnableButtons);
             // 
             // lblShiftTypeName
             // 
@@ -363,6 +375,7 @@
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Image = global::CLIENT.Properties.Resources.refresh;
             this.btnRefresh.Location = new System.Drawing.Point(1780, 0);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(144, 110);
@@ -370,6 +383,7 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // lblPositionLoginValue
             // 
@@ -451,9 +465,10 @@
             this.btnBack.FlatAppearance.BorderSize = 0;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Image = global::CLIENT.Properties.Resources._return;
             this.btnBack.Location = new System.Drawing.Point(0, 0);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(92, 110);
+            this.btnBack.Size = new System.Drawing.Size(142, 110);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "Trở về";
             this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -488,6 +503,7 @@
             this.Text = "frmShiftType";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmShiftType_Load);
+            this.TextChanged += new System.EventHandler(this.EnableButtons);
             ((System.ComponentModel.ISupportInitialize)(this.nudFontSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvShiftType)).EndInit();
