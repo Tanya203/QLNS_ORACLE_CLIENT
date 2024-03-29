@@ -54,6 +54,7 @@ namespace CLIENT.PresentationTier
             _listBenefitDetail = _listBenefitDetail.Where(b => b.BnId == bnID).ToList();
             _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             _benefit = await _benefitBUS.GetCountBenefit();
+            nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvBenefitDetail.RowsDefaultCellStyle.Font.Size));
             LoadHeaderInfo();
             DeleteButton();
             LoadBenefitInfo();
@@ -289,6 +290,12 @@ namespace CLIENT.PresentationTier
         {
             frmBenefit open = new frmBenefit();
             _handle.RedirectForm(open, this);
+        }
+
+        private void nudFontSize_ValueChanged(object sender, EventArgs e)
+        {
+            int fontSize = (int)nudFontSize.Value;
+            dgvBenefitDetail.RowsDefaultCellStyle.Font = new Font(dgvBenefitDetail.Font.FontFamily, fontSize);
         }
     }
 }

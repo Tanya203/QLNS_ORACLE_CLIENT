@@ -36,15 +36,18 @@ namespace CLIENT.PresentationTier
             _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             _listShiftType = await _shiftTypeBUS.GetAllShiftType();
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
-            nudFontSize.Invoke((MethodInvoker)(() =>
-            {
-                nudFontSize.Value = (decimal)dgvShiftType.RowsDefaultCellStyle.Font.Size;
-            }));
+            nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvShiftType.RowsDefaultCellStyle.Font.Size));
+            LoadHeaderInfo();
             LoadShiftType();
+        }
+        private void LoadHeaderInfo()
+        {
+            StaffInfoViewModel staff = _listStaffInfo.FirstOrDefault(s => s.StaffId == _staffID);
+            LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
         }
         private void LoadShiftType()
         {
-            dgvShiftType.Invoke((MethodInvoker)(async () =>
+            dgvShiftType.Invoke((MethodInvoker)(() =>
             {
                 Enabled = false;
                 dgvShiftType.Rows.Clear();

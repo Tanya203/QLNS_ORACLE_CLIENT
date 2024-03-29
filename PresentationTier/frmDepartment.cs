@@ -38,10 +38,7 @@ namespace CLIENT.PresentationTier
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
             LoadHeaderInfo();
             LoadDepartmentDetail();
-            nudFontSize.Invoke((MethodInvoker)(() =>
-            {
-                nudFontSize.Value = (decimal)dgvDepartment.RowsDefaultCellStyle.Font.Size;
-            }));                
+            nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvDepartment.RowsDefaultCellStyle.Font.Size));
             Enabled = true;
         }
         private void LoadHeaderInfo()

@@ -97,6 +97,7 @@
     <Compile Include="API\ShiftTypeAPI.cs" />
     <Compile Include="API\StaffAPI.cs" />
     <Compile Include="API\TimeKeepingMethodApi.cs" />
+    <Compile Include="API\WorkScheduleAPI.cs" />
     <Compile Include="DataTier\BenefitDAL.cs" />
     <Compile Include="DataTier\BenefitDetailDAL.cs" />
     <Compile Include="DataTier\ContractTypeDAL.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="DataTier\Models\WorkSchedule.cs" />
     <Compile Include="DataTier\Models\WorkScheduleDetail.cs" />
     <Compile Include="DataTier\PositionDAL.cs" />
+    <Compile Include="DataTier\WorkScheduleDAL.cs" />
     <Compile Include="LogicTier\ContractTypeBUS.cs" />
     <Compile Include="LogicTier\ShiftBUS.cs" />
     <Compile Include="DataTier\ShiftDAL.cs" />
@@ -133,6 +135,7 @@
     <Compile Include="LogicTier\ShiftTypeBUS.cs" />
     <Compile Include="LogicTier\StaffBUS.cs" />
     <Compile Include="LogicTier\TimeKeepingMethodBUS.cs" />
+    <Compile Include="LogicTier\WorkScheduleBUS.cs" />
     <Compile Include="PresentationTier\frmBenefitDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +184,12 @@
     <Compile Include="PresentationTier\frmStaff.Designer.cs">
       <DependentUpon>frmStaff.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationTier\frmWorkSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\frmWorkSchedule.Designer.cs">
+      <DependentUpon>frmWorkSchedule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="API\BenefitAPI.cs" />
@@ -217,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationTier\frmStaff.resx">
       <DependentUpon>frmStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\frmWorkSchedule.resx">
+      <DependentUpon>frmWorkSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

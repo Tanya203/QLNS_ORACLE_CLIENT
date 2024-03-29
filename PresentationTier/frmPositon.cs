@@ -37,10 +37,7 @@ namespace CLIENT.PresentationTier
             _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             _listPosition = await _positionBUS.GetPositionDetail();
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
-            nudFontSize.Invoke((MethodInvoker)(() =>
-            {
-                nudFontSize.Value = (decimal)dgvPosition.RowsDefaultCellStyle.Font.Size;
-            }));
+            nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvPosition.RowsDefaultCellStyle.Font.Size));
             LoadHeaderInfo();
             LoadDepartment();
             LoadPositionDetail();     

@@ -15,7 +15,7 @@ namespace CLIENT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmBenefit());
+            Application.Run(new frmWorkSchedule());
         }
     }
 }

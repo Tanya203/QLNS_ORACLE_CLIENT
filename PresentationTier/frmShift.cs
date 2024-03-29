@@ -38,10 +38,7 @@ namespace CLIENT.PresentationTier
             Enabled = false;
             _listShift = await _shiftBUS.GetShiftDetail();
             _listStaffInfo = await _staffBUS.GetAllStaffInfo();
-            nudFontSize.Invoke((MethodInvoker)(() =>
-            {
-                nudFontSize.Value = (decimal)dgvShift.RowsDefaultCellStyle.Font.Size;
-            }));
+            nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvShift.RowsDefaultCellStyle.Font.Size));
             LoadHeaderInfo();
             LoadShiftType();
             LoadShiftDetail();
