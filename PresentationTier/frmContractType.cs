@@ -38,10 +38,7 @@ namespace CLINET.PresentationTier
             _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             _listContractType = await _contractTypeBUS.GetContractTypeDetail();
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
-            nudFontSize.Invoke((MethodInvoker)(() =>
-            {
-                nudFontSize.Value = (decimal)dgvContractType.RowsDefaultCellStyle.Font.Size;
-            }));
+            nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvContractType.RowsDefaultCellStyle.Font.Size));
             LoadHeaderInfo();
             LoadTimeKeepingMethod();
             LoadContractTypeDetail();

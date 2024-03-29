@@ -15,33 +15,30 @@ namespace CLIENT.PresentationTier
     public partial class frmBenefit : Form
     {
         private readonly CultureInfo _fVND = CultureInfo.GetCultureInfo("vi-VN");
-        private readonly string staffID;
+        private readonly string _staffID;
         private readonly FormHandle _handle;
         private readonly BenefitBUS _benefitBUS;
         private readonly StaffBUS _staffBUS;
-        private List<StaffInfoViewModel> listStaffInfo;
-        private List<CountBenefitViewModel> listBenefit;
+        private List<StaffInfoViewModel> _listStaffInfo;
+        private List<CountBenefitViewModel> _listBenefit;
         public frmBenefit()
         {
             InitializeComponent();
             _benefitBUS = new BenefitBUS();
             _staffBUS = new StaffBUS();
-            listStaffInfo = new List<StaffInfoViewModel>();
-            listBenefit = new List<CountBenefitViewModel>();
+            _listStaffInfo = new List<StaffInfoViewModel>();
+            _listBenefit = new List<CountBenefitViewModel>();
             _handle = new FormHandle();
-            this.staffID = "S_0000000002";
+            this._staffID = "S_0000000002";
         }
 
         private async void frmBenefit_Load(object sender, EventArgs e)
         {
             Enabled = false;
-            listStaffInfo = await _staffBUS.GetAllStaffInfo();
-            listBenefit = await _benefitBUS.GetCountBenefit();
+            _listStaffInfo = await _staffBUS.GetAllStaffInfo();
+            _listBenefit = await _benefitBUS.GetCountBenefit();
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
-            nudFontSize.Invoke((MethodInvoker)(() =>
-            {
-                nudFontSize.Value = (decimal)dgvBenefit.RowsDefaultCellStyle.Font.Size;
-            }));
+            nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvBenefit.RowsDefaultCellStyle.Font.Size));
             LoadHeaderInfo();
             LoadStaffBenefit();
             DetailButton();
@@ -49,7 +46,7 @@ namespace CLIENT.PresentationTier
         }
         private void LoadHeaderInfo()
         {
-            StaffInfoViewModel staff = listStaffInfo.FirstOrDefault(s => s.StaffId == staffID);
+            StaffInfoViewModel staff = _listStaffInfo.FirstOrDefault(s => s.StaffId == _staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
         }
         private void LoadStaffBenefit()
@@ -59,7 +56,7 @@ namespace CLIENT.PresentationTier
                 Enabled = false;
                 dgvBenefit.Rows.Clear();
                 int rowAdd;
-                foreach (CountBenefitViewModel b in listBenefit.OrderBy(s => s.BnId))
+                foreach (CountBenefitViewModel b in _listBenefit.OrderBy(s => s.BnId))
                 {
                     rowAdd = dgvBenefit.Rows.Add();
                     dgvBenefit.Rows[rowAdd].Cells[0].Value = b.BnId;
@@ -173,7 +170,7 @@ namespace CLIENT.PresentationTier
         private bool CheckErrorInput()
         {
             errProvider.Clear();
-            errProvider.SetError(txtBN_ID, listBenefit.FirstOrDefault(b => b.BenefitName == txtBenefitName.Text && b.BnId != txtBN_ID.Text) != null ? "Tên phụ cấp đã tồn tại" : string.Empty);
+            errProvider.SetError(txtBN_ID, _listBenefit.FirstOrDefault(b => b.BenefitName == txtBenefitName.Text && b.BnId != txtBN_ID.Text) != null ? "Tên phụ cấp đã tồn tại" : string.Empty);
             errProvider.SetError(txtAmount, double.TryParse(txtAmount.Text, out _) is false || string.IsNullOrEmpty(txtAmount.Text) ? "Định dạng tiền không hợp lệ" : string.Empty);
             if (errProvider.GetError(txtAmount) != string.Empty || errProvider.GetError(txtBenefitName) != string.Empty)
                 return false;
@@ -271,13 +268,13 @@ namespace CLIENT.PresentationTier
             int rowIndex = e.RowIndex;
             if (rowIndex < 0)
                 return;
-            CountBenefitViewModel benefit = listBenefit.FirstOrDefault(b => b.BnId == dgvBenefit.Rows[rowIndex].Cells[0].Value.ToString());
+            CountBenefitViewModel benefit = _listBenefit.FirstOrDefault(b => b.BnId == dgvBenefit.Rows[rowIndex].Cells[0].Value.ToString());
             txtBN_ID.Text = benefit.BnId;
             txtBenefitName.Text = benefit.BenefitName;
             txtAmount.Text = benefit.Amount.ToString("F3");
             txtStaffAmount.Text = benefit.StaffQuantity.ToString();
             if (e.ColumnIndex == 5)
-                StaffBenefitDetailOpen(staffID, dgvBenefit.Rows[rowIndex].Cells[0].Value.ToString());
+                StaffBenefitDetailOpen(_staffID, dgvBenefit.Rows[rowIndex].Cells[0].Value.ToString());
         }
         public void StaffBenefitDetailOpen(string staffID, string bnID)
         {

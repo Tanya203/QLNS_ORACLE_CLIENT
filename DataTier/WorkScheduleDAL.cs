@@ -51,11 +51,11 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-        public async Task<bool> CreateWorkSchedule(WorkSchedule workSchedule)
+        public async Task<bool> AutoUpdateWorkSchedule(DateTime workDate)
         {
             try
-            {
-                string responce = await _api.CreateWorkSchedule(workSchedule);
+            {                
+                string responce = await _api.AutoUpdateWorkSchedule(workDate);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -73,7 +73,29 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-        public async Task<bool> DeleteBenefit(string wsID)
+        public async Task<bool> CreateWorkSchedule(WorkSchedule workSchedule)
+        {
+            try
+            {
+                string responce = await _api.CreateWorkSchedule(workSchedule);
+                if (responce == "Success")
+                {
+                   
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessage.ExecptionCustom(ex);
+                return false;
+            }
+        }
+        public async Task<bool> DeleteWorkSchedule(string wsID)
         {
             try
             {

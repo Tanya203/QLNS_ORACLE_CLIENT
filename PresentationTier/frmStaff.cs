@@ -44,10 +44,7 @@ namespace CLIENT.PresentationTier
             _listStaff = await _staffBUS.GetAllStaff();
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
             rbMale.Invoke((MethodInvoker)(() => rbMale.Checked = true));
-            nudFontSize.Invoke((MethodInvoker)(() =>
-            {
-                nudFontSize.Value = (decimal)dgvStaff.RowsDefaultCellStyle.Font.Size;
-            }));
+            nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvStaff.RowsDefaultCellStyle.Font.Size));
             LoadHeaderInfo();
             LoadDepartment();
             LoadContractType();

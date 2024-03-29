@@ -79,7 +79,29 @@ namespace CLIENT.API
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AutoSchedule", content))
+                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AutoSchedule?month={month}", content))
+                {
+                    using (HttpContent responseContent = res.Content)
+                    {
+                        string data = await responseContent.ReadAsStringAsync();
+                        if (data != null)
+                        {
+                            return data;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+        public async Task<string> AutoUpdateWorkSchedule(DateTime workDate)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string json = JsonConvert.SerializeObject(workDate);
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AutoUpdateWorkSchedule", content))
                 {
                     using (HttpContent responseContent = res.Content)
                     {

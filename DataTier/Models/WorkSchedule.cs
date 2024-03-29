@@ -6,6 +6,6 @@ namespace CLIENT.DataTier.Models
     {
         public string WsId { get; set; }
 
-        public DateTime? WorkDate { get; set; }
+        public DateTime WorkDate { get; set; }
     }
 }
