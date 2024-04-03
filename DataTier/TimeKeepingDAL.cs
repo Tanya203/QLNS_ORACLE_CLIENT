@@ -1,46 +1,47 @@
 ﻿using CLIENT.API;
 using CLIENT.DataTier.Models;
 using CLIENT.Function;
-using CLIENT.ViewModels;
+using CLIENT.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CLIENT.DataTier
 {
-    public class ContractTypeDAL
+    public class TimeKeepingDAL
     {
-        private readonly ContractTypeAPI _api;
-        public ContractTypeDAL()
+        private readonly TimeKeepingApi _api;
+        public TimeKeepingDAL()
         {
-            _api = new ContractTypeAPI();
+            _api = new TimeKeepingApi();
         }
-        public async Task<List<ContractType>> GetAllContractType()
+        public async Task<List<TimeKeeping>> GetAllTimeKeeping()
         {
-            string responce = await _api.GetAllContractType();
-            List<ContractType> listDepartment = JsonConvert.DeserializeObject<List<ContractType>>(responce);
-            return listDepartment.ToList();
+            string responce = await _api.GetAllTimeKeeping();
+            List<TimeKeeping> listBenefit = JsonConvert.DeserializeObject<List<TimeKeeping>>(responce);
+            return listBenefit.ToList();
         }
-        public async Task<List<ContractTypeDetailViewModel>> GetContractTypeDetail()
+        public async Task<List<TimeKeeping>> GetStaffTimeKeepingById(string wsId)
         {
-            string responce = await _api.GetContractTypeDetail();
-            List<ContractTypeDetailViewModel> listDepartment = JsonConvert.DeserializeObject<List<ContractTypeDetailViewModel>>(responce);
-            return listDepartment.ToList();
+            string responce = await _api.GetStaffTimeKeepingById(wsId);
+            List<TimeKeeping> listBenefit = JsonConvert.DeserializeObject<List<TimeKeeping>>(responce);
+            return listBenefit.ToList();
         }
-        public async Task<List<ContractTypeDetailViewModel>> SearchContractTypeDetail(string search)
+        public async Task<List<TimeKeeping>> SearchStaffTimeKeepinById(string wsId, string search)
         {
-            string responce = await _api.SearchContractTypeDetail(search);
-            List<ContractTypeDetailViewModel> listDepartment = JsonConvert.DeserializeObject<List<ContractTypeDetailViewModel>>(responce);
-            return listDepartment.ToList();
+            string responce = await _api.SearchStaffTimeKeepinById(wsId, search);
+            List<TimeKeeping> listBenefit = JsonConvert.DeserializeObject<List<TimeKeeping>>(responce);
+            return listBenefit.ToList();
         }
-        public async Task<bool> CreateContractType(ContractType contractType)
+        public async Task<bool> CreateTimeKeeping(TimeKeeping timeKeeping)
         {
             try
             {
-                string responce = await _api.CreateContractType(contractType);
+                string responce = await _api.CreateTimeKeeping(timeKeeping);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -58,11 +59,11 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-        public async Task<bool> UpdateContractType(ContractType contractType)
+        public async Task<bool> TimeKeeping(string staffID)
         {
             try
             {
-                string responce = await _api.UpdateContractType(contractType);
+                string responce = await _api.TimeKeeping(staffID);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -80,11 +81,11 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-        public async Task<bool> DeleteContractType(string ctID)
+        public async Task<bool> DeleteTimeKeeping(string wsID, string staffID, string shiftID)
         {
             try
             {
-                string responce = await _api.DeleteContractType(ctID);
+                string responce = await _api.DeleteTimeKeeping(wsID, staffID, shiftID);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -102,5 +103,5 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-    }
+    } 
 }

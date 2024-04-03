@@ -56,8 +56,7 @@ namespace CLIENT.DataTier
             try
             {
                 foreach(BenefitDetail staff in deleteList)
-                    await _api.DeleteBenefitDetail(staff.BnId, staff.StaffId);              
-               
+                    await _api.DeleteBenefitDetail(staff.BnId, staff.StaffId);   
                 return true;
             }
             catch (Exception ex)
