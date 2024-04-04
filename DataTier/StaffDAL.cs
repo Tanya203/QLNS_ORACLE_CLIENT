@@ -38,6 +38,13 @@ namespace CLIENT.DataTier
             List<StaffInfoViewModel> listStaff = JsonConvert.DeserializeObject<List<StaffInfoViewModel>>(responce);
             return listStaff.ToList();
         }
+        public async Task<StaffInfoViewModel> GetStaffHeaderInfo(string staffID)
+        {
+            string responce = await _api.GetAllStaffInfo();
+            List<StaffInfoViewModel> listStaff = JsonConvert.DeserializeObject<List<StaffInfoViewModel>>(responce);
+            StaffInfoViewModel info = listStaff.FirstOrDefault(s => s.StaffId == staffID);
+            return info;
+        }
         public async Task<bool> CreateStaff(Staff staff)
         {
             try

@@ -19,14 +19,12 @@ namespace CLIENT.PresentationTier
         private readonly FormHandle _handle;
         private readonly BenefitBUS _benefitBUS;
         private readonly StaffBUS _staffBUS;
-        private List<StaffInfoViewModel> _listStaffInfo;
         private List<CountBenefitViewModel> _listBenefit;
         public frmBenefit()
         {
             InitializeComponent();
             _benefitBUS = new BenefitBUS();
             _staffBUS = new StaffBUS();
-            _listStaffInfo = new List<StaffInfoViewModel>();
             _listBenefit = new List<CountBenefitViewModel>();
             _handle = new FormHandle();
             this._staffID = "S_0000000002";
@@ -35,7 +33,6 @@ namespace CLIENT.PresentationTier
         private async void frmBenefit_Load(object sender, EventArgs e)
         {
             Enabled = false;
-            _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             _listBenefit = await _benefitBUS.GetCountBenefit();
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
             nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvBenefit.RowsDefaultCellStyle.Font.Size));
@@ -44,9 +41,9 @@ namespace CLIENT.PresentationTier
             DetailButton();
             Enabled = true;
         }
-        private void LoadHeaderInfo()
+        private async void LoadHeaderInfo()
         {
-            StaffInfoViewModel staff = _listStaffInfo.FirstOrDefault(s => s.StaffId == _staffID);
+            StaffInfoViewModel staff = await _staffBUS.GetStaffHeaderInfo(_staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
         }
         private void LoadStaffBenefit()

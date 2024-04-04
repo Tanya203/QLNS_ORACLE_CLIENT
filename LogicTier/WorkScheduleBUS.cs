@@ -27,13 +27,9 @@ namespace CLIENT.LogicTier
         {
             return await _workScheduleDAL.AutoSchedule(month);
         }
-        public async Task<bool> AutoUpdateWorkSchedule(DateTime workDate)
+        public async Task<bool> AutoScheduleDate(DateTime date)
         {
-            return await _workScheduleDAL.AutoUpdateWorkSchedule(workDate);
-        }
-        public async Task<bool> CreateWorkSchedule(WorkSchedule workSchedule)
-        {
-            return await _workScheduleDAL.CreateWorkSchedule(workSchedule);
+            return await _workScheduleDAL.AutoScheduleDate(date);
         }
         public async Task<bool> DeleteWorkSchedule(string wsID)
         {

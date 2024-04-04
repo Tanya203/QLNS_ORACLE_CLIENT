@@ -278,7 +278,7 @@
             // 
             // dtpWorkDate
             // 
-            this.dtpWorkDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpWorkDate.CustomFormat = "yyyy-MM-dd";
             this.dtpWorkDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpWorkDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpWorkDate.Location = new System.Drawing.Point(196, 20);

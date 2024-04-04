@@ -20,7 +20,6 @@ namespace CLIENT.PresentationTier
         private readonly StaffBUS _staffBUS;
         private readonly WorkScheduleBUS _workScheduleBUS;
         private readonly FormHandle _handle;
-        private List<StaffInfoViewModel> _listStaffInfo;
         private List<WorkSchedule> _listWorkSchedule;
         private readonly string _date = "dd/MM/yyyy";
         private readonly string _staffID;
@@ -30,7 +29,6 @@ namespace CLIENT.PresentationTier
             _staffBUS = new StaffBUS();
             _workScheduleBUS = new WorkScheduleBUS();
             _handle = new FormHandle();
-            _listStaffInfo = new List<StaffInfoViewModel>();
             _listWorkSchedule = new List<WorkSchedule>();
             _staffID = "S_0000000002";
         }
@@ -39,7 +37,6 @@ namespace CLIENT.PresentationTier
         {
             Enabled = false;
             _listWorkSchedule = await _workScheduleBUS.GetAllWorkSchedule();
-            _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvWorkSchedule.RowsDefaultCellStyle.Font.Size));
             btnAdd.Enabled = btnAutoSchedule.Enabled = false;
             LoadHeaderInfo();
@@ -48,9 +45,9 @@ namespace CLIENT.PresentationTier
             LoadWorkSchedule();
             Enabled = true;
         }
-        private void LoadHeaderInfo()
+        private async void LoadHeaderInfo()
         {
-            StaffInfoViewModel staff = _listStaffInfo.FirstOrDefault(s => s.StaffId == _staffID);
+            StaffInfoViewModel staff = await _staffBUS.GetStaffHeaderInfo(_staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
         }
         private void LoadWorkSchedule()
@@ -162,13 +159,7 @@ namespace CLIENT.PresentationTier
         {
             try
             {
-                WorkSchedule workSchedule = new WorkSchedule()
-                {
-                    WsId = "",
-                    WorkDate = dtpWorkDate.Value.Date,
-                };
-                if(await _workScheduleBUS.CreateWorkSchedule(workSchedule))
-                    await _workScheduleBUS.AutoUpdateWorkSchedule(workSchedule.WorkDate);
+                await _workScheduleBUS.AutoScheduleDate(dtpWorkDate.Value.Date);
                 Reload();
             }
             catch(Exception ex) 

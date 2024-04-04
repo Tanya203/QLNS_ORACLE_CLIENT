@@ -1,5 +1,6 @@
 ﻿using CLIENT.DataTier;
 using CLIENT.DataTier.Models;
+using CLIENT.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,11 @@ namespace CLIENT.LogicTier
         {
             return await _timeKeepingDAL.GetAllTimeKeeping();
         }
-        public async Task<List<TimeKeeping>> GetStaffTimeKeepingById(string wsId)
+        public async Task<List<StaffWorkScheduleDetailViewModel>> GetStaffTimeKeepingById(string wsId)
         {
             return await _timeKeepingDAL.GetStaffTimeKeepingById(wsId);
         }
-        public async Task<List<TimeKeeping>> SearchStaffTimeKeepinById(string wsId, string search)
+        public async Task<List<StaffWorkScheduleDetailViewModel>> SearchStaffTimeKeepinById(string wsId, string search)
         {
             return await _timeKeepingDAL.SearchStaffTimeKeepinById(wsId, search);
         }

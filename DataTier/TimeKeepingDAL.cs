@@ -2,6 +2,7 @@
 using CLIENT.DataTier.Models;
 using CLIENT.Function;
 using CLIENT.Models;
+using CLIENT.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -22,20 +23,20 @@ namespace CLIENT.DataTier
         public async Task<List<TimeKeeping>> GetAllTimeKeeping()
         {
             string responce = await _api.GetAllTimeKeeping();
-            List<TimeKeeping> listBenefit = JsonConvert.DeserializeObject<List<TimeKeeping>>(responce);
-            return listBenefit.ToList();
+            List<TimeKeeping> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<TimeKeeping>>(responce);
+            return listWorkScheduleDetail.ToList();
         }
-        public async Task<List<TimeKeeping>> GetStaffTimeKeepingById(string wsId)
+        public async Task<List<StaffWorkScheduleDetailViewModel>> GetStaffTimeKeepingById(string wsId)
         {
             string responce = await _api.GetStaffTimeKeepingById(wsId);
-            List<TimeKeeping> listBenefit = JsonConvert.DeserializeObject<List<TimeKeeping>>(responce);
-            return listBenefit.ToList();
+            List<StaffWorkScheduleDetailViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffWorkScheduleDetailViewModel>>(responce);
+            return listWorkScheduleDetail.ToList();
         }
-        public async Task<List<TimeKeeping>> SearchStaffTimeKeepinById(string wsId, string search)
+        public async Task<List<StaffWorkScheduleDetailViewModel>> SearchStaffTimeKeepinById(string wsId, string search)
         {
             string responce = await _api.SearchStaffTimeKeepinById(wsId, search);
-            List<TimeKeeping> listBenefit = JsonConvert.DeserializeObject<List<TimeKeeping>>(responce);
-            return listBenefit.ToList();
+            List<StaffWorkScheduleDetailViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffWorkScheduleDetailViewModel>>(responce);
+            return listWorkScheduleDetail.ToList();
         }
         public async Task<bool> CreateTimeKeeping(TimeKeeping timeKeeping)
         {

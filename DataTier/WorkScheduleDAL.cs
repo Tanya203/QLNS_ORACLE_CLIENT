@@ -51,36 +51,14 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-        public async Task<bool> AutoUpdateWorkSchedule(DateTime workDate)
+        public async Task<bool> AutoScheduleDate(DateTime date)
         {
             try
-            {                
-                string responce = await _api.AutoUpdateWorkSchedule(workDate);
+            {
+                string responce = await _api.AutoScheduleDate(date);
                 if (responce == "Success")
                 {
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                CustomMessage.ExecptionCustom(ex);
-                return false;
-            }
-        }
-        public async Task<bool> CreateWorkSchedule(WorkSchedule workSchedule)
-        {
-            try
-            {
-                string responce = await _api.CreateWorkSchedule(workSchedule);
-                if (responce == "Success")
-                {
-                   
                     return true;
                 }
                 else
