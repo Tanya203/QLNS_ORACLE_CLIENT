@@ -32,7 +32,7 @@ namespace CLIENT.API
         {
             using (HttpClient client = new HttpClient())
             {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetStaffTimeKeepingByDate?date={wsId}"))
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetStaffTimeKeepingById?wsId={wsId}"))
                 {
                     using (HttpContent content = res.Content)
                     {
@@ -51,7 +51,7 @@ namespace CLIENT.API
         {
             using (HttpClient client = new HttpClient())
             {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}SearchStaffTimeKeepinByDate?date={wsId}&search={search}"))
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}SearchStaffTimeKeepinById?wsId={wsId}&search={search}"))
                 {
                     using (HttpContent content = res.Content)
                     {

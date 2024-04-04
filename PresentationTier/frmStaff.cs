@@ -51,9 +51,9 @@ namespace CLIENT.PresentationTier
             LoadStaffInfo();
             Enabled = true;
         }
-        private void LoadHeaderInfo()
-        {            
-            StaffInfoViewModel staff =  _listStaffInfo.FirstOrDefault(s => s.StaffId == _staffID);
+        private async void LoadHeaderInfo()
+        {
+            StaffInfoViewModel staff = await _staffBUS.GetStaffHeaderInfo(_staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
         }
         private void LoadDepartment()

@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using CLIENT.Function;
 using System.Drawing;
-using CLINET.PresentationTier;
 
 namespace CLIENT.PresentationTier
 {
@@ -16,7 +15,6 @@ namespace CLIENT.PresentationTier
         private readonly DepartmentBUS _departmentBUS;
         private readonly StaffBUS _staffBUS;
         private readonly FormHandle _handle;
-        private List<StaffInfoViewModel> _listStaffInfo;
         private List<DepartmentDetailViewModel> _listDepartment;
         private readonly string _staffID;
         public frmDepartment()
@@ -25,15 +23,13 @@ namespace CLIENT.PresentationTier
             _departmentBUS = new DepartmentBUS();
             _staffBUS = new StaffBUS();
             _handle = new FormHandle();
-            _listDepartment = new List<DepartmentDetailViewModel>();
-            _listStaffInfo = new List<StaffInfoViewModel>();            
+            _listDepartment = new List<DepartmentDetailViewModel>();  
             _staffID = "S_0000000002";
         }
 
         private async void frmDepartment_Load(object sender, EventArgs e)
         {
             Enabled = false;
-            _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             _listDepartment = await _departmentBUS.GetDepartmentDetail();
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
             LoadHeaderInfo();
@@ -41,9 +37,9 @@ namespace CLIENT.PresentationTier
             nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvDepartment.RowsDefaultCellStyle.Font.Size));
             Enabled = true;
         }
-        private void LoadHeaderInfo()
+        private async void LoadHeaderInfo()
         {
-            StaffInfoViewModel staff = _listStaffInfo.FirstOrDefault(s => s.StaffId == _staffID);
+            StaffInfoViewModel staff = await _staffBUS.GetStaffHeaderInfo(_staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
         }
         private void LoadDepartmentDetail()

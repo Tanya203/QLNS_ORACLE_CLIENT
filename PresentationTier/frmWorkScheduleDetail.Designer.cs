@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnBack = new System.Windows.Forms.Button();
             this.lblFontSỉze = new System.Windows.Forms.Label();
             this.lblSearch = new System.Windows.Forms.Label();
@@ -44,12 +44,9 @@
             this.pnlFunction = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbDepartment = new System.Windows.Forms.ComboBox();
-            this.cmbPosition = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.pbStaffPicture = new System.Windows.Forms.PictureBox();
-            this.cmbShiftType = new System.Windows.Forms.ComboBox();
-            this.lblShiftType = new System.Windows.Forms.Label();
             this.cmbShift = new System.Windows.Forms.ComboBox();
             this.lblShift = new System.Windows.Forms.Label();
             this.cmbStaffID = new System.Windows.Forms.ComboBox();
@@ -75,6 +72,9 @@
             this.colCa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colThoiGianDen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colThoiGianVe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbSortShift = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbPosition = new System.Windows.Forms.ComboBox();
             this.pnlInfo.SuspendLayout();
             this.pnlFunction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbStaffPicture)).BeginInit();
@@ -131,6 +131,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(299, 30);
             this.txtSearch.TabIndex = 80;
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // lblWorkScheduleInfo
             // 
@@ -213,8 +214,6 @@
             this.pnlFunction.Controls.Add(this.label2);
             this.pnlFunction.Controls.Add(this.btnSave);
             this.pnlFunction.Controls.Add(this.pbStaffPicture);
-            this.pnlFunction.Controls.Add(this.cmbShiftType);
-            this.pnlFunction.Controls.Add(this.lblShiftType);
             this.pnlFunction.Controls.Add(this.cmbShift);
             this.pnlFunction.Controls.Add(this.lblShift);
             this.pnlFunction.Controls.Add(this.cmbStaffID);
@@ -229,7 +228,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(425, 83);
+            this.label1.Location = new System.Drawing.Point(423, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 25);
             this.label1.TabIndex = 90;
@@ -240,26 +239,17 @@
             this.cmbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDepartment.FormattingEnabled = true;
-            this.cmbDepartment.Location = new System.Drawing.Point(580, 20);
+            this.cmbDepartment.Location = new System.Drawing.Point(138, 92);
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(255, 33);
             this.cmbDepartment.TabIndex = 87;
-            // 
-            // cmbPosition
-            // 
-            this.cmbPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPosition.FormattingEnabled = true;
-            this.cmbPosition.Location = new System.Drawing.Point(580, 146);
-            this.cmbPosition.Name = "cmbPosition";
-            this.cmbPosition.Size = new System.Drawing.Size(255, 33);
-            this.cmbPosition.TabIndex = 88;
+            this.cmbDepartment.TextChanged += new System.EventHandler(this.cmbDepartment_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(425, 24);
+            this.label2.Location = new System.Drawing.Point(9, 96);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 25);
             this.label2.TabIndex = 89;
@@ -274,7 +264,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::CLIENT.Properties.Resources.save;
-            this.btnSave.Location = new System.Drawing.Point(258, 163);
+            this.btnSave.Location = new System.Drawing.Point(455, 149);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 44);
             this.btnSave.TabIndex = 86;
@@ -284,6 +274,7 @@
             // 
             // pbStaffPicture
             // 
+            this.pbStaffPicture.Image = global::CLIENT.Properties.Resources.image;
             this.pbStaffPicture.Location = new System.Drawing.Point(892, 16);
             this.pbStaffPicture.Name = "pbStaffPicture";
             this.pbStaffPicture.Size = new System.Drawing.Size(173, 177);
@@ -291,32 +282,12 @@
             this.pbStaffPicture.TabIndex = 83;
             this.pbStaffPicture.TabStop = false;
             // 
-            // cmbShiftType
-            // 
-            this.cmbShiftType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbShiftType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbShiftType.FormattingEnabled = true;
-            this.cmbShiftType.Location = new System.Drawing.Point(146, 20);
-            this.cmbShiftType.Name = "cmbShiftType";
-            this.cmbShiftType.Size = new System.Drawing.Size(255, 33);
-            this.cmbShiftType.TabIndex = 10;
-            // 
-            // lblShiftType
-            // 
-            this.lblShiftType.AutoSize = true;
-            this.lblShiftType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShiftType.Location = new System.Drawing.Point(17, 28);
-            this.lblShiftType.Name = "lblShiftType";
-            this.lblShiftType.Size = new System.Drawing.Size(89, 25);
-            this.lblShiftType.TabIndex = 66;
-            this.lblShiftType.Text = "Loại ca:";
-            // 
             // cmbShift
             // 
             this.cmbShift.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbShift.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbShift.FormattingEnabled = true;
-            this.cmbShift.Location = new System.Drawing.Point(146, 105);
+            this.cmbShift.Location = new System.Drawing.Point(137, 19);
             this.cmbShift.Name = "cmbShift";
             this.cmbShift.Size = new System.Drawing.Size(255, 33);
             this.cmbShift.TabIndex = 8;
@@ -325,7 +296,7 @@
             // 
             this.lblShift.AutoSize = true;
             this.lblShift.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShift.Location = new System.Drawing.Point(17, 113);
+            this.lblShift.Location = new System.Drawing.Point(13, 27);
             this.lblShift.Name = "lblShift";
             this.lblShift.Size = new System.Drawing.Size(47, 25);
             this.lblShift.TabIndex = 64;
@@ -336,10 +307,11 @@
             this.cmbStaffID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStaffID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStaffID.FormattingEnabled = true;
-            this.cmbStaffID.Location = new System.Drawing.Point(580, 80);
+            this.cmbStaffID.Location = new System.Drawing.Point(578, 90);
             this.cmbStaffID.Name = "cmbStaffID";
             this.cmbStaffID.Size = new System.Drawing.Size(255, 33);
             this.cmbStaffID.TabIndex = 7;
+            this.cmbStaffID.TextChanged += new System.EventHandler(this.cmbStaffID_TextChanged);
             // 
             // btnAdd
             // 
@@ -350,7 +322,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Image = global::CLIENT.Properties.Resources.add;
-            this.btnAdd.Location = new System.Drawing.Point(113, 163);
+            this.btnAdd.Location = new System.Drawing.Point(310, 149);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(109, 44);
             this.btnAdd.TabIndex = 11;
@@ -362,7 +334,7 @@
             // 
             this.lblStaffID.AutoSize = true;
             this.lblStaffID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStaffID.Location = new System.Drawing.Point(425, 154);
+            this.lblStaffID.Location = new System.Drawing.Point(423, 98);
             this.lblStaffID.Name = "lblStaffID";
             this.lblStaffID.Size = new System.Drawing.Size(149, 25);
             this.lblStaffID.TabIndex = 53;
@@ -385,6 +357,7 @@
             0,
             0,
             0});
+            this.nudFontSize.ValueChanged += new System.EventHandler(this.nudFontSize_ValueChanged);
             // 
             // pnlHeader
             // 
@@ -422,6 +395,7 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // lblPositionLoginValue
             // 
@@ -511,14 +485,14 @@
             this.dgvWorkScheduleDetail.AllowUserToDeleteRows = false;
             this.dgvWorkScheduleDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvWorkScheduleDetail.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvWorkScheduleDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvWorkScheduleDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvWorkScheduleDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvWorkScheduleDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colMaLLV,
@@ -535,8 +509,8 @@
             this.dgvWorkScheduleDetail.ReadOnly = true;
             this.dgvWorkScheduleDetail.RowHeadersVisible = false;
             this.dgvWorkScheduleDetail.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvWorkScheduleDetail.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvWorkScheduleDetail.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvWorkScheduleDetail.RowTemplate.Height = 24;
             this.dgvWorkScheduleDetail.Size = new System.Drawing.Size(1924, 569);
             this.dgvWorkScheduleDetail.TabIndex = 81;
@@ -597,12 +571,46 @@
             this.colThoiGianVe.Name = "colThoiGianVe";
             this.colThoiGianVe.ReadOnly = true;
             // 
+            // cmbSortShift
+            // 
+            this.cmbSortShift.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSortShift.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSortShift.FormattingEnabled = true;
+            this.cmbSortShift.Location = new System.Drawing.Point(65, 386);
+            this.cmbSortShift.Name = "cmbSortShift";
+            this.cmbSortShift.Size = new System.Drawing.Size(175, 33);
+            this.cmbSortShift.TabIndex = 90;
+            this.cmbSortShift.TextChanged += new System.EventHandler(this.cmbSortShift_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 391);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 25);
+            this.label3.TabIndex = 91;
+            this.label3.Text = "Ca:";
+            // 
+            // cmbPosition
+            // 
+            this.cmbPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbPosition.FormattingEnabled = true;
+            this.cmbPosition.Location = new System.Drawing.Point(578, 19);
+            this.cmbPosition.Name = "cmbPosition";
+            this.cmbPosition.Size = new System.Drawing.Size(255, 33);
+            this.cmbPosition.TabIndex = 88;
+            this.cmbPosition.TextChanged += new System.EventHandler(this.cmbPosition_TextChanged);
+            // 
             // frmWorkScheduleDetail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1924, 993);
+            this.Controls.Add(this.cmbSortShift);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.lblFontSỉze);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.txtSearch);
@@ -614,7 +622,9 @@
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.dgvWorkScheduleDetail);
             this.Name = "frmWorkScheduleDetail";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmWorkScheduleDetail";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmWorkScheduleDetail_Load);
             this.pnlInfo.ResumeLayout(false);
             this.pnlInfo.PerformLayout();
@@ -646,8 +656,6 @@
         private System.Windows.Forms.Panel pnlFunction;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.PictureBox pbStaffPicture;
-        private System.Windows.Forms.ComboBox cmbShiftType;
-        private System.Windows.Forms.Label lblShiftType;
         private System.Windows.Forms.ComboBox cmbShift;
         private System.Windows.Forms.Label lblShift;
         private System.Windows.Forms.ComboBox cmbStaffID;
@@ -673,9 +681,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCa;
         private System.Windows.Forms.DataGridViewTextBoxColumn colThoiGianDen;
         private System.Windows.Forms.DataGridViewTextBoxColumn colThoiGianVe;
-        private System.Windows.Forms.ComboBox cmbPosition;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbDepartment;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbSortShift;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbPosition;
     }
 }

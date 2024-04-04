@@ -16,7 +16,6 @@ namespace CLIENT.PresentationTier
         private readonly ShiftTypeBUS _shiftTypeBUS;
         private readonly StaffBUS _staffBUS;
         private readonly FormHandle _handle;
-        private List<StaffInfoViewModel> _listStaffInfo;
         private List<ShiftType> _listShiftType;
         private readonly string _staffID;
         public frmShiftType()
@@ -26,23 +25,21 @@ namespace CLIENT.PresentationTier
             _staffBUS = new StaffBUS();
             _handle = new FormHandle();
             _listShiftType = new List<ShiftType>();
-            _listStaffInfo = new List<StaffInfoViewModel>();
             _staffID = "S_0000000002";
         }
 
         private async void frmShiftType_Load(object sender, EventArgs e)
         {
             Enabled = false;
-            _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             _listShiftType = await _shiftTypeBUS.GetAllShiftType();
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
             nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvShiftType.RowsDefaultCellStyle.Font.Size));
             LoadHeaderInfo();
             LoadShiftType();
         }
-        private void LoadHeaderInfo()
+        private async void LoadHeaderInfo()
         {
-            StaffInfoViewModel staff = _listStaffInfo.FirstOrDefault(s => s.StaffId == _staffID);
+            StaffInfoViewModel staff = await _staffBUS.GetStaffHeaderInfo(_staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
         }
         private void LoadShiftType()

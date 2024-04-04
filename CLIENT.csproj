@@ -211,6 +211,7 @@
     <Compile Include="ViewModels\StaffBenefitDetailViewModel.cs" />
     <Compile Include="ViewModels\StaffInfoViewModel.cs" />
     <Compile Include="ViewModels\StaffTimeKeepingViewModel.cs" />
+    <Compile Include="ViewModels\StaffDateOfffModel.cs" />
     <Compile Include="ViewModels\StaffWorkScheduleDetailViewModel.cs" />
     <EmbeddedResource Include="PresentationTier\frmBenefit.resx">
       <DependentUpon>frmBenefit.cs</DependentUpon>

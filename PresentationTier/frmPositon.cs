@@ -1,4 +1,4 @@
-﻿using CLIENT.DataTier.Models;
+﻿    using CLIENT.DataTier.Models;
 using CLIENT.Function;
 using CLIENT.LogicTier;
 using CLIENT.ViewModels;
@@ -16,7 +16,6 @@ namespace CLIENT.PresentationTier
         private readonly DepartmentBUS _departmentBUS;
         private readonly StaffBUS _staffBUS;
         private readonly FormHandle _handle;
-        private List<StaffInfoViewModel> _listStaffInfo;
         private List<PositionDetailViewModel> _listPosition;
         private readonly string _staffID;
         public frmPositon()
@@ -26,7 +25,6 @@ namespace CLIENT.PresentationTier
             _departmentBUS = new DepartmentBUS();
             _staffBUS = new StaffBUS();
             _handle = new FormHandle();
-            _listStaffInfo = new List<StaffInfoViewModel>();
             _listPosition = new List<PositionDetailViewModel>();
             _staffID = "S_0000000002";
         }
@@ -34,7 +32,6 @@ namespace CLIENT.PresentationTier
         private async void frmPositon_Load(object sender, EventArgs e)
         {
             Enabled = false;            
-            _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             _listPosition = await _positionBUS.GetPositionDetail();
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
             nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvPosition.RowsDefaultCellStyle.Font.Size));
@@ -43,9 +40,9 @@ namespace CLIENT.PresentationTier
             LoadPositionDetail();     
             Enabled = true;
         }
-        private void LoadHeaderInfo()
+        private async void LoadHeaderInfo()
         {
-            StaffInfoViewModel staff = _listStaffInfo.FirstOrDefault(s => s.StaffId == _staffID);
+            StaffInfoViewModel staff = await _staffBUS.GetStaffHeaderInfo(_staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
         }
         private void LoadDepartment()
@@ -62,7 +59,7 @@ namespace CLIENT.PresentationTier
         }
         public void LoadPositionDetail()
         {
-            dgvPosition.Invoke((MethodInvoker)(async () =>
+            dgvPosition.Invoke((MethodInvoker)(() =>
             {
                 Enabled = false;
                 dgvPosition.Rows.Clear();
@@ -267,6 +264,11 @@ namespace CLIENT.PresentationTier
         private void btnCancel_Click(object sender, EventArgs e)
         {
             ClearAllText();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            Reload();
         }
     }
 }

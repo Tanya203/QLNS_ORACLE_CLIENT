@@ -18,7 +18,6 @@ namespace CLINET.PresentationTier
         private readonly StaffBUS _staffBUS;
         private readonly string _staffID;
         private readonly FormHandle _handle;
-        private List<StaffInfoViewModel> _listStaffInfo;
         private List<ContractTypeDetailViewModel> _listContractType;
         public frmContractType()
         {
@@ -27,7 +26,6 @@ namespace CLINET.PresentationTier
             _timeKeepingMethodBUS = new TimeKeepingMethodBUS();
             _staffBUS = new StaffBUS();
             _handle = new FormHandle();
-            _listStaffInfo = new List<StaffInfoViewModel>();
             _listContractType = new List<ContractTypeDetailViewModel>();            
             _staffID = "S_0000000002";
         }
@@ -35,7 +33,6 @@ namespace CLINET.PresentationTier
         private async void frmContractType_Load(object sender, EventArgs e)
         {
             Enabled = false;
-            _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             _listContractType = await _contractTypeBUS.GetContractTypeDetail();
             btnAdd.Enabled = btnEdit.Enabled = btnDelete.Enabled = false;
             nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvContractType.RowsDefaultCellStyle.Font.Size));
@@ -44,9 +41,9 @@ namespace CLINET.PresentationTier
             LoadContractTypeDetail();
             Enabled = true;
         }
-        private void LoadHeaderInfo()
+        private async void LoadHeaderInfo()
         {
-            StaffInfoViewModel staff = _listStaffInfo.FirstOrDefault(s => s.StaffId == _staffID);
+            StaffInfoViewModel staff = await _staffBUS.GetStaffHeaderInfo(_staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
         }
         private void LoadTimeKeepingMethod()

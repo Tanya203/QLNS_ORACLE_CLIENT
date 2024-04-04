@@ -49,28 +49,6 @@ namespace CLIENT.API
             }
             return null;
         }
-        public async Task<string> CreateWorkSchedule(WorkSchedule workSchedule)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                string json = JsonConvert.SerializeObject(workSchedule);
-
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AddWorkSchedule", content))
-                {
-                    using (HttpContent responseContent = res.Content)
-                    {
-                        string data = await responseContent.ReadAsStringAsync();
-                        if (data != null)
-                        {
-                            return data;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
         public async Task<string> AutoSchedule(string month)
         {
             using (HttpClient client = new HttpClient())
@@ -93,15 +71,18 @@ namespace CLIENT.API
             }
             return null;
         }
-        public async Task<string> AutoUpdateWorkSchedule(DateTime workDate)
+
+        public async Task<string> AutoScheduleDate(DateTime date)
         {
             using (HttpClient client = new HttpClient())
             {
-                string json = JsonConvert.SerializeObject(workDate);
+                string dateFormat = date.ToString("yyyy-MM-dd");
+
+                string json = JsonConvert.SerializeObject(date.Date);
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AutoUpdateWorkSchedule", content))
+                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}AutoScheduleDate?date={dateFormat}", content))
                 {
                     using (HttpContent responseContent = res.Content)
                     {
