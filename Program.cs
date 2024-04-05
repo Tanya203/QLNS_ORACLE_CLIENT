@@ -1,5 +1,4 @@
 ﻿using CLIENT.PresentationTier;
-using CLINET.PresentationTier;
 using System;
 using System.Windows.Forms;
 

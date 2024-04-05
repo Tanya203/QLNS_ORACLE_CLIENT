@@ -16,6 +16,7 @@ namespace CLIENT.PresentationTier
     {
         private readonly StaffBUS _staffBUS;
         private readonly FormHandle _handle;
+        private readonly WorkScheduleBUS _workScheduleBUS;
         private readonly TimeKeepingBUS _timeKeepingBUS;
         private readonly ShiftTypeBUS _shiftTypeBUS;
         private readonly ShiftBUS _shiftBUS;
@@ -28,10 +29,11 @@ namespace CLIENT.PresentationTier
         private readonly string _wsID;
         private readonly string formatHour = "HH:mm:ss";
         private bool check;
-        public frmWorkScheduleDetail()
+        public frmWorkScheduleDetail(string staffID, string wsID)
         {
             InitializeComponent();
             _staffBUS = new StaffBUS();
+            _workScheduleBUS = new WorkScheduleBUS();
             _timeKeepingBUS = new TimeKeepingBUS();
             _shiftTypeBUS = new ShiftTypeBUS();
             _shiftBUS = new ShiftBUS();
@@ -42,8 +44,8 @@ namespace CLIENT.PresentationTier
             _updateList = new List<TimeKeeping>();
             _deleteList = new List<TimeKeeping>();
             check = false;
-            _staffID = "S_0000000002";
-            _wsID = "WS_0000000203";
+            _staffID = staffID;
+            _wsID = wsID;
         }
 
         private async void frmWorkScheduleDetail_Load(object sender, EventArgs e)
@@ -51,13 +53,35 @@ namespace CLIENT.PresentationTier
             _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvWorkScheduleDetail.RowsDefaultCellStyle.Font.Size));
             LoadHeaderInfo();
-            LoadSortShift();
-            LoadDepartment();
+            LoadWorkScheduleInfo();
+            LoadSortShift();            
+                  
         }
         private async void LoadHeaderInfo()
         {
             StaffInfoViewModel staff = await _staffBUS.GetStaffHeaderInfo(_staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
+        }
+        private void LoadWorkScheduleInfo()
+        {
+            pnlFunction.Invoke((MethodInvoker)( async () =>
+            {
+                WorkSchedule info = await _workScheduleBUS.GetAWorkScheduleInfo(_wsID);
+                nudFontSize.Invoke((MethodInvoker)(() => txtWorkScheduleID.Text = info.WsId));
+                nudFontSize.Invoke((MethodInvoker)(() => dtpWorkDate.Value = info.WorkDate));
+                if (dtpWorkDate.Value.Date < DateTime.Now.Date)
+                {
+                    lblAddStaff.Visible = false;
+                    pnlFunction.Visible = false;
+                    lblWorkScheduleInfo.Location = new Point(700, 130);
+                    pnlInfo.Location = new Point(660, 160);
+                }
+                else
+                {
+                    LoadDepartment();
+                    DeleteButton();
+                }
+            }));
         }
         private void LoadSortShift()
         {           
@@ -122,7 +146,6 @@ namespace CLIENT.PresentationTier
                 list.OrderBy(s => s.StaffId);
                 cmbStaffID.DataSource = list;
                 AutoAdjustComboBox.Adjust(cmbStaffID);
-                //LoadShiftByStaffShiftType(cmbStaffID.SelectedValue.ToString());
             }));
         }
         private void LoadShiftByStaff(string staffID)
@@ -207,6 +230,26 @@ namespace CLIENT.PresentationTier
             }
             Enabled = true;
         }
+        private void DeleteButton()
+        {
+            dgvWorkScheduleDetail.Invoke((MethodInvoker)(() =>
+            {
+                DataGridViewButtonColumn btnXoa = new DataGridViewButtonColumn();
+                {
+                    btnXoa.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    btnXoa.Text = "Xoá";
+                    btnXoa.UseColumnTextForButtonValue = true;
+                    btnXoa.FlatStyle = FlatStyle.Popup;
+                    var buttonCellStyle = new DataGridViewCellStyle
+                    {
+                        BackColor = SystemColors.ScrollBar,
+                        Alignment = DataGridViewContentAlignment.MiddleCenter
+                    };
+                    btnXoa.DefaultCellStyle = buttonCellStyle;
+                    dgvWorkScheduleDetail.Columns.Add(btnXoa);
+                }
+            }));                
+        }
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             Reload();
@@ -220,7 +263,7 @@ namespace CLIENT.PresentationTier
         }
         private void Reload()
         {
-            frmWorkScheduleDetail open = new frmWorkScheduleDetail();
+            frmWorkScheduleDetail open = new frmWorkScheduleDetail(_staffID, _wsID);
             _handle.RedirectForm(open, this);
         }
 
@@ -246,11 +289,28 @@ namespace CLIENT.PresentationTier
             LoadStaffByPosition(cmbPosition.Text);
         }
 
-        private void cmbStaffID_TextChanged(object sender, EventArgs e)
+        private async void cmbStaffID_TextChanged(object sender, EventArgs e)
         {
+            pbStaffPicture.Image = Properties.Resources.image;
+            if (string.IsNullOrEmpty(cmbStaffID.Text))
+            {
+                btnAdd.Enabled = false;
+                cmbShift.Enabled = false;
+            }
+            else
+            {
+                StaffInfoViewModel staff = await _staffBUS.GetStaffHeaderInfo(cmbStaffID.SelectedValue.ToString());
+                ImageHandle.LoadImage(pbStaffPicture, staff.Picture);
+                btnAdd.Enabled = true;
+                cmbShift.Enabled = false;
+            }
             LoadShiftByStaff(cmbStaffID.SelectedValue.ToString());
         }
 
-        
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            frmWorkSchedule open = new frmWorkSchedule();
+            _handle.RedirectForm(open, this);
+        }
     }
 }

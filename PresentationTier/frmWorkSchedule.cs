@@ -111,7 +111,7 @@ namespace CLIENT.PresentationTier
         }
         private void DeleteButton()
         {
-            dgvWorkSchedule.Invoke((MethodInvoker)(async () =>
+            dgvWorkSchedule.Invoke((MethodInvoker)(() =>
             {
                 DataGridViewButtonColumn btnXoa = new DataGridViewButtonColumn();
                 {
@@ -129,9 +129,10 @@ namespace CLIENT.PresentationTier
                 }
             }));            
         }
-        private void OpenWorkScheduleDetail()
+        private void OpenWorkScheduleDetail(string wsID)
         {
-
+            frmWorkScheduleDetail open = new frmWorkScheduleDetail(_staffID, wsID);
+            _handle.RedirectForm(open, this);
         }
         private async void DeleteWorkSchedule(string wsID, string workDate)
         {
@@ -225,7 +226,7 @@ namespace CLIENT.PresentationTier
             string wsID = dgvWorkSchedule.Rows[rowIndex].Cells[0].Value.ToString();
             string workDate = dgvWorkSchedule.Rows[rowIndex].Cells[1].Value.ToString();
             if (e.ColumnIndex == 2)
-                OpenWorkScheduleDetail();
+                OpenWorkScheduleDetail(wsID);
             if (e.ColumnIndex == 3)
                 DeleteWorkSchedule(wsID, workDate);
         }

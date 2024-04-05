@@ -19,6 +19,10 @@ namespace CLIENT.LogicTier
         {
             return await _workScheduleDAL.GetAllWorkSchedule();
         }
+        public async Task<WorkSchedule> GetAWorkScheduleInfo(string wsID)
+        {
+            return await _workScheduleDAL.GetAWorkScheduleInfo(wsID);
+        }
         public async Task<List<WorkSchedule>> SearchWorkSchedule(string search)
         {
             return await _workScheduleDAL.SearchWorkSchedule(search);
