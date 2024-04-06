@@ -26,9 +26,9 @@ namespace CLIENT.LogicTier
         {
             return await _staffDAL.SearchStaffInfo(search);
         }
-        public async Task<StaffInfoViewModel> GetStaffHeaderInfo(string staffID)
+        public async Task<StaffInfoViewModel> GetStaffInfo(string staffID)
         {
-            return await _staffDAL.GetStaffHeaderInfo(staffID);
+            return await _staffDAL.GetStaffInfo(staffID);
         }
         public async Task<bool> CreateStaff(Staff staff)
         {

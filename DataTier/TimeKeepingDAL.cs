@@ -38,16 +38,17 @@ namespace CLIENT.DataTier
             List<StaffWorkScheduleDetailViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffWorkScheduleDetailViewModel>>(responce);
             return listWorkScheduleDetail.ToList();
         }
-        public async Task<bool> CreateTimeKeeping(TimeKeeping timeKeeping)
+        public async Task<bool> CreateTimeKeeping(List<TimeKeeping> timeKeeping)
         {
             try
             {
-                string responce = await _api.CreateTimeKeeping(timeKeeping);
-                if (responce == "Success")
+                string responce = "";
+                foreach (TimeKeeping staff in timeKeeping)
                 {
-                    MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return true;
+                    responce = await _api.CreateTimeKeeping(staff);
                 }
+                if (responce == "Success")
+                    return true;
                 else
                 {
                     MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -82,16 +83,15 @@ namespace CLIENT.DataTier
                 return false;
             }
         }
-        public async Task<bool> DeleteTimeKeeping(string wsID, string staffID, string shiftID)
+        public async Task<bool> DeleteTimeKeeping(List<TimeKeeping> timeKeeping)
         {
             try
             {
-                string responce = await _api.DeleteTimeKeeping(wsID, staffID, shiftID);
+                string responce = "";
+                foreach (TimeKeeping staff in timeKeeping)
+                    responce = await _api.DeleteTimeKeeping(staff.WsId, staff.StaffId, staff.ShiftId);
                 if (responce == "Success")
-                {
-                    MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
-                }
                 else
                 {
                     MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
