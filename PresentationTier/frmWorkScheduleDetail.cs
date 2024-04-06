@@ -173,13 +173,11 @@ namespace CLIENT.PresentationTier
                 {
                     btnAdd.Enabled = false;
                     cmbShift.Enabled = false;
-                    cmbStaffID.Enabled = false;
                 }
                 else
                 {
                     btnAdd.Enabled = true;
                     cmbShift.Enabled = true;
-                    cmbStaffID.Enabled = true;
                 }
             }));
         }
