@@ -9,6 +9,7 @@
     <RootNamespace>CLIENT</RootNamespace>
     <AssemblyName>CLIENT</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <langVersion>9.0</langVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -99,6 +100,7 @@
     <Compile Include="API\TimeKeepingApi.cs" />
     <Compile Include="API\TimeKeepingMethodApi.cs" />
     <Compile Include="API\WorkScheduleAPI.cs" />
+    <Compile Include="API\WorkScheduleDetailApi.cs" />
     <Compile Include="DataTier\BenefitDAL.cs" />
     <Compile Include="DataTier\BenefitDetailDAL.cs" />
     <Compile Include="DataTier\ContractTypeDAL.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="DataTier\PositionDAL.cs" />
     <Compile Include="DataTier\TimeKeepingDAL.cs" />
     <Compile Include="DataTier\WorkScheduleDAL.cs" />
+    <Compile Include="DataTier\WorkScheduleDetailDAL.cs" />
     <Compile Include="LogicTier\ContractTypeBUS.cs" />
     <Compile Include="LogicTier\ShiftBUS.cs" />
     <Compile Include="DataTier\ShiftDAL.cs" />
@@ -139,6 +142,7 @@
     <Compile Include="LogicTier\TimeKeepingBUS.cs" />
     <Compile Include="LogicTier\TimeKeepingMethodBUS.cs" />
     <Compile Include="LogicTier\WorkScheduleBUS.cs" />
+    <Compile Include="LogicTier\WorkScheduleDetailBUS.cs" />
     <Compile Include="PresentationTier\frmBenefitDetail.cs">
       <SubType>Form</SubType>
     </Compile>

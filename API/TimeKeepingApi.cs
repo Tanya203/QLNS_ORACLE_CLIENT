@@ -113,7 +113,7 @@ namespace CLIENT.API
         {
             using (HttpClient client = new HttpClient())
             {
-                string requestUrl = $"{_baseUrl}DeleteWorkScheduleDetail?wsID={wsID}&staffID={staffID}&shiftID={shiftID}";
+                string requestUrl = $"{_baseUrl}DeleteTimeKeeping?wsID={wsID}&staffID={staffID}&shiftID={shiftID}";
 
                 using (HttpResponseMessage res = await client.DeleteAsync(requestUrl))
                 {

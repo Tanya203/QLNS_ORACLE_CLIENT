@@ -43,7 +43,7 @@ namespace CLINET.PresentationTier
         }
         private async void LoadHeaderInfo()
         {
-            StaffInfoViewModel staff = await _staffBUS.GetStaffHeaderInfo(_staffID);
+            StaffInfoViewModel staff = await _staffBUS.GetStaffInfo(_staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
         }
         private void LoadTimeKeepingMethod()

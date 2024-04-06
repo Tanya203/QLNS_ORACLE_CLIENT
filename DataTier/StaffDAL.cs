@@ -38,7 +38,7 @@ namespace CLIENT.DataTier
             List<StaffInfoViewModel> listStaff = JsonConvert.DeserializeObject<List<StaffInfoViewModel>>(responce);
             return listStaff.ToList();
         }
-        public async Task<StaffInfoViewModel> GetStaffHeaderInfo(string staffID)
+        public async Task<StaffInfoViewModel> GetStaffInfo(string staffID)
         {
             string responce = await _api.GetAllStaffInfo();
             List<StaffInfoViewModel> listStaff = JsonConvert.DeserializeObject<List<StaffInfoViewModel>>(responce);

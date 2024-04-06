@@ -220,7 +220,7 @@ namespace CLIENT.PresentationTier
             _updateList.Add(benefitDetail);
             _deleteList.RemoveAll(s => s.StaffId == benefitDetail.StaffId);
             LoadStaffByPosition(cmbPosition.Text);
-            if (_updateList.Count > 0)
+            if (_updateList.Count > 0 || _deleteList.Count > 0)
                 btnSave.Enabled = true;
             else 
                 btnSave.Enabled = false;
@@ -241,7 +241,7 @@ namespace CLIENT.PresentationTier
             byte[] image = _listStaffInfo.FirstOrDefault(s => s.StaffId == cmbStaffID.SelectedValue.ToString()).Picture;
             if(image != null)                
                 ImageHandle.LoadImage(pbStaffPicture, image);
-            else            
+            if(string.IsNullOrEmpty(cmbStaffID.Text))
                 pbStaffPicture.Image = Properties.Resources.image;
         }
 
@@ -267,11 +267,17 @@ namespace CLIENT.PresentationTier
             try
             {
                 if(_deleteList.Count > 0)
-                    await _benefitDetailBUS.DeleteBenefitDetail(_deleteList);
+                {
+                    if (!await _benefitDetailBUS.DeleteBenefitDetail(_deleteList))
+                        return;
+                }                        
                 foreach (StaffBenefitDetailViewModel staff in _listBenefitDetail)
                     _updateList.RemoveAll(s => s.StaffId == staff.StaffId);
                 if(_updateList.Count > 0)
-                    await _benefitDetailBUS.CreateBenefitDetail(_updateList);
+                {
+                    if (!await _benefitDetailBUS.CreateBenefitDetail(_updateList))
+                        return;
+                }
                 MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Reload();
             }

@@ -28,7 +28,7 @@ namespace CLIENT.LogicTier
         {
             return await _timeKeepingDAL.SearchStaffTimeKeepinById(wsId, search);
         }
-        public async Task<bool> CreateTimeKeeping(TimeKeeping timeKeeping)
+        public async Task<bool> CreateTimeKeeping(List<TimeKeeping> timeKeeping)
         {
             return await _timeKeepingDAL.CreateTimeKeeping(timeKeeping);
         }
@@ -36,9 +36,9 @@ namespace CLIENT.LogicTier
         {
             return await _timeKeepingDAL.TimeKeeping(staffID);
         }
-        public async Task<bool> DeleteTimeKeeping(string wsID, string staffID, string shiftID)
+        public async Task<bool> DeleteTimeKeeping(List<TimeKeeping> timeKeeping)
         {
-            return await _timeKeepingDAL.DeleteTimeKeeping(wsID, staffID, shiftID);
+            return await _timeKeepingDAL.DeleteTimeKeeping(timeKeeping);
         }
     }
 }
