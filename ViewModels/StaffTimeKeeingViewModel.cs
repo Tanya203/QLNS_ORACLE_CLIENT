@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CLIENT.ViewModels
 {
-    public class StaffTimeKeepingViewModel
+    public class StaffTimeKeeingViewModel
     {
         public string WsId { get; set; }
 
         public DateTime? WorkDate { get; set; }
 
         public string StaffId { get; set; }
+
+        public string ShiftId { get; set; }
 
         public string FullName { get; set; }
 

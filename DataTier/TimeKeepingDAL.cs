@@ -26,16 +26,16 @@ namespace CLIENT.DataTier
             List<TimeKeeping> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<TimeKeeping>>(responce);
             return listWorkScheduleDetail.ToList();
         }
-        public async Task<List<StaffWorkScheduleDetailViewModel>> GetStaffTimeKeepingById(string wsId)
+        public async Task<List<StaffTimeKeeingViewModel>> GetStaffTimeKeepingById(string wsId)
         {
             string responce = await _api.GetStaffTimeKeepingById(wsId);
-            List<StaffWorkScheduleDetailViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffWorkScheduleDetailViewModel>>(responce);
+            List<StaffTimeKeeingViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffTimeKeeingViewModel>>(responce);
             return listWorkScheduleDetail.ToList();
         }
-        public async Task<List<StaffWorkScheduleDetailViewModel>> SearchStaffTimeKeepinById(string wsId, string search)
+        public async Task<List<StaffTimeKeeingViewModel>> SearchStaffTimeKeepinById(string wsId, string search)
         {
             string responce = await _api.SearchStaffTimeKeepinById(wsId, search);
-            List<StaffWorkScheduleDetailViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffWorkScheduleDetailViewModel>>(responce);
+            List<StaffTimeKeeingViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffTimeKeeingViewModel>>(responce);
             return listWorkScheduleDetail.ToList();
         }
         public async Task<bool> CreateTimeKeeping(List<TimeKeeping> timeKeeping)

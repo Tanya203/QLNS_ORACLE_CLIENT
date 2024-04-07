@@ -258,7 +258,7 @@
             // 
             this.lblWorkSchedule.AutoSize = true;
             this.lblWorkSchedule.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWorkSchedule.Location = new System.Drawing.Point(546, 113);
+            this.lblWorkSchedule.Location = new System.Drawing.Point(587, 113);
             this.lblWorkSchedule.Name = "lblWorkSchedule";
             this.lblWorkSchedule.Size = new System.Drawing.Size(318, 32);
             this.lblWorkSchedule.TabIndex = 73;
@@ -271,7 +271,7 @@
             this.pnlMenu.Controls.Add(this.lblWorkDate);
             this.pnlMenu.Controls.Add(this.btnAdd);
             this.pnlMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlMenu.Location = new System.Drawing.Point(500, 151);
+            this.pnlMenu.Location = new System.Drawing.Point(541, 151);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(418, 141);
             this.pnlMenu.TabIndex = 72;
@@ -371,7 +371,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1021, 116);
+            this.label1.Location = new System.Drawing.Point(1062, 116);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(231, 32);
             this.label1.TabIndex = 78;
@@ -384,7 +384,7 @@
             this.panel1.Controls.Add(this.lblMonth);
             this.panel1.Controls.Add(this.btnAutoSchedule);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(921, 151);
+            this.panel1.Location = new System.Drawing.Point(962, 151);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(418, 141);
             this.panel1.TabIndex = 77;

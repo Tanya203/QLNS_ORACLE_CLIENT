@@ -209,7 +209,7 @@ namespace CLIENT.PresentationTier
             try
             {
                 CustomMessage.YesNoCustom("Xác nhận", "Huỷ");
-                DialogResult result = MessageBox.Show($"Xác nhận xoá ca {txtShiftName.Text}?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show($"Xác nhận xoá ca {txtShiftName.Text}?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     await _shiftBUS.DeleteShift(txtShiftID.Text);
