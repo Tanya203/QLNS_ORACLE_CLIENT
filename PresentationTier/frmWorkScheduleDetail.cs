@@ -22,14 +22,13 @@ namespace CLIENT.PresentationTier
         private readonly ShiftBUS _shiftBUS;
         private readonly PositionBUS _positionBUS;
         private readonly DepartmentBUS _departmentBUS;
-        private List<StaffWorkScheduleDetailViewModel> _listWorkScheduleDetail;
+        private List<StaffTimeKeeingViewModel> _listWorkScheduleDetail;
         private List<TimeKeeping> _updateList;
         private List<TimeKeeping> _deleteList;
         private List<Shift> _listShift;
         private readonly string _staffID;
         private readonly string _wsID;
         private readonly string formatHour = "HH:mm:ss";
-        private bool check;
         public frmWorkScheduleDetail(string staffID, string wsID)
         {
             InitializeComponent();
@@ -41,11 +40,10 @@ namespace CLIENT.PresentationTier
             _departmentBUS = new DepartmentBUS();
             _positionBUS = new PositionBUS();
             _handle = new FormHandle();
-            _listWorkScheduleDetail = new List<StaffWorkScheduleDetailViewModel>();
+            _listWorkScheduleDetail = new List<StaffTimeKeeingViewModel>();
             _updateList = new List<TimeKeeping>();
             _deleteList = new List<TimeKeeping>();
             _listShift = new List<Shift> ();
-            check = false;
             _staffID = staffID;
             _wsID = wsID;
         }
@@ -69,15 +67,15 @@ namespace CLIENT.PresentationTier
         {
             pnlFunction.Invoke((MethodInvoker)( async () =>
             {
-                WorkSchedule info = await _workScheduleBUS.GetAWorkScheduleInfo(_wsID);
-                nudFontSize.Invoke((MethodInvoker)(() => txtWorkScheduleID.Text = info.WsId));
-                nudFontSize.Invoke((MethodInvoker)(() => dtpWorkDate.Value = info.WorkDate));
+                WorkSchedule info = await _workScheduleBUS.GetWorkScheduleInfo(_wsID);
+                txtWorkScheduleID.Invoke((MethodInvoker)(() => txtWorkScheduleID.Text = info.WsId));
+                dtpWorkDate.Invoke((MethodInvoker)(() => dtpWorkDate.Value = info.WorkDate));
                 if (dtpWorkDate.Value.Date < DateTime.Now.Date)
                 {
                     lblAddStaff.Visible = false;
                     pnlFunction.Visible = false;
-                    lblWorkScheduleInfo.Location = new Point(700, 130);
-                    pnlInfo.Location = new Point(660, 160);
+                    lblWorkScheduleInfo.Location = new Point(650, 110);
+                    pnlInfo.Location = new Point(610, 140);
                 }
                 else
                 {
@@ -108,7 +106,7 @@ namespace CLIENT.PresentationTier
         }
         private void LoadUpdateList()
         {
-            foreach (StaffWorkScheduleDetailViewModel staff in _listWorkScheduleDetail)
+            foreach (StaffTimeKeeingViewModel staff in _listWorkScheduleDetail)
                 UpdateList(staff.WsId, staff.StaffId, staff.ShiftId);
         }
         private void LoadDepartment()
@@ -198,10 +196,10 @@ namespace CLIENT.PresentationTier
                 Enabled = false;
                 dgvWorkScheduleDetail.Rows.Clear();
                 int rowAdd;
-                List<StaffWorkScheduleDetailViewModel> list = _listWorkScheduleDetail;
+                List<StaffTimeKeeingViewModel> list = _listWorkScheduleDetail;
                 if (!string.IsNullOrEmpty(cmbSortShift.SelectedValue.ToString()))
                     list = list.Where(s => s.ShiftName == cmbSortShift.Text).ToList();
-                foreach (StaffWorkScheduleDetailViewModel staff in list.OrderBy(s => s.StaffId))
+                foreach (StaffTimeKeeingViewModel staff in list.OrderBy(s => s.StaffId))
                 {
                     rowAdd = dgvWorkScheduleDetail.Rows.Add();
                     dgvWorkScheduleDetail.Rows[rowAdd].Cells[0].Value = staff.WsId;
@@ -221,10 +219,10 @@ namespace CLIENT.PresentationTier
             Enabled = false;
             dgvWorkScheduleDetail.Rows.Clear();
             int rowAdd;
-            List<StaffWorkScheduleDetailViewModel> list = await _timeKeepingBUS.SearchStaffTimeKeepinById(_wsID, search); ;
+            List<StaffTimeKeeingViewModel> list = await _timeKeepingBUS.SearchStaffTimeKeepinById(_wsID, search); ;
             if (!string.IsNullOrEmpty(cmbSortShift.SelectedValue.ToString()))
                 list = list.Where(s => s.ShiftName == cmbSortShift.Text).ToList();
-            foreach (StaffWorkScheduleDetailViewModel staff in list.OrderBy(s => s.StaffId))
+            foreach (StaffTimeKeeingViewModel staff in list.OrderBy(s => s.StaffId))
             {
                 rowAdd = dgvWorkScheduleDetail.Rows.Add();
                 dgvWorkScheduleDetail.Rows[rowAdd].Cells[0].Value = staff.WsId;
@@ -353,7 +351,7 @@ namespace CLIENT.PresentationTier
                     }
                         
                 }                    
-                foreach (StaffWorkScheduleDetailViewModel staff in _listWorkScheduleDetail)
+                foreach (StaffTimeKeeingViewModel staff in _listWorkScheduleDetail)
                     _updateList.RemoveAll(s => s.StaffId == staff.StaffId && s.ShiftId == staff.ShiftId);
                 if (_updateList.Count > 0)
                 {
@@ -409,6 +407,12 @@ namespace CLIENT.PresentationTier
                 if(!string.IsNullOrEmpty(cmbStaffID.Text))
                     LoadShiftByStaff(cmbStaffID.SelectedValue.ToString());
             }               
+        }
+
+        private void btnUpdateDateOff_Click(object sender, EventArgs e)
+        {
+            frmUpdateDateOff open = new frmUpdateDateOff(_staffID, _wsID);
+            _handle.RedirectForm(open, this);
         }
     }
 }

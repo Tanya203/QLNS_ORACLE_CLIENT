@@ -2,6 +2,8 @@
 using CLIENT.DataTier.Models;
 using CLIENT.Function;
 using CLIENT.Models;
+using CLIENT.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,24 @@ namespace CLIENT.DataTier
         {
             _api = new WorkScheduleDetailApi();
         }
-
+        public async Task<List<WorkScheduleDetail>> GetAllWorkScheduleDetail()
+        {
+            string responce = await _api.GetAllWorkScheduleDetail();
+            List<WorkScheduleDetail> listWorkScheduleDetai = JsonConvert.DeserializeObject<List<WorkScheduleDetail>>(responce);
+            return listWorkScheduleDetai.ToList();
+        }
+        public async Task<List<StaffWorkScheduleDetailViewModel>> GetWorkScheduleDetailById(string id)
+        {
+            string responce = await _api.GetWorkScheduleDetailById(id);
+            List<StaffWorkScheduleDetailViewModel> listWorkScheduleDetai = JsonConvert.DeserializeObject<List<StaffWorkScheduleDetailViewModel>>(responce);
+            return listWorkScheduleDetai.ToList();
+        }
+        public async Task<List<StaffWorkScheduleDetailViewModel>> SearchWorkScheduleDetailById(string id, string search)
+        {
+            string responce = await _api.SearchWorkScheduleDetailById(id, search);
+            List<StaffWorkScheduleDetailViewModel> listWorkScheduleDetai = JsonConvert.DeserializeObject<List<StaffWorkScheduleDetailViewModel>>(responce);
+            return listWorkScheduleDetai.ToList();
+        }
         public async Task<bool> CreateWorkScheduleDetail(WorkScheduleDetail workScheduleDetail)
         {
             try
@@ -28,7 +47,32 @@ namespace CLIENT.DataTier
                 if (responce == "Success")
                     return true;
                 else
+                {
+                    MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomMessage.ExecptionCustom(ex);
+                return false;
+            }
+        }
+        public async Task<bool> UpdateWorkScheduleDetail(WorkScheduleDetail workScheduleDetail)
+        {
+            try
+            {
+                string responce = await _api.UpdateWorkScheduleDetail(workScheduleDetail);
+                if(responce == "Success")
+                {
+                    MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
             catch (Exception ex)
             {

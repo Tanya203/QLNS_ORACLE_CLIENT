@@ -23,7 +23,7 @@ namespace CLIENT.DataTier
             List<WorkSchedule> listWorkSchedule = JsonConvert.DeserializeObject<List<WorkSchedule>>(responce);
             return listWorkSchedule.ToList();
         }
-        public async Task<WorkSchedule> GetAWorkScheduleInfo(string wsID)
+        public async Task<WorkSchedule> GetWorkScheduleInfo(string wsID)
         {
             string responce = await _api.GetAllWorkSchedule();
             List<WorkSchedule> listWorkSchedule = JsonConvert.DeserializeObject<List<WorkSchedule>>(responce);

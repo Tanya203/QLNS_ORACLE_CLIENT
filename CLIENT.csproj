@@ -191,6 +191,12 @@
     <Compile Include="PresentationTier\frmStaff.Designer.cs">
       <DependentUpon>frmStaff.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationTier\frmUpdateDateOff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\frmUpdateDateOff.Designer.cs">
+      <DependentUpon>frmUpdateDateOff.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationTier\frmWorkSchedule.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,8 +220,8 @@
     <Compile Include="ViewModels\ShiftDetailViewModel.cs" />
     <Compile Include="ViewModels\StaffBenefitDetailViewModel.cs" />
     <Compile Include="ViewModels\StaffInfoViewModel.cs" />
-    <Compile Include="ViewModels\StaffTimeKeepingViewModel.cs" />
     <Compile Include="ViewModels\StaffDateOfffModel.cs" />
+    <Compile Include="ViewModels\StaffTimeKeeingViewModel.cs" />
     <Compile Include="ViewModels\StaffWorkScheduleDetailViewModel.cs" />
     <EmbeddedResource Include="PresentationTier\frmBenefit.resx">
       <DependentUpon>frmBenefit.cs</DependentUpon>
@@ -240,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationTier\frmStaff.resx">
       <DependentUpon>frmStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\frmUpdateDateOff.resx">
+      <DependentUpon>frmUpdateDateOff.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationTier\frmWorkSchedule.resx">
       <DependentUpon>frmWorkSchedule.cs</DependentUpon>

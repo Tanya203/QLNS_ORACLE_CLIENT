@@ -20,11 +20,11 @@ namespace CLIENT.LogicTier
         {
             return await _timeKeepingDAL.GetAllTimeKeeping();
         }
-        public async Task<List<StaffWorkScheduleDetailViewModel>> GetStaffTimeKeepingById(string wsId)
+        public async Task<List<StaffTimeKeeingViewModel>> GetStaffTimeKeepingById(string wsId)
         {
             return await _timeKeepingDAL.GetStaffTimeKeepingById(wsId);
         }
-        public async Task<List<StaffWorkScheduleDetailViewModel>> SearchStaffTimeKeepinById(string wsId, string search)
+        public async Task<List<StaffTimeKeeingViewModel>> SearchStaffTimeKeepinById(string wsId, string search)
         {
             return await _timeKeepingDAL.SearchStaffTimeKeepinById(wsId, search);
         }
