@@ -32,11 +32,23 @@ namespace CLIENT.DataTier
             List<StaffTimeKeeingViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffTimeKeeingViewModel>>(responce);
             return listWorkScheduleDetail.ToList();
         }
+        public async Task<List<StaffTimeKeeingViewModel>> GetStaffTimeKeepingByDate(DateTime date)
+        {
+            string responce = await _api.GetStaffTimeKeepingByDate(date);
+            List<StaffTimeKeeingViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffTimeKeeingViewModel>>(responce);
+            return listWorkScheduleDetail.ToList();
+        }
         public async Task<List<StaffTimeKeeingViewModel>> SearchStaffTimeKeepinById(string wsId, string search)
         {
             string responce = await _api.SearchStaffTimeKeepinById(wsId, search);
             List<StaffTimeKeeingViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffTimeKeeingViewModel>>(responce);
             return listWorkScheduleDetail.ToList();
+        }
+        public async Task<List<MonthlySalaryStatisticsViewModels>> SalaryStatistic(string month)
+        {
+            string responce = await _api.SalaryStatistic(month);
+            List<MonthlySalaryStatisticsViewModels> salary = JsonConvert.DeserializeObject<List<MonthlySalaryStatisticsViewModels>>(responce);
+            return salary.ToList();
         }
         public async Task<bool> CreateTimeKeeping(List<TimeKeeping> timeKeeping)
         {

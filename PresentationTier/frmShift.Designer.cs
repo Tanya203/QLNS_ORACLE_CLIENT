@@ -170,6 +170,7 @@
             this.btnBack.Text = "Trở về";
             this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // lblFontSỉze
             // 
@@ -219,6 +220,7 @@
             this.btnShiftType.Text = "Quản lý loại ca";
             this.btnShiftType.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnShiftType.UseVisualStyleBackColor = false;
+            this.btnShiftType.Click += new System.EventHandler(this.btnShiftType_Click);
             // 
             // cmbShiftType
             // 

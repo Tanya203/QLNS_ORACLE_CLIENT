@@ -54,5 +54,7 @@ namespace CLIENT.DataTier.Models
 
         public DateTime? LockDate { get; set; }
 
+        public string Account { get; set; }
+
     }
 }

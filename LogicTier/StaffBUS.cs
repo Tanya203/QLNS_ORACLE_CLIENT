@@ -30,6 +30,10 @@ namespace CLIENT.LogicTier
         {
             return await _staffDAL.GetStaffInfo(staffID);
         }
+        public async Task<string> LoginVerify(string account, string password)
+        {
+            return await _staffDAL.LoginVerify(account, password);
+        }
         public async Task<bool> CreateStaff(Staff staff)
         {
             return await _staffDAL.CreateStaff(staff);

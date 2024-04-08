@@ -18,7 +18,7 @@ namespace CLIENT.PresentationTier
         private readonly FormHandle _handle;
         private List<PositionDetailViewModel> _listPosition;
         private readonly string _staffID;
-        public frmPositon()
+        public frmPositon(string staffID)
         {
             InitializeComponent();
             _positionBUS = new PositionBUS();
@@ -26,7 +26,7 @@ namespace CLIENT.PresentationTier
             _staffBUS = new StaffBUS();
             _handle = new FormHandle();
             _listPosition = new List<PositionDetailViewModel>();
-            _staffID = "S_0000000002";
+            _staffID = staffID;
         }
 
         private async void frmPositon_Load(object sender, EventArgs e)
@@ -111,7 +111,7 @@ namespace CLIENT.PresentationTier
         }
         private void Reload()
         {
-            frmPositon open = new frmPositon();
+            frmPositon open = new frmPositon(_staffID);
             _handle.RedirectForm(open, this);
         }
         private bool CheckEmptyText(bool check)
@@ -269,6 +269,12 @@ namespace CLIENT.PresentationTier
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             Reload();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            frmMain open = new frmMain(_staffID);
+            _handle.RedirectForm(open, this);
         }
     }
 }

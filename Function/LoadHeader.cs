@@ -9,11 +9,11 @@ namespace CLIENT.Function
         public LoadHeader() { }
         public static void LoadHeaderMainMenu(Label staffID, Label fullName, Label department, Label position, Label dayOffAmount, StaffInfoViewModel staff)
         {
-            /*staffID.Text = staff.StaffId;
-            fullName.Text = staff.FullName;
-            department.Text = staff.DepartmentName;
-            position.Text = staff.PositionName;
-            dayOffAmount.Text = */
+            staffID.Invoke((MethodInvoker)(() => staffID.Text = staff.StaffId));
+            fullName.Invoke((MethodInvoker)(() => fullName.Text = staff.FullName));
+            department.Invoke((MethodInvoker)(() => department.Text = staff.DepartmentName));
+            position.Invoke((MethodInvoker)(() => position.Text = staff.PositionName));
+            dayOffAmount.Invoke((MethodInvoker)(() => dayOffAmount.Text = staff.DayOff.ToString()));
         }
         public static void LoadHeaderInfo(Label staffID, Label fullName, Label department, Label position, StaffInfoViewModel staff)
         {

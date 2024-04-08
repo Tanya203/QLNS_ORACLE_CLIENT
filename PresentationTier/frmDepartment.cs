@@ -17,14 +17,14 @@ namespace CLIENT.PresentationTier
         private readonly FormHandle _handle;
         private List<DepartmentDetailViewModel> _listDepartment;
         private readonly string _staffID;
-        public frmDepartment()
+        public frmDepartment(string staffID)
         {
             InitializeComponent();
             _departmentBUS = new DepartmentBUS();
             _staffBUS = new StaffBUS();
             _handle = new FormHandle();
             _listDepartment = new List<DepartmentDetailViewModel>();  
-            _staffID = "S_0000000002";
+            _staffID = staffID;
         }
 
         private async void frmDepartment_Load(object sender, EventArgs e)
@@ -77,7 +77,7 @@ namespace CLIENT.PresentationTier
         }
         private void Reload()
         {
-            frmDepartment open = new frmDepartment();
+            frmDepartment open = new frmDepartment(_staffID);
             _handle.RedirectForm(open, this);
         }
         private void ClearAllText()
@@ -241,6 +241,12 @@ namespace CLIENT.PresentationTier
             txtDepartmentID.Text = department.DpId;
             txtDepartmentName.Text = department.DepartmentName;
             txtStaffAmount.Text = department.Count.ToString();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            frmMain open = new frmMain(_staffID);
+            _handle.RedirectForm(open, this);
         }
     }
 }

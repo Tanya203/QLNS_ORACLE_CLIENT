@@ -46,12 +46,50 @@ namespace CLIENT.API
             }
             return null;
         }
+        public async Task<string> GetStaffTimeKeepingByDate(DateTime date)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string fomart = date.Date.ToString("yyyy-MM-dd");
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetStaffTimeKeepingByDate?date={fomart}"))
+                {
+                    using (HttpContent content = res.Content)
+                    {
+                        string data = await content.ReadAsStringAsync();
+                        if (data != null)
+                        {
+                            return data;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
         public async Task<string> SearchStaffTimeKeepinById(string wsId, string search)
         {
             using (HttpClient client = new HttpClient())
             {
                 using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}SearchStaffTimeKeepinById?wsId={wsId}&search={search}"))
+                {
+                    using (HttpContent content = res.Content)
+                    {
+                        string data = await content.ReadAsStringAsync();
+                        if (data != null)
+                        {
+                            return data;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        public async Task<string> SalaryStatistic(string month)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}Salary?month={month}"))
                 {
                     using (HttpContent content = res.Content)
                     {
