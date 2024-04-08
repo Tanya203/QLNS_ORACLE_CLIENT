@@ -23,7 +23,7 @@ namespace CLIENT.PresentationTier
         private readonly ContractTypeBUS _contractTypeBUS;
         private List<StaffInfoViewModel> _listStaffInfo;
         private List<Staff> _listStaff;
-        public frmStaff()
+        public frmStaff(string staffID)
         {
             InitializeComponent();
             _handle = new FormHandle();
@@ -34,7 +34,7 @@ namespace CLIENT.PresentationTier
             _listStaffInfo = new List<StaffInfoViewModel>();
             _listStaff = new List<Staff>();
             nudFontSize.Value = (decimal)dgvStaff.RowsDefaultCellStyle.Font.Size;
-            this._staffID = "S_0000000002";
+            this._staffID = staffID;
         }
 
         private async void frmStaff_Load(object sender, EventArgs e)
@@ -334,7 +334,7 @@ namespace CLIENT.PresentationTier
         }
         private void Reload()
         {
-            frmStaff open = new frmStaff();
+            frmStaff open = new frmStaff(_staffID);
             _handle.RedirectForm(open, this);
         }
         private bool CheckInputError(Button button)
@@ -527,6 +527,12 @@ namespace CLIENT.PresentationTier
         {
             int fontSize = (int)nudFontSize.Value;
             dgvStaff.RowsDefaultCellStyle.Font = new Font(dgvStaff.Font.FontFamily, fontSize);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            frmMain open = new frmMain(_staffID);
+            _handle.RedirectForm(open, this);
         }
     }
 }

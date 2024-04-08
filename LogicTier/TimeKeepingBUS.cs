@@ -24,9 +24,17 @@ namespace CLIENT.LogicTier
         {
             return await _timeKeepingDAL.GetStaffTimeKeepingById(wsId);
         }
+        public async Task<List<StaffTimeKeeingViewModel>> GetStaffTimeKeepingByDate(DateTime date)
+        {
+            return await _timeKeepingDAL.GetStaffTimeKeepingByDate(date);
+        }
         public async Task<List<StaffTimeKeeingViewModel>> SearchStaffTimeKeepinById(string wsId, string search)
         {
             return await _timeKeepingDAL.SearchStaffTimeKeepinById(wsId, search);
+        }
+        public async Task<List<MonthlySalaryStatisticsViewModels>> SalaryStatistic(string month)
+        {
+            return await _timeKeepingDAL.SalaryStatistic(month);
         }
         public async Task<bool> CreateTimeKeeping(List<TimeKeeping> timeKeeping)
         {

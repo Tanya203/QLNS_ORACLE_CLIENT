@@ -23,7 +23,7 @@ namespace CLIENT.PresentationTier
         private List<WorkSchedule> _listWorkSchedule;
         private readonly string _date = "dd/MM/yyyy";
         private readonly string _staffID;
-        public frmWorkSchedule()
+        public frmWorkSchedule(string staffID)
         {
             InitializeComponent();
             _staffBUS = new StaffBUS();
@@ -85,7 +85,7 @@ namespace CLIENT.PresentationTier
         }
         private void Reload()
         {
-            frmWorkSchedule open = new frmWorkSchedule();
+            frmWorkSchedule open = new frmWorkSchedule(_staffID);
             _handle.RedirectForm(open, this);
         }
         private void DetailButton()
@@ -229,6 +229,12 @@ namespace CLIENT.PresentationTier
                 OpenWorkScheduleDetail(wsID);
             if (e.ColumnIndex == 3)
                 DeleteWorkSchedule(wsID, workDate);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            frmMain open = new frmMain(_staffID);
+            _handle.RedirectForm(open, this);
         }
     }
 }

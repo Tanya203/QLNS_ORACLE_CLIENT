@@ -1,6 +1,7 @@
 ﻿using CLIENT.DataTier.Models;
 using CLIENT.Function;
 using CLIENT.LogicTier;
+using CLIENT.PresentationTier;
 using CLIENT.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace CLINET.PresentationTier
         private readonly string _staffID;
         private readonly FormHandle _handle;
         private List<ContractTypeDetailViewModel> _listContractType;
-        public frmContractType()
+        public frmContractType(string staffID)
         {
             InitializeComponent();
             _contractTypeBUS = new ContractTypeBUS();
@@ -27,7 +28,7 @@ namespace CLINET.PresentationTier
             _staffBUS = new StaffBUS();
             _handle = new FormHandle();
             _listContractType = new List<ContractTypeDetailViewModel>();            
-            _staffID = "S_0000000002";
+            _staffID = staffID;
         }
 
         private async void frmContractType_Load(object sender, EventArgs e)
@@ -95,7 +96,7 @@ namespace CLINET.PresentationTier
         }
         private void Reload()
         {
-            frmContractType open = new frmContractType();
+            frmContractType open = new frmContractType(_staffID);
             _handle.RedirectForm(open, this);
         }
         private void ClearAllText()
@@ -274,6 +275,12 @@ namespace CLINET.PresentationTier
         {
             int fontSize = (int)nudFontSize.Value;
             dgvContractType.RowsDefaultCellStyle.Font = new Font(dgvContractType.Font.FontFamily, fontSize);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            frmMain open = new frmMain(_staffID);
+            _handle.RedirectForm(open, this);
         }
     }
 }

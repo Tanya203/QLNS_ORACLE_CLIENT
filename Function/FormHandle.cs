@@ -12,6 +12,7 @@ namespace CLIENT.Function
             try
             {
                 this.open = open;
+                close.Invoke((Action)delegate { close.Close(); });
                 Application.Exit();
                 Thread newThread = new Thread(OpenForm);
                 newThread.SetApartmentState(ApartmentState.STA);

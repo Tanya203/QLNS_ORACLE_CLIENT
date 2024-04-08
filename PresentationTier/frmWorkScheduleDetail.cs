@@ -305,7 +305,7 @@ namespace CLIENT.PresentationTier
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            frmWorkSchedule open = new frmWorkSchedule();
+            frmWorkSchedule open = new frmWorkSchedule(_staffID);
             _handle.RedirectForm(open, this);
         }
 

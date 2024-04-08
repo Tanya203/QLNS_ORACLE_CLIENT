@@ -15,10 +15,12 @@ namespace CLIENT.DataTier
     public class StaffDAL
     {
         private readonly StaffAPI _api;
+        private int _count;
 
         public StaffDAL()
         {
             _api = new StaffAPI();
+            _count = 0;
         }
         public async Task<List<Staff>> GetAllStaff()
         {
@@ -44,6 +46,59 @@ namespace CLIENT.DataTier
             List<StaffInfoViewModel> listStaff = JsonConvert.DeserializeObject<List<StaffInfoViewModel>>(responce);
             StaffInfoViewModel info = listStaff.FirstOrDefault(s => s.StaffId == staffID);
             return info;
+        }
+        public async Task<string> LoginVerify(string account, string password)
+        {
+            try
+            {
+                string responce = await _api.GetAllStaff();
+                List<Staff> listStaff = JsonConvert.DeserializeObject<List<Staff>>(responce);
+                Staff info = listStaff.FirstOrDefault(s => s.Account == account);
+                if(info == null)
+                {
+                    MessageBox.Show("Tài khoản không hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                else
+                {
+                    if(info.LockDate != null && info.LockDate > DateTime.Now)
+                    {
+                        MessageBox.Show($"Tài khoản đang bị khoá đến {info.LockDate}! Tài khoản đã bị khoá đến{info.LockDate}. Liên hệ phòng kỹ thuật để biết thêm chi tiết.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return null;
+                    }
+                    else if(!BCrypt.Net.BCrypt.Verify(password, info.Password))
+                    {
+                        _count++;
+                        if (_count == 3)
+                        {
+                            info.LockDate = DateTime.Now.AddMinutes(30);
+                            await _api.UpdateStaff(info);
+                            MessageBox.Show($"Nhập sai mật khẩu lần thứ {_count}! Tài khoản đã bị khoá đến{info.LockDate}. Liên hệ phòng kỹ thuật để biết thêm chi tiết.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            _count = 0;
+                            return null;
+                        }
+                        MessageBox.Show($"Nhập sai mật khẩu lần thứ {_count}! Lần thứ 3 tài khoản sẽ bị khoá!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return null;
+                    }
+                    else if(BCrypt.Net.BCrypt.Verify(password, info.Password))
+                    {
+                        if(info.LockDate != null &&  DateTime.Now > info.LockDate)
+                        {
+                            info.LockDate = null;
+                            await _api.UpdateStaff(info);
+                        }
+                        MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return info.StaffId;
+                    }
+                }
+                return null;
+            }
+            catch(Exception ex)
+            {
+                CustomMessage.ExecptionCustom(ex);
+                return null;
+            }
+            
         }
         public async Task<bool> CreateStaff(Staff staff)
         {

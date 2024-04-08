@@ -18,14 +18,14 @@ namespace CLIENT.PresentationTier
         private readonly FormHandle _handle;
         private List<ShiftType> _listShiftType;
         private readonly string _staffID;
-        public frmShiftType()
+        public frmShiftType(string staffID)
         {
             InitializeComponent();
             _shiftTypeBUS = new ShiftTypeBUS();
             _staffBUS = new StaffBUS();
             _handle = new FormHandle();
             _listShiftType = new List<ShiftType>();
-            _staffID = "S_0000000002";
+            _staffID = staffID;
         }
 
         private async void frmShiftType_Load(object sender, EventArgs e)
@@ -86,7 +86,7 @@ namespace CLIENT.PresentationTier
         }
         private void Reload()
         {
-            frmShiftType open = new frmShiftType();
+            frmShiftType open = new frmShiftType(_staffID);
             _handle.RedirectForm(open, this);
         }
         private bool CheckEmptyText(bool check)
@@ -251,6 +251,12 @@ namespace CLIENT.PresentationTier
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             Reload();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            frmShift open = new frmShift(_staffID);
+            _handle.RedirectForm(open, this);
         }
     }
 }

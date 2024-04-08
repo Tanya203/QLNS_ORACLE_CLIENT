@@ -16,8 +16,8 @@ namespace CLIENT.PresentationTier
     public partial class frmBenefitDetail : Form
     {
         private readonly CultureInfo _fVND = CultureInfo.GetCultureInfo("vi-VN");
-        private readonly string staffID;
-        private readonly string bnID;
+        private readonly string _staffID;
+        private readonly string _bnID;
         private readonly FormHandle _handle;
         private readonly BenefitBUS _benefitBUS;
         private readonly BenefitDetailBUS _benefitDetailBUS;
@@ -43,15 +43,15 @@ namespace CLIENT.PresentationTier
             _listBenefitDetail = new List<StaffBenefitDetailViewModel>();
             _updateList = new List<BenefitDetail>();
             _deleteList = new List<BenefitDetail>();
-            this.staffID = staffID;
-            this.bnID = bnID;
+            _staffID = staffID;
+            _bnID = bnID;
         }
 
         private async void frmBenefitDetail_Load(object sender, EventArgs e)
         {
             Enabled = false;
             _listBenefitDetail = await _benefitDetailBUS.GetStaffBenefitsDetail();
-            _listBenefitDetail = _listBenefitDetail.Where(b => b.BnId == bnID).ToList();
+            _listBenefitDetail = _listBenefitDetail.Where(b => b.BnId == _bnID).ToList();
             _listStaffInfo = await _staffBUS.GetAllStaffInfo();
             _benefit = await _benefitBUS.GetCountBenefit();
             nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvBenefitDetail.RowsDefaultCellStyle.Font.Size));
@@ -62,14 +62,14 @@ namespace CLIENT.PresentationTier
             LoadStaffBenefitDetail();
             Enabled = true;
         }
-        private void LoadHeaderInfo()
+        private async void LoadHeaderInfo()
         {
-            StaffInfoViewModel staff = _listStaffInfo.FirstOrDefault(s => s.StaffId == staffID);
+            StaffInfoViewModel staff = await _staffBUS.GetStaffInfo(_staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
         }
         private void LoadBenefitInfo()
         {
-            CountBenefitViewModel benefit = _benefit.FirstOrDefault(b => b.BnId == bnID);
+            CountBenefitViewModel benefit = _benefit.FirstOrDefault(b => b.BnId == _bnID);
             txtAllowanceID.Invoke((MethodInvoker)(() => txtAllowanceID.Text = benefit.BnId));
             txtAllowamceName.Invoke((MethodInvoker)(() => txtAllowamceName.Text = benefit.BenefitName));
             txtAmount.Invoke((MethodInvoker)(() => txtAmount.Text = String.Format(_fVND, "{0:N3} ₫", benefit.Amount)));
@@ -159,7 +159,7 @@ namespace CLIENT.PresentationTier
             Enabled = false;
             dgvBenefitDetail.Rows.Clear();
             List<StaffBenefitDetailViewModel> list = await _benefitDetailBUS.SearchStaffBenefitsDetail(search);
-            list = list.Where(b => b.BnId == bnID).ToList();
+            list = list.Where(b => b.BnId == _bnID).ToList();
             int rowAdd;
             foreach (StaffBenefitDetailViewModel s in list.OrderBy(s => s.BnId))
             {
@@ -200,7 +200,7 @@ namespace CLIENT.PresentationTier
         }
         private void Reload()
         {
-            frmBenefitDetail open = new frmBenefitDetail(staffID, bnID);
+            frmBenefitDetail open = new frmBenefitDetail(_staffID, _bnID);
             _handle.RedirectForm(open, this);
         }
         private void btnAdd_Click(object sender, EventArgs e)
@@ -294,7 +294,7 @@ namespace CLIENT.PresentationTier
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            frmBenefit open = new frmBenefit();
+            frmBenefit open = new frmBenefit(_staffID);
             _handle.RedirectForm(open, this);
         }
 

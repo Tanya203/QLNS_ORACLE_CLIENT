@@ -20,14 +20,14 @@ namespace CLIENT.PresentationTier
         private readonly BenefitBUS _benefitBUS;
         private readonly StaffBUS _staffBUS;
         private List<CountBenefitViewModel> _listBenefit;
-        public frmBenefit()
+        public frmBenefit(string staffID)
         {
             InitializeComponent();
             _benefitBUS = new BenefitBUS();
             _staffBUS = new StaffBUS();
             _listBenefit = new List<CountBenefitViewModel>();
             _handle = new FormHandle();
-            this._staffID = "S_0000000002";
+            this._staffID = staffID;
         }
 
         private async void frmBenefit_Load(object sender, EventArgs e)
@@ -134,7 +134,7 @@ namespace CLIENT.PresentationTier
         }
         private void Reload()
         {
-            frmBenefit open = new frmBenefit();
+            frmBenefit open = new frmBenefit(_staffID);
             _handle.RedirectForm(open, this);
         }
         private void CheckEmptyText(object sender, EventArgs e)
@@ -282,6 +282,12 @@ namespace CLIENT.PresentationTier
         {
             int fontSize = (int)nudFontSize.Value;
             dgvBenefit.RowsDefaultCellStyle.Font = new Font(dgvBenefit.Font.FontFamily, fontSize);
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            frmMain open = new frmMain(_staffID);
+            _handle.RedirectForm(open, this);
         }
     }
 }
