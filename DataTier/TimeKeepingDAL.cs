@@ -38,6 +38,12 @@ namespace CLIENT.DataTier
             List<StaffTimeKeeingViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffTimeKeeingViewModel>>(responce);
             return listWorkScheduleDetail.ToList();
         }
+        public async Task<List<StaffTimeKeeingViewModel>> GetStaffTimeKeepingByMonth(string month)
+        {
+            string responce = await _api.GetStaffTimeKeepingByMonth(month);
+            List<StaffTimeKeeingViewModel> listWorkScheduleDetail = JsonConvert.DeserializeObject<List<StaffTimeKeeingViewModel>>(responce);
+            return listWorkScheduleDetail.ToList();
+        }
         public async Task<List<StaffTimeKeeingViewModel>> SearchStaffTimeKeepinById(string wsId, string search)
         {
             string responce = await _api.SearchStaffTimeKeepinById(wsId, search);

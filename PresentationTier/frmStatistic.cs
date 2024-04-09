@@ -18,7 +18,6 @@ namespace CLIENT.PresentationTier
 {
     public partial class frmStatistic : Form
     {
-        private readonly CultureInfo _fVND = CultureInfo.GetCultureInfo("vi-VN");
         private readonly string _staffID;
         private readonly FormHandle _handle;
         private readonly PositionBUS _positionBUS;
@@ -41,25 +40,13 @@ namespace CLIENT.PresentationTier
         {
             LoadHeaderInfo();
             LoadDepartment();
-            rbAllStaffSalary.Checked = true;
-        }
-        private void tabControlMenu_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            /*tabControlMenu.Invoke((MethodInvoker)(() =>
-            {
-                TabControl tabControl = (TabControl)sender;
-                TabPage tabPage = tabControl.TabPages[e.Index];
-                Font font = tabPage.Font;
-                Brush brush = new SolidBrush(tabPage.ForeColor);
-                Rectangle bounds = e.Bounds;
-                e.Graphics.DrawString(tabPage.Text, font, brush, bounds);
-            })); */          
+            rbAllStaffSalary.Invoke((MethodInvoker)(() => rbAllStaffSalary.Checked = true));
         }
         private async void LoadHeaderInfo()
         {
             staff = await _staffBUS.GetStaffInfo(_staffID);
             LoadHeader.LoadHeaderInfo(lblStaffIDLoginValue, lblFullNameLoginValue, lblDepartmentLoginValue, lblPositionLoginValue, staff);
-            LoadSalaryReportViewer();
+            LoadDepartment();
         }
         private void LoadDepartment()
         {
@@ -87,76 +74,40 @@ namespace CLIENT.PresentationTier
         }
         private async void LoadSalaryReportViewer()
         {
-            List<MonthlySalaryStatisticsViewModels> salary = await _timeKeepingBUS.SalaryStatistic(dtpMonthSalary.Text);
-
-            decimal total = 0;
-            if (rbDepartmentSalary.Checked)
-                salary = salary.Where(s => s.Department == cmbDepartmentSalary.Text).ToList();
-            else if (rbPositionSalary.Checked)
-                salary = salary.Where(s => s.Position == cmbPositionSalary.Text).ToList();
-
-            foreach (MonthlySalaryStatisticsViewModels staff in salary)
+            try
             {
-                staff.FullName = staff.FullName;
-                staff.TotalBenefit = staff.TotalBenefit;
-                staff.TotalHour = staff.TotalHour;
-                total += staff.Salary;
+                StaffInfoViewModel staffInfo = await _staffBUS.GetStaffInfo(_staffID);
+                decimal total = 0;
+                List<MonthlySalaryStatisticsViewModels> salary = await _timeKeepingBUS.SalaryStatistic(dtpMonthSalary.Text);
+                if (rbDepartmentSalary.Checked)
+                    salary = salary.Where(s => s.Department == cmbDepartmentSalary.Text).ToList();
+                else if (rbPositionSalary.Checked)
+                    salary = salary.Where(s => s.Position == cmbPositionSalary.Text).ToList();
+
+                foreach (MonthlySalaryStatisticsViewModels staff in salary)
+                    total += staff.Salary;
+                ReportDataSource reportDataSource = new ReportDataSource("Salary", salary);
+                List<ReportParameter> parameters = new List<ReportParameter>
+                {
+                    new ReportParameter("Total", total.ToString()),
+                    new ReportParameter("DateTime", DateTime.Now.ToString()),
+                    new ReportParameter("Month", dtpMonthSalary.Text),
+                    new ReportParameter("FullName", staffInfo.FullName),
+                    new ReportParameter("StaffID", staffInfo.StaffId),
+                    new ReportParameter("Department", staffInfo.DepartmentName),
+                    new ReportParameter("Position", staffInfo.PositionName),
+                };
+                rptSalary.LocalReport.SetParameters(parameters);
+                rptSalary.LocalReport.DataSources.Clear();
+                rptSalary.LocalReport.DataSources.Add(reportDataSource);
+                rptSalary.SetDisplayMode(DisplayMode.PrintLayout);
+                rptSalary.ZoomMode = ZoomMode.Percent;
+                rptSalary.ZoomPercent = 100;
+                rptSalary.RefreshReport();
             }
-
-            ReportDataSource reportDataSource = new ReportDataSource("Salary", salary);
-            List<ReportParameter> parameters = new List<ReportParameter>
+            catch(Exception ex) 
             {
-                new ("Total", total.ToString()),
-                new ("DateTime", DateTime.Now.ToString()),
-                new ("Month", dtpMonthSalary.Text),
-                new ("FullName", salary.FirstOrDefault()?.FullName), 
-                new ("StaffID", salary.FirstOrDefault()?.StaffId), 
-                new ("Department", salary.FirstOrDefault()?.Department), 
-                new ("Position", salary.FirstOrDefault()?.Position), 
-            };
-            rptSalary.LocalReport.SetParameters(parameters);
-            rptSalary.LocalReport.DataSources.Clear();
-            rptSalary.LocalReport.DataSources.Add(reportDataSource);
-            rptSalary.SetDisplayMode(DisplayMode.PrintLayout);
-            rptSalary.ZoomMode = ZoomMode.Percent;
-            rptSalary.ZoomPercent = 100;
-            rptSalary.RefreshReport();
-        }
-
-        private void EnableCombobox(object sender, EventArgs e)
-        {
-            if (rbAllStaffSalary.Checked)
-            {
-                cmbDepartmentSalary.Enabled = false;
-                cmbPositionSalary.Enabled = false;
-            }
-            else if (rbDepartmentSalary.Checked)
-            {
-                cmbDepartmentSalary.Enabled = true;
-                cmbPositionSalary.Enabled = false;
-            }
-
-            else if (rbPositionSalary.Checked)
-            {
-                cmbDepartmentSalary.Enabled = false;
-                cmbPositionSalary.Enabled = true;
-            }
-        }
-
-        private void cmbDepartmentSalary_TextChanged(object sender, EventArgs e)
-        {
-            LoadPositonByDepartment(cmbDepartmentSalary.SelectedValue.ToString());
-            if (rbDepartmentSalary.Checked)
-            {
-                LoadSalaryReportViewer();
-            }
-        }
-
-        private void cmbPositionSalary_TextChanged(object sender, EventArgs e)
-        {
-            if (rbPositionSalary.Checked)
-            {
-                LoadSalaryReportViewer();
+                CustomMessage.ExecptionCustom(ex);
             }
         }
 
@@ -169,12 +120,61 @@ namespace CLIENT.PresentationTier
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             frmStatistic open = new frmStatistic(_staffID);
-            _handle.RedirectForm(open, this);
+            _handle.RedirectFormRtp(open, this, _staffID);
         }
 
-        private void dtpMonthSalary_ValueChanged(object sender, EventArgs e)
+        private void dtpMonthSalary_ValueChanged_1(object sender, EventArgs e)
         {
             LoadSalaryReportViewer();
+        }
+        private void EnableComboBox(object sender, EventArgs e)
+        {
+            if (rbAllStaffSalary.Checked)
+            {
+                cmbDepartmentSalary.Enabled = false;
+                cmbPositionSalary.Enabled = false;
+                Invoke((MethodInvoker)delegate {
+                    LoadSalaryReportViewer();
+                });
+            }
+            else if (rbDepartmentSalary.Checked)
+            {
+                cmbDepartmentSalary.Enabled = true;
+                cmbPositionSalary.Enabled = true;
+                Invoke((MethodInvoker)delegate {
+                    LoadSalaryReportViewer();
+                });
+            }
+
+            else if (rbPositionSalary.Checked)
+            {
+                cmbDepartmentSalary.Enabled = true;
+                cmbPositionSalary.Enabled = true;
+                Invoke((MethodInvoker)delegate {
+                    LoadSalaryReportViewer();
+                });
+            }
+        }
+
+        private void cmbDepartmentSalary_TextChanged_1(object sender, EventArgs e)
+        {
+            LoadPositonByDepartment(cmbDepartmentSalary.SelectedValue.ToString());
+            if (rbDepartmentSalary.Checked)
+            {
+                Invoke((MethodInvoker)delegate {
+                    LoadSalaryReportViewer();
+                });
+            }
+        }
+
+        private void cmbPositionSalary_TextChanged_1(object sender, EventArgs e)
+        {
+            if (rbPositionSalary.Checked)
+            {
+                Invoke((MethodInvoker)delegate {
+                    LoadSalaryReportViewer();
+                });
+            }
         }
     }
 }

@@ -33,7 +33,7 @@ namespace CLIENT.PresentationTier
             _staffID = staffID;
         }
 
-        private async void frmMain_Load(object sender, EventArgs e)
+        private void frmMain_Load(object sender, EventArgs e)
         {
             nudFontSize.Invoke((MethodInvoker)(() => nudFontSize.Value = (decimal)dgvWorkScheduleDetail.RowsDefaultCellStyle.Font.Size));
             LoadHeaderInfo();
@@ -153,7 +153,7 @@ namespace CLIENT.PresentationTier
         private void btnStatistics_Click(object sender, EventArgs e)
         {
             frmStatistic open = new frmStatistic(_staffID);
-            _handle.RedirectForm(open, this);
+            _handle.RedirectFormRtp(open, this, _staffID);
         }
 
         private void btnContractType_Click(object sender, EventArgs e)
