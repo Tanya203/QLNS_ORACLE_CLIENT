@@ -103,24 +103,6 @@ namespace CLIENT.API
             return null;
         }
 
-        public async Task<string> SalaryStatistic(string month)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}Salary?month={month}"))
-                {
-                    using (HttpContent content = res.Content)
-                    {
-                        string data = await content.ReadAsStringAsync();
-                        if (data != null)
-                        {
-                            return data;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
         public async Task<string> CreateTimeKeeping(TimeKeeping timeKeeping)
         {
             using (HttpClient client = new HttpClient())

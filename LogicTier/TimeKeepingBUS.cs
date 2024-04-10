@@ -36,10 +36,6 @@ namespace CLIENT.LogicTier
         {
             return await _timeKeepingDAL.SearchStaffTimeKeepinById(wsId, search);
         }
-        public async Task<List<MonthlySalaryStatisticsViewModels>> SalaryStatistic(string month)
-        {
-            return await _timeKeepingDAL.SalaryStatistic(month);
-        }
         public async Task<bool> CreateTimeKeeping(List<TimeKeeping> timeKeeping)
         {
             return await _timeKeepingDAL.CreateTimeKeeping(timeKeeping);

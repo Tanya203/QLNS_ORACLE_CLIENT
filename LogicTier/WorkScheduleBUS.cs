@@ -1,5 +1,6 @@
 ﻿using CLIENT.DataTier;
 using CLIENT.DataTier.Models;
+using CLIENT.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,10 @@ namespace CLIENT.LogicTier
         public async Task<List<WorkSchedule>> SearchWorkSchedule(string search)
         {
             return await _workScheduleDAL.SearchWorkSchedule(search);
+        }
+        public async Task<List<MonthlySalaryStatisticsViewModels>> GetMonthSalary(string month)
+        {
+            return await _workScheduleDAL.GetMonthSalary(month);
         }
         public async Task<bool> AutoSchedule(string month)
         {

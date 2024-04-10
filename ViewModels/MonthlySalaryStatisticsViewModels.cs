@@ -12,16 +12,16 @@ namespace CLIENT.ViewModels
 
         public string FullName { get; set; }
 
-        public string Department { get; set; }
+        public string DepartmentName { get; set; }
 
-        public string Position { get; set; }
+        public string PositionName { get; set; }
 
         public decimal BasicSalary { get; set; }
 
-        public decimal TotalHour { get; set; }
+        public decimal TotalWorkHours { get; set; }
 
         public decimal TotalBenefit { get; set; }
 
-        public decimal Salary { get; set; }
+        public decimal TotalSalary { get; set; }
     }
 }

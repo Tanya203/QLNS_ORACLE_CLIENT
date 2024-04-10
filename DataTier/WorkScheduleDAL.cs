@@ -1,6 +1,7 @@
 ﻿using CLIENT.API;
 using CLIENT.DataTier.Models;
 using CLIENT.Function;
+using CLIENT.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,12 @@ namespace CLIENT.DataTier
             string responce = await _api.SearchWorkSchedule(search);
             List<WorkSchedule> listWorkSchedule = JsonConvert.DeserializeObject<List<WorkSchedule>>(responce);
             return listWorkSchedule.ToList();
+        }
+        public async Task<List<MonthlySalaryStatisticsViewModels>> GetMonthSalary(string month)
+        {
+            string responce = await _api.GetMonthSalary(month);
+            List<MonthlySalaryStatisticsViewModels> salary = JsonConvert.DeserializeObject<List<MonthlySalaryStatisticsViewModels>>(responce);
+            return salary.ToList();
         }
         public async Task<bool> AutoSchedule(string month)
         {
