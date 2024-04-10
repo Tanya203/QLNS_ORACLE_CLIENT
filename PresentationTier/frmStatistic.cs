@@ -23,7 +23,7 @@ namespace CLIENT.PresentationTier
         private readonly PositionBUS _positionBUS;
         private readonly DepartmentBUS _departmentBUS;
         private readonly StaffBUS _staffBUS;
-        private readonly TimeKeepingBUS _timeKeepingBUS;
+        private readonly WorkScheduleBUS _workScheduleBUS;
         private StaffInfoViewModel staff;
         public frmStatistic(string staffID)
         {
@@ -31,7 +31,7 @@ namespace CLIENT.PresentationTier
             _handle = new FormHandle();
             _positionBUS = new PositionBUS();
             _departmentBUS = new DepartmentBUS();
-            _timeKeepingBUS = new TimeKeepingBUS();
+            _workScheduleBUS = new WorkScheduleBUS();
             _staffBUS = new StaffBUS();
             _staffID = staffID;
         }
@@ -78,14 +78,14 @@ namespace CLIENT.PresentationTier
             {
                 StaffInfoViewModel staffInfo = await _staffBUS.GetStaffInfo(_staffID);
                 decimal total = 0;
-                List<MonthlySalaryStatisticsViewModels> salary = await _timeKeepingBUS.SalaryStatistic(dtpMonthSalary.Text);
+                List<MonthlySalaryStatisticsViewModels> salary = await _workScheduleBUS.GetMonthSalary(dtpMonthSalary.Text);
                 if (rbDepartmentSalary.Checked)
-                    salary = salary.Where(s => s.Department == cmbDepartmentSalary.Text).ToList();
+                    salary = salary.Where(s => s.DepartmentName == cmbDepartmentSalary.Text).ToList();
                 else if (rbPositionSalary.Checked)
-                    salary = salary.Where(s => s.Position == cmbPositionSalary.Text).ToList();
+                    salary = salary.Where(s => s.PositionName == cmbPositionSalary.Text).ToList();
 
                 foreach (MonthlySalaryStatisticsViewModels staff in salary)
-                    total += staff.Salary;
+                    total += staff.TotalSalary;
                 ReportDataSource reportDataSource = new ReportDataSource("Salary", salary);
                 List<ReportParameter> parameters = new List<ReportParameter>
                 {
