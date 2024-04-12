@@ -74,7 +74,7 @@ namespace CLIENT.PresentationTier
         private void frmLogin_Load(object sender, EventArgs e)
         {
             txtAccount.Text = "ACC01";
-            txtPassword.Text = "Tanya203";
+            txtPassword.Text = "Aa@12345";
         }
     }
 }

@@ -23,7 +23,7 @@ namespace CLIENT.PresentationTier
         private readonly PositionBUS _positionBUS;
         private readonly DepartmentBUS _departmentBUS;
         private readonly StaffBUS _staffBUS;
-        private readonly WorkScheduleBUS _workScheduleBUS;
+        private readonly MonthSalaryDetailBUS _monthSalaryDetailBUS;
         private StaffInfoViewModel staff;
         public frmStatistic(string staffID)
         {
@@ -31,7 +31,7 @@ namespace CLIENT.PresentationTier
             _handle = new FormHandle();
             _positionBUS = new PositionBUS();
             _departmentBUS = new DepartmentBUS();
-            _workScheduleBUS = new WorkScheduleBUS();
+            _monthSalaryDetailBUS = new MonthSalaryDetailBUS();
             _staffBUS = new StaffBUS();
             _staffID = staffID;
         }
@@ -41,6 +41,7 @@ namespace CLIENT.PresentationTier
             LoadHeaderInfo();
             LoadDepartment();
             rbAllStaffSalary.Invoke((MethodInvoker)(() => rbAllStaffSalary.Checked = true));
+            this.rptSalary.RefreshReport();
         }
         private async void LoadHeaderInfo()
         {
@@ -78,7 +79,7 @@ namespace CLIENT.PresentationTier
             {
                 StaffInfoViewModel staffInfo = await _staffBUS.GetStaffInfo(_staffID);
                 decimal total = 0;
-                List<MonthlySalaryStatisticsViewModels> salary = await _workScheduleBUS.GetMonthSalary(dtpMonthSalary.Text);
+                List<MonthlySalaryStatisticsViewModels> salary = await _monthSalaryDetailBUS.GetMonthSalary(dtpMonthSalary.Text);
                 if (rbDepartmentSalary.Checked)
                     salary = salary.Where(s => s.DepartmentName == cmbDepartmentSalary.Text).ToList();
                 else if (rbPositionSalary.Checked)

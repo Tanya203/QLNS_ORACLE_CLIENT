@@ -31,7 +31,6 @@
             this.cbShowpassword = new System.Windows.Forms.CheckBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.llblForgotPassword = new System.Windows.Forms.LinkLabel();
             this.lblAccount = new System.Windows.Forms.Label();
             this.txtAccount = new System.Windows.Forms.TextBox();
             this.pnlLogin = new System.Windows.Forms.Panel();
@@ -76,17 +75,6 @@
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "Mật khẩu:";
             // 
-            // llblForgotPassword
-            // 
-            this.llblForgotPassword.AutoSize = true;
-            this.llblForgotPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.llblForgotPassword.Location = new System.Drawing.Point(333, 190);
-            this.llblForgotPassword.Name = "llblForgotPassword";
-            this.llblForgotPassword.Size = new System.Drawing.Size(122, 20);
-            this.llblForgotPassword.TabIndex = 4;
-            this.llblForgotPassword.TabStop = true;
-            this.llblForgotPassword.Text = "Quên mật khẩu";
-            // 
             // lblAccount
             // 
             this.lblAccount.AutoSize = true;
@@ -114,7 +102,6 @@
             this.pnlLogin.Controls.Add(this.cbShowpassword);
             this.pnlLogin.Controls.Add(this.txtPassword);
             this.pnlLogin.Controls.Add(this.lblPassword);
-            this.pnlLogin.Controls.Add(this.llblForgotPassword);
             this.pnlLogin.Controls.Add(this.btnLogin);
             this.pnlLogin.Controls.Add(this.lblAccount);
             this.pnlLogin.Controls.Add(this.txtAccount);
@@ -189,7 +176,6 @@
         private System.Windows.Forms.CheckBox cbShowpassword;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.LinkLabel llblForgotPassword;
         private System.Windows.Forms.Label lblAccount;
         private System.Windows.Forms.TextBox txtAccount;
         private System.Windows.Forms.Panel pnlLogin;

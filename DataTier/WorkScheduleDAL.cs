@@ -37,12 +37,6 @@ namespace CLIENT.DataTier
             List<WorkSchedule> listWorkSchedule = JsonConvert.DeserializeObject<List<WorkSchedule>>(responce);
             return listWorkSchedule.ToList();
         }
-        public async Task<List<MonthlySalaryStatisticsViewModels>> GetMonthSalary(string month)
-        {
-            string responce = await _api.GetMonthSalary(month);
-            List<MonthlySalaryStatisticsViewModels> salary = JsonConvert.DeserializeObject<List<MonthlySalaryStatisticsViewModels>>(responce);
-            return salary.ToList();
-        }
         public async Task<bool> AutoSchedule(string month)
         {
             try

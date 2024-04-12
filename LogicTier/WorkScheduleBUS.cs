@@ -28,10 +28,7 @@ namespace CLIENT.LogicTier
         {
             return await _workScheduleDAL.SearchWorkSchedule(search);
         }
-        public async Task<List<MonthlySalaryStatisticsViewModels>> GetMonthSalary(string month)
-        {
-            return await _workScheduleDAL.GetMonthSalary(month);
-        }
+        
         public async Task<bool> AutoSchedule(string month)
         {
             return await _workScheduleDAL.AutoSchedule(month);

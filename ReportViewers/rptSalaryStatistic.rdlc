@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>ac368d7f-7176-48ef-8790-b4829263ce87</rd:DataSourceID>
+      <rd:DataSourceID>c687f94c-4336-464b-a727-d2456ae088b3</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -27,6 +27,14 @@
         </Field>
         <Field Name="FullName">
           <DataField>FullName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Month">
+          <DataField>Month</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MsId">
+          <DataField>MsId</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="PositionName">
@@ -86,8 +94,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>0.43583in</Top>
-            <Left>0.14185in</Left>
+            <Top>0.09555in</Top>
+            <Left>0.20525in</Left>
             <Height>0.49167in</Height>
             <Width>5.875in</Width>
             <Style>
@@ -125,8 +133,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.11916in</Top>
-            <Left>0.29004in</Left>
+            <Top>0.77888in</Top>
+            <Left>0.35344in</Left>
             <Height>0.49166in</Height>
             <Width>1.07944in</Width>
             <ZIndex>1</ZIndex>
@@ -165,8 +173,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.11916in</Top>
-            <Left>1.55844in</Left>
+            <Top>0.77888in</Top>
+            <Left>1.62184in</Left>
             <Height>0.3539in</Height>
             <Width>2.17685in</Width>
             <ZIndex>2</ZIndex>
@@ -205,8 +213,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.11916in</Top>
-            <Left>3.95288in</Left>
+            <Top>0.77888in</Top>
+            <Left>4.01628in</Left>
             <Height>0.3539in</Height>
             <Width>1.91739in</Width>
             <ZIndex>3</ZIndex>
@@ -245,8 +253,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.5425in</Top>
-            <Left>1.55844in</Left>
+            <Top>1.20222in</Top>
+            <Left>1.62184in</Left>
             <Height>0.375in</Height>
             <Width>2.17685in</Width>
             <ZIndex>4</ZIndex>
@@ -285,8 +293,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.5425in</Top>
-            <Left>3.95288in</Left>
+            <Top>1.20222in</Top>
+            <Left>4.01628in</Left>
             <Height>0.375in</Height>
             <Width>1.91739in</Width>
             <ZIndex>5</ZIndex>
@@ -947,7 +955,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1065,8 +1072,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Salary</DataSetName>
-            <Top>2.22861in</Top>
-            <Left>0.14185in</Left>
+            <Top>1.88833in</Top>
+            <Left>0.20525in</Left>
             <Height>0.88334in</Height>
             <Width>6.09818in</Width>
             <ZIndex>6</ZIndex>
@@ -1078,10 +1085,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>6.55in</Height>
+        <Height>2.99167in</Height>
         <Style />
       </Body>
-      <Width>6.37006in</Width>
+      <Width>6.5in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>
@@ -1092,15 +1099,11 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="Month">
+    <ReportParameter Name="DateTime">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="StaffID">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="DateTime">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -1117,7 +1120,11 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="Total">
-      <DataType>Float</DataType>
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Month">
+      <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
@@ -1129,7 +1136,7 @@
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>Month</ParameterName>
+          <ParameterName>DateTime</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
@@ -1139,31 +1146,31 @@
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>DateTime</ParameterName>
+          <ParameterName>FullName</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>FullName</ParameterName>
+          <ParameterName>Department</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>Department</ParameterName>
+          <ParameterName>Position</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>Position</ParameterName>
+          <ParameterName>Total</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>Total</ParameterName>
+          <ParameterName>Month</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>98fb0183-55f2-4344-8383-cdc211cf0fbb</rd:ReportID>
+  <rd:ReportID>4f95c1ee-6b65-47bc-a1a8-6c44b308f704</rd:ReportID>
 </Report>

@@ -1,6 +1,7 @@
 ﻿using CLIENT.API;
 using CLIENT.DataTier.Models;
 using CLIENT.Function;
+using CLIENT.LogicTier;
 using CLIENT.Models;
 using CLIENT.ViewModels;
 using Newtonsoft.Json;
@@ -16,9 +17,11 @@ namespace CLIENT.DataTier
     public class TimeKeepingDAL
     {
         private readonly TimeKeepingApi _api;
+        private readonly MonthSalaryDetailBUS _monthSalaryDetailBUS;
         public TimeKeepingDAL()
         {
             _api = new TimeKeepingApi();
+            _monthSalaryDetailBUS = new MonthSalaryDetailBUS();
         }
         public async Task<List<TimeKeeping>> GetAllTimeKeeping()
         {
@@ -60,7 +63,10 @@ namespace CLIENT.DataTier
                     responce = await _api.CreateTimeKeeping(staff);
                 }
                 if (responce == "Success")
+                {
+                    await _monthSalaryDetailBUS.UpdateMonthSalaryDetail(DateTime.Now.ToString("MM/yyyy"));
                     return true;
+                }
                 else
                 {
                     MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -103,7 +109,11 @@ namespace CLIENT.DataTier
                 foreach (TimeKeeping staff in timeKeeping)
                     responce = await _api.DeleteTimeKeeping(staff.WsId, staff.StaffId, staff.ShiftId);
                 if (responce == "Success")
+                {
+                    await _monthSalaryDetailBUS.UpdateMonthSalaryDetail(DateTime.Now.ToString("MM/yyyy"));
                     return true;
+                }
+                    
                 else
                 {
                     MessageBox.Show(responce, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);

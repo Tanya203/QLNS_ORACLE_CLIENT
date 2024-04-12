@@ -8,6 +8,8 @@ namespace CLIENT.ViewModels
 {
     public class MonthlySalaryStatisticsViewModels
     {
+        public string MsId { get; set; }
+
         public string StaffId { get; set; }
 
         public string FullName { get; set; }
@@ -23,5 +25,7 @@ namespace CLIENT.ViewModels
         public decimal TotalBenefit { get; set; }
 
         public decimal TotalSalary { get; set; }
+
+        public string Month { get; set; }
     }
 }

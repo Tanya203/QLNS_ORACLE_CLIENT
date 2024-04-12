@@ -18,6 +18,10 @@ namespace CLIENT.LogicTier
         {
             return await _staffDAL.GetAllStaff();
         }
+        public async Task<Staff> GetStaff(string staffID)
+        {
+            return await _staffDAL.GetStaff(staffID);
+        }
         public async Task<List<StaffInfoViewModel>> GetAllStaffInfo()
         {
             return await _staffDAL.GetAllStaffInfo();

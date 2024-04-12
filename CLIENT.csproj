@@ -111,6 +111,7 @@
     <Compile Include="API\BenefitDetailApi.cs" />
     <Compile Include="API\ContractTypeAPI.cs" />
     <Compile Include="API\DepartmentAPI.cs" />
+    <Compile Include="API\MonthSalaryDetailAPI.cs" />
     <Compile Include="API\PositionAPI.cs" />
     <Compile Include="API\ShiftAPI.cs" />
     <Compile Include="API\ShiftTypeAPI.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="DataTier\ContractTypeDAL.cs" />
     <Compile Include="DataTier\DepartmentDAL.cs" />
     <Compile Include="DataTier\Models\BenefitDetail.cs" />
+    <Compile Include="DataTier\Models\MonthSalaryDetail.cs" />
     <Compile Include="DataTier\Models\Position.cs" />
     <Compile Include="DataTier\Models\ContractType.cs" />
     <Compile Include="DataTier\Models\Department.cs" />
@@ -134,11 +136,13 @@
     <Compile Include="DataTier\Models\TimeKeepingMethod.cs" />
     <Compile Include="DataTier\Models\WorkSchedule.cs" />
     <Compile Include="DataTier\Models\WorkScheduleDetail.cs" />
+    <Compile Include="DataTier\MonthSalaryDetailDAL.cs" />
     <Compile Include="DataTier\PositionDAL.cs" />
     <Compile Include="DataTier\TimeKeepingDAL.cs" />
     <Compile Include="DataTier\WorkScheduleDAL.cs" />
     <Compile Include="DataTier\WorkScheduleDetailDAL.cs" />
     <Compile Include="LogicTier\ContractTypeBUS.cs" />
+    <Compile Include="LogicTier\MonthSalaryDetailBUS.cs" />
     <Compile Include="LogicTier\ShiftBUS.cs" />
     <Compile Include="DataTier\ShiftDAL.cs" />
     <Compile Include="DataTier\ShiftTypeDAL.cs" />
@@ -173,17 +177,35 @@
     <Compile Include="PresentationTier\frmBenefit.Designer.cs">
       <DependentUpon>frmBenefit.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationTier\frmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\frmChangePassword.Designer.cs">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationTier\frmContractType.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PresentationTier\frmContractType.Designer.cs">
       <DependentUpon>frmContractType.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationTier\frmCreateAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\frmCreateAccount.Designer.cs">
+      <DependentUpon>frmCreateAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationTier\frmDepartment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PresentationTier\frmDepartment.Designer.cs">
       <DependentUpon>frmDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationTier\frmLockAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\frmLockAccount.Designer.cs">
+      <DependentUpon>frmLockAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationTier\frmLogin.cs">
       <SubType>Form</SubType>
@@ -227,6 +249,12 @@
     <Compile Include="PresentationTier\frmStatistic.Designer.cs">
       <DependentUpon>frmStatistic.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationTier\frmTimeKeeping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationTier\frmTimeKeeping.Designer.cs">
+      <DependentUpon>frmTimeKeeping.cs</DependentUpon>
+    </Compile>
     <Compile Include="PresentationTier\frmUpdateDateOff.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,11 +294,20 @@
     <EmbeddedResource Include="PresentationTier\frmBenefitDetail.resx">
       <DependentUpon>frmBenefitDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationTier\frmContractType.resx">
       <DependentUpon>frmContractType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\frmCreateAccount.resx">
+      <DependentUpon>frmCreateAccount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationTier\frmDepartment.resx">
       <DependentUpon>frmDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\frmLockAccount.resx">
+      <DependentUpon>frmLockAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationTier\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -292,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationTier\frmStatistic.resx">
       <DependentUpon>frmStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationTier\frmTimeKeeping.resx">
+      <DependentUpon>frmTimeKeeping.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationTier\frmUpdateDateOff.resx">
       <DependentUpon>frmUpdateDateOff.cs</DependentUpon>

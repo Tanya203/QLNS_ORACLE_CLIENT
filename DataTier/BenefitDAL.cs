@@ -1,4 +1,5 @@
 ﻿using CLIENT.Function;
+using CLIENT.LogicTier;
 using CLIENT.Models;
 using CLIENT.ViewModels;
 using Newtonsoft.Json;
@@ -13,9 +14,11 @@ namespace CLIENT.DataTier
     internal class BenefitDAL
     {
         private readonly BenefitAPI _api;
+        private readonly MonthSalaryDetailBUS _monthSalaryDetailBUS;
         public BenefitDAL() 
         {
             _api = new BenefitAPI();
+            _monthSalaryDetailBUS = new MonthSalaryDetailBUS();
         }
         public async Task<List<Benefit>> GetAllBenefits()
         {
@@ -64,6 +67,7 @@ namespace CLIENT.DataTier
                 string responce = await _api.UpdateBenefit(benefit);
                 if (responce == "Success")
                 {
+                    await _monthSalaryDetailBUS.UpdateMonthSalaryDetail(DateTime.Now.ToString("MM/yyyy"));
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
@@ -86,6 +90,7 @@ namespace CLIENT.DataTier
                 string responce = await _api.DeleteBenefit(bnID);
                 if (responce == "Success")
                 {
+                    await _monthSalaryDetailBUS.UpdateMonthSalaryDetail(DateTime.Now.ToString("MM/yyyy"));
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
