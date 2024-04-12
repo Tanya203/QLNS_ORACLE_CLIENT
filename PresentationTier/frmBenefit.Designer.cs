@@ -545,7 +545,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmBenefit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmBenefit";
+            this.Text = "Phúc lợi";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmBenefit_Load);
             this.TextChanged += new System.EventHandler(this.CheckEmptyText);

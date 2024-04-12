@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCreateAccount));
             this.txtAccount = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtReEnterPassword = new System.Windows.Forms.TextBox();
@@ -189,9 +190,10 @@
             this.Controls.Add(this.lblValue);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.pnlInfo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCreateAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmCreateAccount";
+            this.Text = "Tạo tài khoản";
             this.Load += new System.EventHandler(this.frmCreateAccount_Load);
             this.pnlInfo.ResumeLayout(false);
             this.pnlInfo.PerformLayout();

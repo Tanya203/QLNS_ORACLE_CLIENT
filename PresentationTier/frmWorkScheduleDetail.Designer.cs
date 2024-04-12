@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWorkScheduleDetail));
             this.btnBack = new System.Windows.Forms.Button();
             this.lblFontSỉze = new System.Windows.Forms.Label();
             this.lblSearch = new System.Windows.Forms.Label();
@@ -645,9 +646,10 @@
             this.Controls.Add(this.nudFontSize);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.dgvWorkScheduleDetail);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmWorkScheduleDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmWorkScheduleDetail";
+            this.Text = "Chi tiết lịch làm việc";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmWorkScheduleDetail_Load);
             this.pnlInfo.ResumeLayout(false);

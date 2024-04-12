@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTimeKeeping));
             this.lbTimeKeeping = new System.Windows.Forms.Label();
             this.lblEnterStaffID = new System.Windows.Forms.Label();
             this.btnTimekeeping = new System.Windows.Forms.Button();
@@ -105,9 +106,10 @@
             this.ClientSize = new System.Drawing.Size(434, 318);
             this.Controls.Add(this.lbTimeKeeping);
             this.Controls.Add(this.pnlMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTimeKeeping";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmTimeKeeping";
+            this.Text = "Chấm công";
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
             this.ResumeLayout(false);

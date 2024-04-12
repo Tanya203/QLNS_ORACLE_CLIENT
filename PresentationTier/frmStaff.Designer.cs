@@ -35,9 +35,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStaff));
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.btnAddAccount = new System.Windows.Forms.Button();
+            this.btnLock = new System.Windows.Forms.Button();
+            this.btnUnlock = new System.Windows.Forms.Button();
             this.txtDateLock = new System.Windows.Forms.TextBox();
             this.lblLockDate = new System.Windows.Forms.Label();
+            this.btnChoosePicture = new System.Windows.Forms.Button();
             this.dtpBrithday = new System.Windows.Forms.DateTimePicker();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.rbOthers = new System.Windows.Forms.RadioButton();
             this.rbFemale = new System.Windows.Forms.RadioButton();
             this.rbMale = new System.Windows.Forms.RadioButton();
@@ -67,6 +75,7 @@
             this.lblPicture = new System.Windows.Forms.Label();
             this.lblAllowance = new System.Windows.Forms.Label();
             this.lblBasicSalary = new System.Windows.Forms.Label();
+            this.pbStaffPicture = new System.Windows.Forms.PictureBox();
             this.lblContractDuration = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblDateOffMount = new System.Windows.Forms.Label();
@@ -102,9 +111,11 @@
             this.lblPositionLogin = new System.Windows.Forms.Label();
             this.lblDepartmentLoginValue = new System.Windows.Forms.Label();
             this.pnlHeader = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.lblFullNameLogin = new System.Windows.Forms.Label();
             this.lblStaffIDLoginValue = new System.Windows.Forms.Label();
             this.lblStaffIDLogin = new System.Windows.Forms.Label();
+            this.btnBack = new System.Windows.Forms.Button();
             this.dgvStaff = new System.Windows.Forms.DataGridView();
             this.colMaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPhongBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -126,23 +137,12 @@
             this.colLuongCoBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPhuCap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNgayKhoa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAddAccount = new System.Windows.Forms.Button();
-            this.btnLock = new System.Windows.Forms.Button();
-            this.btnUnlock = new System.Windows.Forms.Button();
-            this.btnChoosePicture = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.pbStaffPicture = new System.Windows.Forms.PictureBox();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbStaffPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFontSize)).BeginInit();
             this.pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbStaffPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMenu
@@ -222,6 +222,51 @@
             this.pnlMenu.Size = new System.Drawing.Size(1581, 350);
             this.pnlMenu.TabIndex = 70;
             // 
+            // btnAddAccount
+            // 
+            this.btnAddAccount.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnAddAccount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddAccount.Enabled = false;
+            this.btnAddAccount.FlatAppearance.BorderSize = 0;
+            this.btnAddAccount.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAddAccount.Image = global::CLIENT.Properties.Resources.add_small;
+            this.btnAddAccount.Location = new System.Drawing.Point(134, 150);
+            this.btnAddAccount.Name = "btnAddAccount";
+            this.btnAddAccount.Size = new System.Drawing.Size(39, 39);
+            this.btnAddAccount.TabIndex = 65;
+            this.btnAddAccount.UseVisualStyleBackColor = false;
+            this.btnAddAccount.Click += new System.EventHandler(this.btnAddAccount_Click);
+            // 
+            // btnLock
+            // 
+            this.btnLock.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnLock.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnLock.Enabled = false;
+            this.btnLock.FlatAppearance.BorderSize = 0;
+            this.btnLock.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnLock.Image = global::CLIENT.Properties.Resources._lock;
+            this.btnLock.Location = new System.Drawing.Point(1172, 118);
+            this.btnLock.Name = "btnLock";
+            this.btnLock.Size = new System.Drawing.Size(49, 45);
+            this.btnLock.TabIndex = 64;
+            this.btnLock.UseVisualStyleBackColor = false;
+            this.btnLock.Click += new System.EventHandler(this.btnLock_Click);
+            // 
+            // btnUnlock
+            // 
+            this.btnUnlock.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnUnlock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUnlock.Enabled = false;
+            this.btnUnlock.FlatAppearance.BorderSize = 0;
+            this.btnUnlock.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnUnlock.Image = global::CLIENT.Properties.Resources.unlock;
+            this.btnUnlock.Location = new System.Drawing.Point(1240, 117);
+            this.btnUnlock.Name = "btnUnlock";
+            this.btnUnlock.Size = new System.Drawing.Size(49, 46);
+            this.btnUnlock.TabIndex = 60;
+            this.btnUnlock.UseVisualStyleBackColor = false;
+            this.btnUnlock.Click += new System.EventHandler(this.btnUnlock_Click);
+            // 
             // txtDateLock
             // 
             this.txtDateLock.Enabled = false;
@@ -242,6 +287,24 @@
             this.lblLockDate.TabIndex = 59;
             this.lblLockDate.Text = "Ngày khoá:";
             // 
+            // btnChoosePicture
+            // 
+            this.btnChoosePicture.AutoSize = true;
+            this.btnChoosePicture.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnChoosePicture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChoosePicture.FlatAppearance.BorderSize = 0;
+            this.btnChoosePicture.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnChoosePicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChoosePicture.Image = global::CLIENT.Properties.Resources.chose_picture;
+            this.btnChoosePicture.Location = new System.Drawing.Point(1172, 216);
+            this.btnChoosePicture.Name = "btnChoosePicture";
+            this.btnChoosePicture.Size = new System.Drawing.Size(153, 50);
+            this.btnChoosePicture.TabIndex = 34;
+            this.btnChoosePicture.Text = "Chọn hình";
+            this.btnChoosePicture.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnChoosePicture.UseVisualStyleBackColor = false;
+            this.btnChoosePicture.Click += new System.EventHandler(this.btnChoosePicture_Click);
+            // 
             // dtpBrithday
             // 
             this.dtpBrithday.AllowDrop = true;
@@ -253,6 +316,78 @@
             this.dtpBrithday.Name = "dtpBrithday";
             this.dtpBrithday.Size = new System.Drawing.Size(183, 27);
             this.dtpBrithday.TabIndex = 15;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.AutoSize = true;
+            this.btnCancel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::CLIENT.Properties.Resources.cancel;
+            this.btnCancel.Location = new System.Drawing.Point(928, 285);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(99, 49);
+            this.btnCancel.TabIndex = 38;
+            this.btnCancel.Text = "Huỷ";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.AutoSize = true;
+            this.btnEdit.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEdit.FlatAppearance.BorderSize = 0;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Image = global::CLIENT.Properties.Resources.fix;
+            this.btnEdit.Location = new System.Drawing.Point(648, 285);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(100, 49);
+            this.btnEdit.TabIndex = 36;
+            this.btnEdit.Text = "Sửa";
+            this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.AutoSize = true;
+            this.btnDelete.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Image = global::CLIENT.Properties.Resources.delete;
+            this.btnDelete.Location = new System.Drawing.Point(782, 285);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(102, 49);
+            this.btnDelete.TabIndex = 37;
+            this.btnDelete.Text = "Xoá";
+            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.AutoSize = true;
+            this.btnAdd.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Image = global::CLIENT.Properties.Resources.add;
+            this.btnAdd.Location = new System.Drawing.Point(478, 285);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(122, 49);
+            this.btnAdd.TabIndex = 35;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // rbOthers
             // 
@@ -564,6 +699,16 @@
             this.lblBasicSalary.Size = new System.Drawing.Size(150, 25);
             this.lblBasicSalary.TabIndex = 25;
             this.lblBasicSalary.Text = "Lương cơ bản:";
+            // 
+            // pbStaffPicture
+            // 
+            this.pbStaffPicture.Image = global::CLIENT.Properties.Resources.image;
+            this.pbStaffPicture.Location = new System.Drawing.Point(1345, 121);
+            this.pbStaffPicture.Name = "pbStaffPicture";
+            this.pbStaffPicture.Size = new System.Drawing.Size(215, 215);
+            this.pbStaffPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbStaffPicture.TabIndex = 24;
+            this.pbStaffPicture.TabStop = false;
             // 
             // lblContractDuration
             // 
@@ -929,6 +1074,26 @@
             this.pnlHeader.Size = new System.Drawing.Size(1924, 113);
             this.pnlHeader.TabIndex = 69;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.AutoSize = true;
+            this.btnRefresh.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Image = global::CLIENT.Properties.Resources.refresh;
+            this.btnRefresh.Location = new System.Drawing.Point(1780, 0);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(144, 113);
+            this.btnRefresh.TabIndex = 2;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.TextChanged += new System.EventHandler(this.EnableButton);
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // lblFullNameLogin
             // 
             this.lblFullNameLogin.AutoSize = true;
@@ -959,6 +1124,26 @@
             this.lblStaffIDLogin.Size = new System.Drawing.Size(205, 32);
             this.lblStaffIDLogin.TabIndex = 1;
             this.lblStaffIDLogin.Text = "Mã nhân viên:";
+            // 
+            // btnBack
+            // 
+            this.btnBack.AutoSize = true;
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBack.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnBack.FlatAppearance.BorderSize = 0;
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Image = global::CLIENT.Properties.Resources._return;
+            this.btnBack.Location = new System.Drawing.Point(0, 0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(142, 113);
+            this.btnBack.TabIndex = 1;
+            this.btnBack.Text = "Trở về";
+            this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // dgvStaff
             // 
@@ -1202,191 +1387,6 @@
             this.colNgayKhoa.ReadOnly = true;
             this.colNgayKhoa.Width = 125;
             // 
-            // btnAddAccount
-            // 
-            this.btnAddAccount.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnAddAccount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddAccount.Enabled = false;
-            this.btnAddAccount.FlatAppearance.BorderSize = 0;
-            this.btnAddAccount.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAddAccount.Image = global::CLIENT.Properties.Resources.add_small;
-            this.btnAddAccount.Location = new System.Drawing.Point(134, 150);
-            this.btnAddAccount.Name = "btnAddAccount";
-            this.btnAddAccount.Size = new System.Drawing.Size(39, 39);
-            this.btnAddAccount.TabIndex = 65;
-            this.btnAddAccount.UseVisualStyleBackColor = false;
-            this.btnAddAccount.Click += new System.EventHandler(this.btnAddAccount_Click);
-            // 
-            // btnLock
-            // 
-            this.btnLock.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnLock.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.btnLock.Enabled = false;
-            this.btnLock.FlatAppearance.BorderSize = 0;
-            this.btnLock.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLock.Image = global::CLIENT.Properties.Resources._lock;
-            this.btnLock.Location = new System.Drawing.Point(1172, 118);
-            this.btnLock.Name = "btnLock";
-            this.btnLock.Size = new System.Drawing.Size(49, 45);
-            this.btnLock.TabIndex = 64;
-            this.btnLock.UseVisualStyleBackColor = false;
-            this.btnLock.Click += new System.EventHandler(this.btnLock_Click);
-            // 
-            // btnUnlock
-            // 
-            this.btnUnlock.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnUnlock.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUnlock.Enabled = false;
-            this.btnUnlock.FlatAppearance.BorderSize = 0;
-            this.btnUnlock.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnUnlock.Image = global::CLIENT.Properties.Resources.unlock;
-            this.btnUnlock.Location = new System.Drawing.Point(1240, 117);
-            this.btnUnlock.Name = "btnUnlock";
-            this.btnUnlock.Size = new System.Drawing.Size(49, 46);
-            this.btnUnlock.TabIndex = 60;
-            this.btnUnlock.UseVisualStyleBackColor = false;
-            this.btnUnlock.Click += new System.EventHandler(this.btnUnlock_Click);
-            // 
-            // btnChoosePicture
-            // 
-            this.btnChoosePicture.AutoSize = true;
-            this.btnChoosePicture.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnChoosePicture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnChoosePicture.FlatAppearance.BorderSize = 0;
-            this.btnChoosePicture.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnChoosePicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChoosePicture.Image = global::CLIENT.Properties.Resources.chose_picture;
-            this.btnChoosePicture.Location = new System.Drawing.Point(1172, 216);
-            this.btnChoosePicture.Name = "btnChoosePicture";
-            this.btnChoosePicture.Size = new System.Drawing.Size(153, 50);
-            this.btnChoosePicture.TabIndex = 34;
-            this.btnChoosePicture.Text = "Chọn hình";
-            this.btnChoosePicture.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnChoosePicture.UseVisualStyleBackColor = false;
-            this.btnChoosePicture.Click += new System.EventHandler(this.btnChoosePicture_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.AutoSize = true;
-            this.btnCancel.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Image = global::CLIENT.Properties.Resources.cancel;
-            this.btnCancel.Location = new System.Drawing.Point(928, 285);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(99, 49);
-            this.btnCancel.TabIndex = 38;
-            this.btnCancel.Text = "Huỷ";
-            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.AutoSize = true;
-            this.btnEdit.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Image = global::CLIENT.Properties.Resources.fix;
-            this.btnEdit.Location = new System.Drawing.Point(648, 285);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(100, 49);
-            this.btnEdit.TabIndex = 36;
-            this.btnEdit.Text = "Sửa";
-            this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.AutoSize = true;
-            this.btnDelete.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Image = global::CLIENT.Properties.Resources.delete;
-            this.btnDelete.Location = new System.Drawing.Point(782, 285);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(102, 49);
-            this.btnDelete.TabIndex = 37;
-            this.btnDelete.Text = "Xoá";
-            this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.AutoSize = true;
-            this.btnAdd.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Image = global::CLIENT.Properties.Resources.add;
-            this.btnAdd.Location = new System.Drawing.Point(478, 285);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(122, 49);
-            this.btnAdd.TabIndex = 35;
-            this.btnAdd.Text = "Thêm";
-            this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // pbStaffPicture
-            // 
-            this.pbStaffPicture.Image = global::CLIENT.Properties.Resources.image;
-            this.pbStaffPicture.Location = new System.Drawing.Point(1345, 121);
-            this.pbStaffPicture.Name = "pbStaffPicture";
-            this.pbStaffPicture.Size = new System.Drawing.Size(215, 215);
-            this.pbStaffPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbStaffPicture.TabIndex = 24;
-            this.pbStaffPicture.TabStop = false;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.AutoSize = true;
-            this.btnRefresh.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Image = global::CLIENT.Properties.Resources.refresh;
-            this.btnRefresh.Location = new System.Drawing.Point(1780, 0);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(144, 113);
-            this.btnRefresh.TabIndex = 2;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.TextChanged += new System.EventHandler(this.EnableButton);
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // btnBack
-            // 
-            this.btnBack.AutoSize = true;
-            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBack.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBack.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnBack.FlatAppearance.BorderSize = 0;
-            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Image = global::CLIENT.Properties.Resources._return;
-            this.btnBack.Location = new System.Drawing.Point(0, 0);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(142, 113);
-            this.btnBack.TabIndex = 1;
-            this.btnBack.Text = "Trở về";
-            this.btnBack.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // frmStaff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1404,18 +1404,18 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmStaff";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmStaff";
+            this.Text = "Nhân viên";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmStaff_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             this.pnlMenu.ResumeLayout(false);
             this.pnlMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbStaffPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudFontSize)).EndInit();
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbStaffPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmContractType));
             this.nudFontSize = new System.Windows.Forms.NumericUpDown();
             this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -531,9 +532,10 @@
             this.Controls.Add(this.lblContractType);
             this.Controls.Add(this.dgvContractType);
             this.Controls.Add(this.pnlHeader);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmContractType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmContractType";
+            this.Text = "Loại hợp đồng";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmContractType_Load);
             this.TextChanged += new System.EventHandler(this.EnableButtons);
