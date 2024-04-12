@@ -137,14 +137,6 @@ namespace CLIENT.PresentationTier
             {
                 string staffID = dgvWorkScheduleDetail.Rows[row].Cells[1].Value.ToString();
                 string name = dgvWorkScheduleDetail.Rows[row].Cells[2].Value.ToString();
-                int dayOffAmount = int.Parse(dgvWorkScheduleDetail.Rows[row].Cells[5].Value.ToString());
-
-                if (dayOffAmount == 0)
-                {
-                    MessageBox.Show("Nhân viên đã hết phép", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dgvWorkScheduleDetail.Enabled = true;
-                    return;
-                }
                 bool check = (bool)dgvWorkScheduleDetail.Rows[row].Cells[6].Value;
                 CustomMessage.YesNoCustom("Xác nhận", "Huỷ");
                 DialogResult result = MessageBox.Show($"Cập nhật phép cho {name} ngày {dtpWorkDate.Text}?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -166,11 +158,6 @@ namespace CLIENT.PresentationTier
         {
             frmWorkScheduleDetail open = new frmWorkScheduleDetail(_staffID, _wsID);
             _handle.RedirectForm(open, this);
-        }
-
-        private void dgvWorkScheduleDetail_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

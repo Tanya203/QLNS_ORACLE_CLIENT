@@ -1,9 +1,6 @@
 ﻿using CLIENT.DataTier.Models;
 using CLIENT.DataTier;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CLIENT.ViewModels;
 

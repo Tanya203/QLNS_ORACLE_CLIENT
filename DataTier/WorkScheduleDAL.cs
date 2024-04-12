@@ -1,7 +1,6 @@
 ﻿using CLIENT.API;
 using CLIENT.DataTier.Models;
 using CLIENT.Function;
-using CLIENT.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
