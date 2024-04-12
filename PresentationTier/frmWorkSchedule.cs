@@ -138,11 +138,6 @@ namespace CLIENT.PresentationTier
         {
             try
             {
-                if (_listWorkSchedule.FirstOrDefault(s => s.WsId == wsID).WorkDate.Date < DateTime.Now.Date)
-                {
-                    MessageBox.Show("Không thể xoá lịch trong quá khứ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
                 CustomMessage.YesNoCustom("Xác nhận", "Huỷ");
                 DialogResult result = MessageBox.Show($"Xác nhận lịch làm việc ngày {workDate}?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)

@@ -213,7 +213,7 @@ namespace CLIENT.PresentationTier
                     Amount = decimal.Parse(txtAmount.Text),
                 };
                 await _benefitBUS.UpdateBenefit(benefit);
-
+                Reload();
             }
             catch (Exception ex)
             {

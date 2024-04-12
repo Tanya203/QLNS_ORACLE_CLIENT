@@ -209,19 +209,29 @@ namespace CLIENT.PresentationTier
             }
             else
             {
-                btnDelete.Enabled = true;
-                btnAddAccount.Enabled = true;
-                check = false;
-                if (!string.IsNullOrEmpty(txtDateLock.Text))
+                if (string.IsNullOrEmpty(txtAccount.Text))
                 {
-                    btnUnlock.Enabled = true;
+                    btnAddAccount.Enabled = true;
                     btnLock.Enabled = false;
-                }
-                if (string.IsNullOrEmpty(txtDateLock.Text))
-                {
                     btnUnlock.Enabled = false;
-                    btnLock.Enabled = true;
                 }
+                else
+                {
+                    btnAddAccount.Enabled = false;
+                    if (!string.IsNullOrEmpty(txtDateLock.Text))
+                    {
+                        btnUnlock.Enabled = true;
+                        btnLock.Enabled = false;
+                    }
+                    if (string.IsNullOrEmpty(txtDateLock.Text))
+                    {
+                        btnUnlock.Enabled = false;
+                        btnLock.Enabled = true;
+                    }
+                }
+                btnDelete.Enabled = true;                
+                check = false;
+                
                 if (CheckEmptyText(check))
                 {
                     btnEdit.Enabled = true;
@@ -533,6 +543,40 @@ namespace CLIENT.PresentationTier
         {
             frmMain open = new frmMain(_staffID);
             _handle.RedirectForm(open, this);
+        }
+
+        private void btnAddAccount_Click(object sender, EventArgs e)
+        {
+            frmCreateAccount open = new frmCreateAccount(txtStaffID.Text);
+            open.ShowDialog();
+            Reload();
+        }
+
+        private void btnLock_Click(object sender, EventArgs e)
+        {
+            frmLockAccount lockAccount = new frmLockAccount(txtStaffID.Text);
+            lockAccount.ShowDialog();
+            Reload();
+        }
+
+        private async void btnUnlock_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CustomMessage.YesNoCustom("Xác nhận", "Huỷ");
+                DialogResult result = MessageBox.Show($"Xác nhận mở khoá tài khoản cho nhân viên {txtStaffID.Text}?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    Staff staff = await _staffBUS.GetStaff(txtStaffID.Text);
+                    staff.LockDate = null;
+                    await _staffBUS.UpdateStaff(staff);
+                    Reload();
+                }
+            }
+            catch(Exception ex)
+            {
+                CustomMessage.ExecptionCustom(ex);
+            }
         }
     }
 }

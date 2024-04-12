@@ -39,7 +39,6 @@
             this.lblStaffIDLoginValue = new System.Windows.Forms.Label();
             this.lblStaffIDLogin = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
-            this.rptSalary = new Microsoft.Reporting.WinForms.ReportViewer();
             this.rbPositionSalary = new System.Windows.Forms.RadioButton();
             this.cmbPositionSalary = new System.Windows.Forms.ComboBox();
             this.rbDepartmentSalary = new System.Windows.Forms.RadioButton();
@@ -48,6 +47,7 @@
             this.lblMonth = new System.Windows.Forms.Label();
             this.cmbDepartmentSalary = new System.Windows.Forms.ComboBox();
             this.dtpMonthSalary = new System.Windows.Forms.DateTimePicker();
+            this.rptSalary = new Microsoft.Reporting.WinForms.ReportViewer();
             this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -191,16 +191,6 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // rptSalary
-            // 
-            this.rptSalary.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.rptSalary.LocalReport.ReportEmbeddedResource = "CLIENT.ReportViewers.rptSalaryStatistic.rdlc";
-            this.rptSalary.Location = new System.Drawing.Point(0, 231);
-            this.rptSalary.Name = "rptSalary";
-            this.rptSalary.ServerReport.BearerToken = null;
-            this.rptSalary.Size = new System.Drawing.Size(1924, 762);
-            this.rptSalary.TabIndex = 93;
-            // 
             // rbPositionSalary
             // 
             this.rbPositionSalary.AutoSize = true;
@@ -297,6 +287,16 @@
             this.dtpMonthSalary.TabIndex = 85;
             this.dtpMonthSalary.ValueChanged += new System.EventHandler(this.dtpMonthSalary_ValueChanged_1);
             // 
+            // rptSalary
+            // 
+            this.rptSalary.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.rptSalary.LocalReport.ReportEmbeddedResource = "CLIENT.ReportViewers.rptSalaryStatistic.rdlc";
+            this.rptSalary.Location = new System.Drawing.Point(0, 231);
+            this.rptSalary.Name = "rptSalary";
+            this.rptSalary.ServerReport.BearerToken = null;
+            this.rptSalary.Size = new System.Drawing.Size(1924, 762);
+            this.rptSalary.TabIndex = 93;
+            // 
             // frmStatistic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -336,7 +336,6 @@
         private System.Windows.Forms.Label lblStaffIDLoginValue;
         private System.Windows.Forms.Label lblStaffIDLogin;
         private System.Windows.Forms.Button btnBack;
-        private Microsoft.Reporting.WinForms.ReportViewer rptSalary;
         private System.Windows.Forms.RadioButton rbPositionSalary;
         private System.Windows.Forms.ComboBox cmbPositionSalary;
         private System.Windows.Forms.RadioButton rbDepartmentSalary;
@@ -345,5 +344,6 @@
         private System.Windows.Forms.Label lblMonth;
         private System.Windows.Forms.ComboBox cmbDepartmentSalary;
         private System.Windows.Forms.DateTimePicker dtpMonthSalary;
+        private Microsoft.Reporting.WinForms.ReportViewer rptSalary;
     }
 }

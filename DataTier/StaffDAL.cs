@@ -1,6 +1,7 @@
 ﻿using CLIENT.API;
 using CLIENT.DataTier.Models;
 using CLIENT.Function;
+using CLIENT.LogicTier;
 using CLIENT.ViewModels;
 using Newtonsoft.Json;
 using System;
@@ -15,11 +16,12 @@ namespace CLIENT.DataTier
     public class StaffDAL
     {
         private readonly StaffAPI _api;
+        private readonly MonthSalaryDetailBUS _monthSalaryDetailBUS;
         private int _count;
-
         public StaffDAL()
         {
             _api = new StaffAPI();
+            _monthSalaryDetailBUS = new MonthSalaryDetailBUS();
             _count = 0;
         }
         public async Task<List<Staff>> GetAllStaff()
@@ -27,6 +29,13 @@ namespace CLIENT.DataTier
             string responce = await _api.GetAllStaff();
             List<Staff> listStaff = JsonConvert.DeserializeObject<List<Staff>>(responce);
             return listStaff.ToList();
+        }
+        public async Task<Staff> GetStaff(string staffID)
+        {
+            string responce = await _api.GetAllStaff();
+            List<Staff> listStaff = JsonConvert.DeserializeObject<List<Staff>>(responce);
+            Staff staff = listStaff.FirstOrDefault(s => s.StaffId == staffID);
+            return staff;
         }
         public async Task<List<StaffInfoViewModel>> GetAllStaffInfo()
         {
@@ -63,7 +72,7 @@ namespace CLIENT.DataTier
                 {
                     if(info.LockDate != null && info.LockDate > DateTime.Now)
                     {
-                        MessageBox.Show($"Tài khoản đang bị khoá đến {info.LockDate}! Tài khoản đã bị khoá đến{info.LockDate}. Liên hệ phòng kỹ thuật để biết thêm chi tiết.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"Tài khoản đang bị khoá đến {info.LockDate}! Liên hệ phòng kỹ thuật để biết thêm chi tiết.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return null;
                     }
                     else if(!BCrypt.Net.BCrypt.Verify(password, info.Password))
@@ -107,6 +116,18 @@ namespace CLIENT.DataTier
                 string responce = await _api.CreateStaff(staff);
                 if (responce == "Success")
                 {
+                    List<MonthlySalaryStatisticsViewModels> list = await _monthSalaryDetailBUS.GetMonthSalary(DateTime.Now.ToString("MM/yyyy"));
+                    if(list != null) 
+                    {
+                        string msID = list.FirstOrDefault().MsId;
+                        MonthSalaryDetail add = new MonthSalaryDetail()
+                        {
+                            MsId = msID,
+                            StaffId = staff.Id,
+                        };
+                        await _monthSalaryDetailBUS.CreateMonthSalaryDetail(add);
+                        await _monthSalaryDetailBUS.UpdateMonthSalaryDetail(DateTime.Now.ToString("MM/yyyy"));
+                    }
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
@@ -129,6 +150,7 @@ namespace CLIENT.DataTier
                 string responce = await _api.UpdateStaff(staff);
                 if (responce == "Success")
                 {
+                    await _monthSalaryDetailBUS.UpdateMonthSalaryDetail(DateTime.Now.ToString("MM/yyyy"));
                     MessageBox.Show("Đã lưu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }

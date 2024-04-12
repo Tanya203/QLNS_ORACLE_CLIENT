@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CLIENT.PresentationTier
 {
@@ -164,7 +165,21 @@ namespace CLIENT.PresentationTier
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
+            frmChangePassword open = new frmChangePassword(_staffID);
+            open.ShowDialog();
+            frmMain reload = new frmMain(_staffID);
+            _handle.RedirectForm(reload, this);
+        }
 
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            CustomMessage.YesNoCustom("Có", " Không");
+            DialogResult result = MessageBox.Show("Xác nhận đăng xuất", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                frmLogin open = new frmLogin();
+                _handle.RedirectForm(open, this);
+            }
         }
     }
 }

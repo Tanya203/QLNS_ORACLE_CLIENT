@@ -202,6 +202,7 @@
             this.btnLogOut.Text = "Đăng xuất";
             this.btnLogOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // btnChangePassword
             // 

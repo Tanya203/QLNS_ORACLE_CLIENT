@@ -15,7 +15,7 @@ namespace CLIENT.Function
         }
         public static void ExecptionCustom(Exception ex)
         {
-            MessageBox.Show(ex.Message, "UNEXPECTED ERROR!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(ex.InnerException != null ? ex.InnerException.Message : ex.Message, "UNEXPECTED ERROR!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

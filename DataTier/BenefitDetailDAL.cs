@@ -1,6 +1,7 @@
 ﻿using CLIENT.API;
 using CLIENT.DataTier.Models;
 using CLIENT.Function;
+using CLIENT.LogicTier;
 using CLIENT.ViewModels;
 using Newtonsoft.Json;
 using System;
@@ -14,6 +15,7 @@ namespace CLIENT.DataTier
     public class BenefitDetailDAL
     {
         private readonly BenefitDetailApi _api;
+        private readonly MonthSalaryDetailBUS _monthSalaryDetailBUS;
         public BenefitDetailDAL()
         {
             _api = new BenefitDetailApi();
@@ -42,7 +44,8 @@ namespace CLIENT.DataTier
             {
                 foreach (BenefitDetail staff in createList)
                     await _api.CreateBenefitDetail(staff);
-               return true;
+                await _monthSalaryDetailBUS.UpdateMonthSalaryDetail(DateTime.Now.ToString("MM/yyyy"));
+                return true;
                
             }
             catch (Exception ex)
@@ -56,7 +59,8 @@ namespace CLIENT.DataTier
             try
             {
                 foreach(BenefitDetail staff in deleteList)
-                    await _api.DeleteBenefitDetail(staff.BnId, staff.StaffId);   
+                    await _api.DeleteBenefitDetail(staff.BnId, staff.StaffId);
+                await _monthSalaryDetailBUS.UpdateMonthSalaryDetail(DateTime.Now.ToString("MM/yyyy"));
                 return true;
             }
             catch (Exception ex)

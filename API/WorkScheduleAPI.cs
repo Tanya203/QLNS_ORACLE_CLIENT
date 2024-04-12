@@ -96,25 +96,7 @@ namespace CLIENT.API
             }
             return null;
         }
-        public async Task<string> GetMonthSalary (string month)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-
-                using (HttpResponseMessage res = await client.GetAsync($"{_baseUrl}GetMonthSalary?month={month}"))
-                {
-                    using (HttpContent responseContent = res.Content)
-                    {
-                        string data = await responseContent.ReadAsStringAsync();
-                        if (data != null)
-                        {
-                            return data;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
+        
         public async Task<string> DeleteWorkSchedule(string wsID)
         {
             using (HttpClient client = new HttpClient())
