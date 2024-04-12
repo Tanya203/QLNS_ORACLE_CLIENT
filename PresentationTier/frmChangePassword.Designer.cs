@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmChangePassword));
             this.txtOldPassword = new System.Windows.Forms.TextBox();
             this.lblAccount = new System.Windows.Forms.Label();
             this.txtNewPassword = new System.Windows.Forms.TextBox();
@@ -178,9 +179,10 @@
             this.ClientSize = new System.Drawing.Size(681, 350);
             this.Controls.Add(this.pnlInfo);
             this.Controls.Add(this.lblHeader);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmChangePassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmChangePassword";
+            this.Text = "Đổi mật khẩu";
             this.Load += new System.EventHandler(this.frmChangePassword_Load);
             this.pnlInfo.ResumeLayout(false);
             this.pnlInfo.PerformLayout();

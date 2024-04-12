@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDepartment));
             this.nudFontSize = new System.Windows.Forms.NumericUpDown();
             this.errProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.colToltalStaff = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -491,9 +492,10 @@
             this.Controls.Add(this.lblDepartment);
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDepartment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmDepartment";
+            this.Text = "Phòng ban";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmDepartment_Load);
             this.TextChanged += new System.EventHandler(this.EnableButtons);

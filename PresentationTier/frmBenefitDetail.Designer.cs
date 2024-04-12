@@ -617,7 +617,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmBenefitDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmBenefitDetail";
+            this.Text = "Chi tiết phúc lợi";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmBenefitDetail_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBenefitDetail)).EndInit();

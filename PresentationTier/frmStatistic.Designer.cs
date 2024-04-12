@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStatistic));
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.lblPositionLoginValue = new System.Windows.Forms.Label();
@@ -313,8 +314,9 @@
             this.Controls.Add(this.cmbDepartmentSalary);
             this.Controls.Add(this.dtpMonthSalary);
             this.Controls.Add(this.pnlHeader);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmStatistic";
-            this.Text = "frmStatistic";
+            this.Text = "Thống kê lương";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmStatistic_Load);
             this.pnlHeader.ResumeLayout(false);
