@@ -674,7 +674,7 @@
             // 
             this.lblPicture.AutoSize = true;
             this.lblPicture.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPicture.Location = new System.Drawing.Point(1167, 161);
+            this.lblPicture.Location = new System.Drawing.Point(1167, 179);
             this.lblPicture.Name = "lblPicture";
             this.lblPicture.Size = new System.Drawing.Size(63, 25);
             this.lblPicture.TabIndex = 27;
