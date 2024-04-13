@@ -119,10 +119,12 @@ namespace CLIENT.DataTier
                     if(list != null) 
                     {
                         string msID = list.FirstOrDefault().MsId;
+                        List<StaffInfoViewModel> info = await SearchStaffInfo(staff.Id);
+                        string staffID = info.FirstOrDefault().StaffId;
                         MonthSalaryDetail add = new MonthSalaryDetail()
                         {
                             MsId = msID,
-                            StaffId = staff.Id,
+                            StaffId = staffID,
                         };
                         await _monthSalaryDetailBUS.CreateMonthSalaryDetail(add);
                         await _monthSalaryDetailBUS.UpdateMonthSalaryDetail(DateTime.Now.ToString("MM/yyyy"));

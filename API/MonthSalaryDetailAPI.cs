@@ -36,7 +36,7 @@ namespace CLIENT.API
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}CreateMonthSalaryDetailServices", content))
+                using (HttpResponseMessage res = await client.PostAsync($"{_baseUrl}CreateMonthSalaryDetail?msID={monthSalaryDetail.MsId}&staffID={monthSalaryDetail.StaffId}", content))
                 {
                     using (HttpContent responseContent = res.Content)
                     {
