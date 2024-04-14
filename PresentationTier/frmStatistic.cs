@@ -82,6 +82,7 @@ namespace CLIENT.PresentationTier
 
                 foreach (MonthlySalaryStatisticsViewModels staff in salary)
                     total += staff.TotalSalary;
+                salary.OrderBy(s => s.StaffId);
                 ReportDataSource reportDataSource = new ReportDataSource("Salary", salary);
                 List<ReportParameter> parameters = new List<ReportParameter>
                 {
